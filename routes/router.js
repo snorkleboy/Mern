@@ -15,7 +15,6 @@ router.use(function timeLog(req, res, next) {
 // res.locals.authenticated = !req.user.anonymous;
 //
 
-//displays routes
 router.use('/api', APIController);
 
 

@@ -15,7 +15,7 @@ mongoose.connect('mongodb://localhost/mern-crud', { promiseLibrary: require('blu
   .then(() =>  console.log('Mongod'))
   .catch((err) => console.error(err));
 
-
+  //middleware = function((req,res,next)=>{}) express() and express().router are valid middlewares
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ 'extended': 'false' }));

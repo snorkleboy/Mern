@@ -10,8 +10,8 @@ var port = normalizePort(process.env.PORT || process.argv[2]|| '3000');
 app.set('port', port);
 
 //listen
-
-//create server is .createServer(function(res,req){...res.end})
+//create server =function createServer(function(res,req){})
+//middle ware, app, routers = function(res,req,next){}
 var server = http.createServer(app);
 server.listen(port);
 

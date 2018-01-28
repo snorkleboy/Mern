@@ -30,8 +30,4 @@ stockController.post('/', function (req, res, next) {
   });
 });
 
-
-
-
-curl -i -X POST -H "Content-Type: application/json" -d '{name:"stock"}' localhost: 3000 / api / stocks
 module.exports = stockController;
