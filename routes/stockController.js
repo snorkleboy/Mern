@@ -7,11 +7,10 @@ stockController.use(function timeLog (req, res, next) {
 });
 
 stockController.get('/time', function (req, res, next) {
-  console.log('here');
   res.json({date: Date.now()});
 });
 stockController.get('/:id', (req, res, next)=> {
-  res.send(req.params.id)
+  res.send(req.params.id);
 });
 stockController.get('/', function(req, res, next) {
   res.send('Express REST API');
