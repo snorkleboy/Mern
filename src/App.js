@@ -8,13 +8,17 @@ import {
   Switch,
   Link,
 } from 'react-router-dom';
+
+import Stocks from './components/stocks/stocksContainer';
+import Signup from './components/user/signupContainer';
+
 class App extends Component {
   render() {
     return (
       <div className="Router-level-div">
         <Switch>
-          <Route path='/yo' component={function () { return (`<div class='what'>yo</div>`);}} />
-          <Route path='/' component={function(){return(`<div class='that'>hi</div>`);}} />
+          <Route path='/stock' component={Stocks} />
+          <Route path='/' component={Signup} />
         </Switch>
       </div>
     );
