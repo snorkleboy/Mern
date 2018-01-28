@@ -6,7 +6,7 @@ var debug = require('debug')('mean-app:server');
 var http = require('http');
 // console.log(app);
 // get port or pipe
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.PORT || process.argv[2]|| '3000');
 app.set('port', port);
 
 //listen
