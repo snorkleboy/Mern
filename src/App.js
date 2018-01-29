@@ -9,16 +9,28 @@ import {
   Link,
 } from 'react-router-dom';
 
-import Stocks from './components/stocks/stocksContainer';
+import Stock from './components/stocks/stocksContainer';
 import Signup from './components/user/signupContainer';
+import Sidebar from './components/UI/sidebarContainer';
+import List from './components/stocks/listContainer';
 
+const SignedInApp = ()=>(
+  <div className='spliter'>
+    <Switch>
+      <Route exact path='/stocks' component={List} />
+      <Route exact path='/stocks/:id' component={Stock} />
+      
+    </Switch>
+    <Sidebar/>
+  </div>
+)
 class App extends Component {
   render() {
     return (
       <div className="Router-level-div">
         <Switch>
-          <Route path='/stocks' component={Stocks} />
-          <Route path='/' component={Signup} />
+          <Route exact path='/' component={Signup} />
+          <Route path='/stocks' component={SignedInApp} />
         </Switch>
       </div>
     );

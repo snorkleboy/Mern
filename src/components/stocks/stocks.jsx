@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import '../../css/chart.css';
 class Stocks extends React.Component {
     constructor(props) {
         super(props);
-        console.log(props);
+        console.log('stock comp',props);
         this.clickAppl = this.clickAppl.bind(this);
     }
     clickAppl(e){
@@ -27,6 +27,8 @@ class Stocks extends React.Component {
                 <main className='graphs'>
                     <div className='primaryGraph'>primaryGraph        </div>
                     <div className='secondaryGraph'>secondaryGraph</div>
+                    <Link to='/stocks/ticker'>tickerLINK</Link>
+                    <Link to='/stocks/123'>idLINK</Link>
                 </main>
                 <main>
                     <div className='stats'>stats</div>

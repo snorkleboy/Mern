@@ -1,28 +1,65 @@
-.App {
-  text-align: center;
+
+html, body, header, nav, h1, a,
+ul, li, strong, main, button, i,
+section, img, div, h2, p, form,
+fieldset, label, input, textarea,
+span, article, footer, time, small,select {
+
+  color: #666a73;
+      font-weight: 400;
+    /* -webkit-font-smoothing: antialiased; */
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font: inherit;
+  color: inherit;
+  text-align: inherit;
+  text-decoration: inherit;
+  vertical-align: inherit;
+  box-sizing: inherit;
+  background: transparent;
+    font-family: Lato, sans-serif;
+
+}
+#root{
+  position: relative;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+ul {
+  list-style: none;
+}
+.Router-level-div{
+}
+img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+input[type="password"],
+input[type="email"],
+input[type="text"],
+input[type="submit"],
+textarea,
+button {
+  /*
+  Get rid of native styling. Read more here:
+  http://css-tricks.com/almanac/properties/a/appearance/
+  */
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
-.App-title {
-  font-size: 1.5em;
+button,
+input[type="submit"] {
+  cursor: pointer;
 }
 
-.App-intro {
-  font-size: large;
+input:-webkit-autofill {
+    -webkit-box-shadow: inset 0 0 0px 9999px rgb(255, 255, 255);
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.spliter{
+  display: flex;
 }
