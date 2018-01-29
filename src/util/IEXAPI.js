@@ -72,5 +72,10 @@ IEXAPI.prototype.FetchIEXPercent = () => fetch(IEX_URL + 'stock/market/list/iexp
     })
     .then((res) => res.json());
 
-export default new IEXAPI();
-window.IEXAPI = new IEXAPI();
+
+
+export default new IEXAPI;
+if (process.env.NODE_ENV !== 'production') {
+    // must use 'require' (import only allowed at top of file)
+    window.IEXAPI = new IEXAPI;
+}

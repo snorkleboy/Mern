@@ -36,7 +36,8 @@ export default class Stocks extends React.Component {
 
                         <li><Link to='/stocks/123'>idLINK</Link></li>
                         <li><Link to='/stocks/ticker'>tickerLINK</Link></li>
-                        <li><Link to='/'>homepage</Link></li>
+                        <li><Link to='/stocks'>homepage</Link></li>
+                        <li><Link to='/'>signin</Link></li>
                     </ul>
                     <div className='aknow'>
                         credits to IEX and Quandl

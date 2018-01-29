@@ -12,6 +12,7 @@ export default class Stocks extends React.Component {
         return(
             <main className='stockList'>
                 <table >
+                    <tbody>
                     <tr>
                         <th>ticker</th>
                         <th>price</th>
@@ -27,6 +28,7 @@ export default class Stocks extends React.Component {
                         <td>17</td>
                         <td>.23</td>
                     </tr>
+                    </tbody>
                 </table>
             </main>
         );
