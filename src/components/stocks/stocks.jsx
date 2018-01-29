@@ -5,6 +5,16 @@ class Stocks extends React.Component {
     constructor(props) {
         super(props);
         console.log(props);
+        this.clickAppl = this.clickAppl.bind(this);
+    }
+    clickAppl(e){
+        console.log('here');
+        console.log(this.props);
+        e.preventDefault();
+        this.props.fetchAppl();
+    }
+    componentDidUpdate(newProps,oldProps){
+        console.log(newProps);
     }
     render(){
         return(
@@ -15,7 +25,8 @@ class Stocks extends React.Component {
                 </main>
                 <main>
                     <div className='stats'>stats</div>
-                    <div className='options'>options</div>     
+                    <div className='options'>options</div>
+                    <button onClick={this.clickAppl} className='appl'>APPLE</button>     
                 </main>            
             </div>
         );

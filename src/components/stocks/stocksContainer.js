@@ -1,18 +1,18 @@
 import { connect } from 'react-redux';
-import React from 'react';
 
 import Stocks from './stocks';
+import * as StockActions from './stockActions';
 
 const mapState = (state, Ownprops) =>{
     return({
-        stocks: {stuff:"that"}
+        stocks: state.stocks
 
     });
 };
 const mapDispatch = (dispatch, ownProps)=>{
     
     return({
-
+        fetchAppl: () => dispatch(StockActions.FetchStocks())
     });
 };
 

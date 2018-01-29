@@ -17,7 +17,7 @@ class App extends Component {
     return (
       <div className="Router-level-div">
         <Switch>
-          <Route path='/stock' component={Stocks} />
+          <Route path='/stocks' component={Stocks} />
           <Route path='/' component={Signup} />
         </Switch>
       </div>
