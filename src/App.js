@@ -12,14 +12,15 @@ import {
 import Stock from './components/stocks/stocksContainer';
 import Signup from './components/user/signupContainer';
 import Sidebar from './components/UI/sidebarContainer';
-import List from './components/stocks/listContainer';
+import MainPage from './components/setPages/entryPageContainer';
+import List from './components/stocks/list';
 
 const SignedInApp = ()=>(
   <div className='spliter'>
     <Switch>
-      <Route exact path='/stocks' component={List} />
-      <Route exact path='/stocks/:id' component={Stock} />
-      
+      <Route exact path='/stocks' component={MainPage} />
+      <Route exact path='/stocks/:ticker' component={Stock} />
+      <Route exact path='/stocks/list/:type' component={List}/>
     </Switch>
     <Sidebar/>
   </div>
