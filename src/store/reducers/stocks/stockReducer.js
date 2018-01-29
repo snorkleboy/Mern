@@ -1,13 +1,4 @@
-// import {
-//     RECEIVE_ALL_EVENTS,
-//     RECEIVE_EVENT,
-//     RECEIVE_CREATED_EVENT,
-//     DELETE_REGISTRATION,
-//     DELETE_BOOKMARKS,
-//     RECEIVE_REGISTRATION,
-//     RECEIVE_BOOKMARKS
-// } from '../../actions/event_actions';
-
+import {RECEIVE_STOCKS} from '../../../components/stocks/stockActions';
 import merge from 'lodash/merge';
 
 const _stocks = {
@@ -19,6 +10,9 @@ export default (state = _stocks, action)=>{
     Object.freeze(state);
     var newstate = {};
     switch (action.type) {
+        case RECEIVE_STOCKS:
+            newstate = merge({}, state, action.payload);
+            return newstate; 
         default:
             return state;
     }

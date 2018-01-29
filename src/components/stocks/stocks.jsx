@@ -17,6 +17,11 @@ class Stocks extends React.Component {
         console.log(newProps);
     }
     render(){
+        let data = this.props.stocks['dataset'] ? this.props.stocks['dataset'] : null;
+        data = data ? 
+            Object.keys(data).map((key, id) => <h1 key={key}>{key+id}:{data[key]}</h1>)
+        :
+            null;
         return(
             <div className='stocks'>
                 <main className='graphs'>
@@ -28,6 +33,12 @@ class Stocks extends React.Component {
                     <div className='options'>options</div>
                     <button onClick={this.clickAppl} className='appl'>APPLE</button>     
                 </main>            
+                <div>
+                    APPlE DATA
+                    <div>
+                        {data}
+                    </div>
+                </div>
             </div>
         );
     }
