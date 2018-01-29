@@ -2,3 +2,9 @@
     width: 100%;
     background-color: rgb(226, 132, 104);
 }
+
+.lists{
+    display: flex;
+    flex-direction: column;
+    
+}
