@@ -15,8 +15,8 @@ export default class List extends React.Component {
             this.state={'headers':[],'entries':[]};
         }
         console.log('list state', this.state);
-        this.state.headers=['ticker','price','volume']
-        this.state.entries = [['aapl', 123, 432234], ['zaag', 321, 678686]];
+        // this.state.headers=['ticker','price','volume'];
+        // this.state.entries = [['aapl', 123, 432234], ['zaag', 321, 678686]];
         
         
     }

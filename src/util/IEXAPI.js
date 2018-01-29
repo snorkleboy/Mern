@@ -26,48 +26,48 @@ const IEXAPI = ()=>{};
 // IEXAPI.prototype = Object.create;
 
 const IEX_URL = 'https://api.iextrading.com/1.0/';
-IEXAPI.prototype.FetchChart = (ticker,time) => fetch(IEX_URL + `/stock/${ticker}/chart/${time}`, {
+IEXAPI.prototype.fetchChart = (ticker,time) => fetch(IEX_URL + `/stock/${ticker}/chart/${time}`, {
     method: 'GET'
 }).then((res) => res.json());
 
-IEXAPI.prototype.FetchFinancials = (ticker) => fetch(IEX_URL + `/stock/${ticker}/financials`,{
+IEXAPI.prototype.fetchFinancials = (ticker) => fetch(IEX_URL + `/stock/${ticker}/financials`,{
         method: 'GET'
     }).then((res) => res.json());
 
-IEXAPI.prototype.FetchNews = (ticker,last) => fetch(IEX_URL + `stock/${ticker}/news`+ last ? `/last/${last.val}` : '',{
+IEXAPI.prototype.fetchNews = (ticker,last) => fetch(IEX_URL + `stock/${ticker}/news`+ last ? `/last/${last.val}` : '',{
         method: 'GET'
     }).then((res) => res.json());
 
-IEXAPI.prototype.FetchDetails = (ticker) => fetch(IEX_URL + `stock/${ticker}/stats`,{
+IEXAPI.prototypefFetchDetails = (ticker) => fetch(IEX_URL + `stock/${ticker}/stats`,{
         method: 'GET'
     })
     .then((res) => res.json());
 
 
     //retuns fetch function thunk in a thunk that calls receiveStocks, would be called like thunker(fetchGainers)() or thunker(fetchGainers, ReceiveStocks)
-IEXAPI.prototype.Thunker = (fetchFunc, action = () => StockActions.receiveStocksFromIEX) => () => dispatch => fetchFunc().then((success) => dispatch(action(success)),
+IEXAPI.prototype.thunker = (fetchFunc, action = StockActions.receiveStocksFromIEX) => () => dispatch => fetchFunc().then((success) => dispatch(action(success)),
     (fail) => console.log(fail));
 
-IEXAPI.prototype.FetchMostActive = () => fetch(IEX_URL+'stock/market/list/mostactive',{
+IEXAPI.prototype.fetchMostActive = () => fetch(IEX_URL+'stock/market/list/mostactive',{
         method: 'GET'
     })
     .then((res) => res.json());
 
-IEXAPI.prototype.FetchGainers = () => fetch(IEX_URL + 'stock/market/list/gainers',{
+IEXAPI.prototype.fetchGainers = () => fetch(IEX_URL + 'stock/market/list/gainers',{
         method: 'GET'
     })
     .then((res) => res.json());
-IEXAPI.prototype.FetchLosers = () => fetch(IEX_URL + 'stock/market/list/losers',{
-        method: 'GET'
-    })
-    .then((res) => res.json());
-
-IEXAPI.prototype.FetchIEXVolume = () => fetch(IEX_URL + 'stock/market/list/iexvolume',{
+IEXAPI.prototype.fetchLosers = () => fetch(IEX_URL + 'stock/market/list/losers',{
         method: 'GET'
     })
     .then((res) => res.json());
 
-IEXAPI.prototype.FetchIEXPercent = () => fetch(IEX_URL + 'stock/market/list/iexpercent',{
+IEXAPI.prototype.fetchIEXVolume = () => fetch(IEX_URL + 'stock/market/list/iexvolume',{
+        method: 'GET'
+    })
+    .then((res) => res.json());
+
+IEXAPI.prototype.fetchIEXPercent = () => fetch(IEX_URL + 'stock/market/list/iexpercent',{
         method: 'GET'
     })
     .then((res) => res.json());

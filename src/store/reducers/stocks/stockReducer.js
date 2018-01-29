@@ -1,9 +1,11 @@
 import {RECEIVE_STOCKS} from '../../../components/stocks/stockActions';
 import merge from 'lodash/merge';
 
-const _stocks = {
-    byId:{},
-    ids:[]
+export const _stocks = {
+    gainers:[],
+    losers:[],
+    mostActive:[],
+    mostVolume:[]
 };
 
 export default (state = _stocks, action)=>{

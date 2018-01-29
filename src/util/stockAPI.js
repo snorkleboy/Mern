@@ -51,6 +51,10 @@
 
 
 //temp for comaptability
+
+import IEXAPI from './IEXAPI';
+
+
 export const FetchStocks = () => fetch('https://www.quandl.com/api/v3/datasets/EOD/AAPL.json?api_key=77ku-us9zDe-maSwnkXx',
 {
     method:'GET'

@@ -12,8 +12,10 @@ const mapState = (state, Ownprops) => {
 const mapDispatch = (dispatch, ownProps) => {
 
     return ({
-        fetchAppl: () => dispatch(StockActions.FetchStocks())
+        getGainers: () => dispatch(StockActions.getGainers()),
+        getLosers: () => dispatch(StockActions.getLosers()),
+        getVolumes: () => dispatch(StockActions.getVolumes()),
+        getMostActives: () => dispatch(StockActions.getMostActives()),
     });
 };
-
 export default connect(mapState, mapDispatch)(EntryPage);

@@ -5,9 +5,17 @@ import List from '../stocks/list';
 export default class Stocks extends React.Component {
     constructor(props) {
         super(props);
-        console.log('list comp', props);
+        console.log('entrypage', props);
     }
-
+    componentDidMount(){
+        this.ensure();
+    }
+    ensure(){
+        if (!this.props.gainers) this.props.getGainers();
+        if (!this.props.losers) this.props.getLosers();
+        if (!this.props.volumes) this.props.getVolumes();
+        if (!this.props.mostActives) this.props.getMostActives();
+    }
     render(){
         return(
             <main className='entry'>
