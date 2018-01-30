@@ -11,7 +11,7 @@ export default class Stocks extends React.Component {
         this.ensure();
     }
     componentWillUpdate(prevprops,newprops){
-        console.log('entrypage willupdate',prevprops, newprops);
+        // console.log('entrypage willupdate',prevprops, newprops);
     }
     ensure(){
         if (!this.props.gainers) this.props.getGainers();
@@ -20,7 +20,7 @@ export default class Stocks extends React.Component {
         if (!this.props.mostActives) this.props.getMostActives();
     }
     render(){
-        console.log("ENTRYPAGE PROPS.STOCKS",this.props.stocks)
+        // console.log("ENTRYPAGE PROPS.STOCKS",this.props.stocks)
         return(
             <main className='entry'>
                 <div className='lists'>

@@ -8,13 +8,13 @@ class Stocks extends React.Component {
         this.clickAppl = this.clickAppl.bind(this);
     }
     clickAppl(e){
-        console.log('here');
-        console.log(this.props);
+        // console.log('here');
+        // console.log(this.props);
         e.preventDefault();
         this.props.fetchAppl();
     }
     componentDidUpdate(newProps,oldProps){
-        console.log(newProps);
+        // console.log(newProps);
     }
     render(){
         let data = this.props.stocks['dataset'] ? this.props.stocks['dataset'] : null;

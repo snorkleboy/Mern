@@ -64,10 +64,10 @@ export const receiveMostVolume = (stocks) => ({
 //     getLosers: () => dispatch(StockActions.getLosers()),
 //         getVolumes: () => dispatch(StockActions.getVolumes()),
 //             getMostActives: () => dispatch(StockActions.getMostActives()
-export const getGainers = thunker(IEXAPI.fetchGainers, receiveGainers);
-export const getLosers = thunker(IEXAPI.fetchLosers, receiveLosers);
-export const getVolumes = thunker(IEXAPI.fetchIEXVolume, receiveMostActive);
-export const getMostActives = thunker(IEXAPI.fetchMostActive, receiveMostVolume);
+export const getGainers = IEXAPI.thunker(IEXAPI.fetchGainers, receiveGainers);
+export const getLosers = IEXAPI.thunker(IEXAPI.fetchLosers, receiveLosers);
+export const getVolumes = IEXAPI.thunker(IEXAPI.fetchIEXVolume, receiveMostActive);
+export const getMostActives = IEXAPI.thunker(IEXAPI.fetchMostActive, receiveMostVolume);
 
 export const FetchStocks = (string) => dispatch => StockAPI.FetchStocks(string)
     .then((success) => dispatch(receiveStocks(success)),

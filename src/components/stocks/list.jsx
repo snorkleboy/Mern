@@ -17,15 +17,14 @@ export default class List extends React.Component {
     
 
     tableMaker(headers = this.props.data.headers || [], entries = this.props.data.entries || []) {
-        console.log('tablemaker',this.props, headers,entries);
         return (
             <tbody>
                 <tr>
-                    {headers.map((header) => <th>{header}</th>)}
+                    {headers.map((header,i) => <th key={`${header}+${i}`}>{header}</th>)}
                 </tr>
-                {entries.map((entry) => (
-                    <tr>
-                        {Object.values(entry).map((data) => <th>{data}</th>)}
+                {entries.map((entry,i) => (
+                    <tr key={`${entry} + ${i}`}>
+                        {headers.map((header,j) => <th key={`${entry[header]}+${i}+${j}`}>{entry[header]}</th>)}
                     </tr> 
                 )
                 )}
