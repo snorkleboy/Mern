@@ -41,7 +41,7 @@ export const receiveStocksFromIEX = (stocks) => ({
 export const receiveGainers = (stocks) => ({
     type: RECEIVE_STOCKS,
     payload: {gainers:stocks},
-    source: "IEX losers"
+    source: "IEX gainers"
 });
 export const receiveLosers = (stocks) => ({
     type: RECEIVE_STOCKS,

@@ -24,7 +24,9 @@ export default class List extends React.Component {
                 </tr>
                 {entries.map((entry,i) => (
                     <tr key={`${entry} + ${i}`}>
-                        {headers.map((header,j) => <th key={`${entry[header]}+${i}+${j}`}>{entry[header]}</th>)}
+                        <Link to={`/stocks/${entry['symbol'] || entry['ticker'] || entry['name'] || entry['company']}`}>
+                            {headers.map((header,j) => <th key={`${entry[header]}+${i}+${j}`}>{entry[header]}</th>)}
+                        </Link>
                     </tr> 
                 )
                 )}
