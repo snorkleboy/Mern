@@ -2,6 +2,8 @@ const express = require('express');
 const stockController = express.Router();
 const Stock = require('../models/stock');
 
+
+//nested under HOST/stocks
 stockController.use(function timeLog (req, res, next) {
   console.log('in stock controller /api/stocks');
   next();
