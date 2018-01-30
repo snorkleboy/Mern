@@ -58,7 +58,7 @@ const IEXAPI = class{
         this.fetchMostActive = this.fetchMostActive.bind(this);
         this.fetchIEXVolume = this.fetchIEXVolume.bind(this);
         this.fetchIEXPercent = this.fetchIEXPercent.bind(this);
-        console.log('IEXAPI CONSUTRCTION', this);
+        // console.log('IEXAPI CONSUTRCTION', this);
     }
 
     
