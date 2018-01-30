@@ -4,6 +4,7 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const router = require('./routes/router');
+const Fetcher = require('./bin/fetcher/fetcher');
 const app = express();
 
 
@@ -19,7 +20,7 @@ mongoose.connect('mongodb://localhost/mern-crud', { promiseLibrary: require('blu
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ 'extended': 'false' }));
-
+app.use(Fetcher);
 app.use(router);
 app.use(express.static(path.join(__dirname, 'build')));
 app.use('*',express.static(path.join(__dirname, 'build')));
