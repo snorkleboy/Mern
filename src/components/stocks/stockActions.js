@@ -5,7 +5,9 @@ export const thunker = (fetchFunc, action = receiveStocksFromIEX) => () => dispa
     (fail) => console.log(fail));
 
 export const RECEIVE_STOCKS = 'RECEIVE_STOCKS';
+export const RECEIVE_STOCKS_LIST = 'RECEIVE_STOCKS_LIST';
 export const RECEIVE_SAVED_STOCKS = 'RECEIVE_SAVED_STOCKS';
+export const RECEIVE_MOSTS = 'RECEIVE_MOSTS'
 
 export const receiveSavedStocks = (stocks) => ({
     type: RECEIVE_SAVED_STOCKS,
@@ -36,34 +38,40 @@ export const receiveStocksFromQuandl = (stocks) => ({
 export const receiveStocksFromIEX = (stocks) => ({
     type: RECEIVE_STOCKS,
     payload: stocks,
-    source: "IEX"
+    source: 'IEX'
+});
+export const receiveMosts = (mosts) => ({
+    type: RECEIVE_STOCKS_LIST,
+    payload: mosts,
+    source: "mongo"
 });
 export const receiveGainers = (stocks) => ({
-    type: RECEIVE_STOCKS,
+    type: RECEIVE_STOCKS_LIST,
     payload: {gainers:stocks},
-    source: "IEX gainers"
+    source: "iex gainers"
 });
 export const receiveLosers = (stocks) => ({
-    type: RECEIVE_STOCKS,
+    type: RECEIVE_STOCKS_LIST,
     payload: { losers: stocks },
-    source: "IEX losers"
+    source: "iex losers"
 });
 export const receiveMostActive = (stocks) => ({
-    type: RECEIVE_STOCKS,
+    type: RECEIVE_STOCKS_LIST,
     payload: { mostActive: stocks },
-    source: "IEX mostactive"
+    source: "iex active"
 });
 
 export const receiveMostVolume = (stocks) => ({
-    type: RECEIVE_STOCKS,
+    type: RECEIVE_STOCKS_LIST,
     payload: { mostVolume: stocks },
-    source: "IEX mostvolume"
+    source: "iex most volume"
 });
 
-// getGainers: () => dispatch(StockActions.getGainers()),
-//     getLosers: () => dispatch(StockActions.getLosers()),
-//         getVolumes: () => dispatch(StockActions.getVolumes()),
-//             getMostActives: () => dispatch(StockActions.getMostActives()
+//MONGO FETCHES
+export const getMosts = () => dispatch => StockAPI.FetchMosts()
+    .then((res) => dispatch(receiveMosts(res)))
+
+//IEXAPI FETCHES
 export const getGainers = IEXAPI.thunker(IEXAPI.fetchGainers, receiveGainers);
 export const getLosers = IEXAPI.thunker(IEXAPI.fetchLosers, receiveLosers);
 export const getVolumes = IEXAPI.thunker(IEXAPI.fetchIEXVolume, receiveMostActive);
@@ -72,8 +80,3 @@ export const getMostActives = IEXAPI.thunker(IEXAPI.fetchMostActive, receiveMost
 export const FetchStocks = (string) => dispatch => StockAPI.FetchStocks(string)
     .then((success) => dispatch(receiveStocks(success)),
     (fail) => console.log(fail));
-
-
-
-
-

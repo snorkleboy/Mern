@@ -57,15 +57,29 @@ import IEXAPI from './IEXAPI';
 
 export const FetchStocks = () => fetch('https://www.quandl.com/api/v3/datasets/EOD/AAPL.json?api_key=77ku-us9zDe-maSwnkXx',
 {
-    method:'GET'
-})
-.then((res)=>res.json());
+    method:"GET"
+}).then((res)=>res.json())
 
-export const GetStocks = () => fetch('/api/stocks');
-export const SaveStocks = (stocks) => fetch('/api/events',{
-    method:"post",
-    body:stocks,
-});
+
+export const FetchMosts = () => fetch("/api/stocks/most/all",{
+    method:"GET"
+}).then((res)=>{console.log(res);return res.json()})
+
+export const FetchMostGainer = () => fetch('/api/stocks/most/gainer', {
+    method: "GET"
+}).then((data) => data.json())
+
+export const FetchMostLoser = () => fetch('/api/stocks/most/loser', {
+    method: "GET"
+}).then((data) => data.json())
+
+export const FetchMostVolume = () => fetch('/api/stocks/most/volume', {
+    method: "GET"
+}).then((data) => data.json())
+
+export const FetchMostActive = () => fetch('/api/stocks/most/active', {
+    method: "GET"
+}).then((data) => data.json())
 
 
 

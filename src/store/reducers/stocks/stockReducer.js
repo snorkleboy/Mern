@@ -1,11 +1,17 @@
-import {RECEIVE_STOCKS} from '../../../components/stocks/stockActions';
+import {
+    RECEIVE_STOCKS,
+    RECEIVE_STOCKS_LIST
+} from '../../../components/stocks/stockActions';
 import merge from 'lodash/merge';
 
 export const _stocks = {
-    gainers:[],
-    losers:[],
-    mostActive:[],
-    mostVolume:[]
+    lists:{
+        gainers: [],
+        losers: [],
+        mostActive: [],
+        mostVolume: []
+    }
+    
 };
 
 export default (state = _stocks, action)=>{
@@ -15,6 +21,10 @@ export default (state = _stocks, action)=>{
         case RECEIVE_STOCKS:
             newstate = merge({}, state, action.payload);
             return newstate; 
+        case RECEIVE_STOCKS_LIST:
+            console.log('state', state, 'payload', action.payload);
+            newstate = merge({}, state, {lists:action.payload})
+            return newstate;
         default:
             return state;
     }

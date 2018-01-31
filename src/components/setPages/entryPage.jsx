@@ -14,10 +14,10 @@ export default class Stocks extends React.Component {
         // console.log('entrypage willupdate',prevprops, newprops);
     }
     ensure(){
-        if (!this.props.gainers) this.props.getGainers();
-        if (!this.props.losers) this.props.getLosers();
-        if (!this.props.volumes) this.props.getVolumes();
-        if (!this.props.mostActives) this.props.getMostActives();
+        console.log(this.props);
+        if (this.props.stocks.gainers.length < 1){
+            this.props.getMosts();
+        }
     }
     render(){
         // console.log("ENTRYPAGE PROPS.STOCKS",this.props.stocks)
