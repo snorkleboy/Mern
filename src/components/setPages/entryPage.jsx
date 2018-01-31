@@ -11,7 +11,7 @@ export default class Stocks extends React.Component {
         this.ensure();
     }
     componentWillUpdate(prevprops,newprops){
-        // console.log('entrypage willupdate',prevprops, newprops);
+        console.log('entrypage willupdate',prevprops, newprops);
     }
     ensure(){
         console.log(this.props);
