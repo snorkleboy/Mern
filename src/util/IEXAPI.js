@@ -40,7 +40,7 @@ const mods = [
 const IEX_URL = 'https://api.iextrading.com/1.0/';
 
 const IEXAPI = class{
-    constructor(modifers = mods, filters = filterMods) {
+    constructor(filters = filterMods, modifers = mods) {
 
         this.mods = modifers || [];
         this.filters = filters || [];
@@ -151,8 +151,8 @@ const IEXAPI = class{
 
 
 const API = new IEXAPI()
-export default API;
+export default IEXAPI;
 if (process.env.NODE_ENV !== 'production') {
     // must use 'require' (import only allowed at top of file)
-    window.IEXAPI = API;
+    window.IEXAPI = new IEXAPI();
 }

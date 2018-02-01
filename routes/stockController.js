@@ -37,7 +37,7 @@ stockController.get('/most/all', (req, res, next) => {
   const promises = [];
   promises.push(Mosts.MostActive.find({}, (error, data) => { response.mostActive = data; }).select('-_id -created_at -__v'));
   promises.push(Mosts.Loser.find({}, (error,data) => { response.losers = data;}).select('-_id -created_at -__v'));
-  promises.push(Mosts.MostVolume.find({}, (error,data) => { response.MostVolume = data;}).select('-_id -created_at -__v'));
+  promises.push(Mosts.MostVolume.find({}, (error,data) => { response.mostVolume = data;}).select('-_id -created_at -__v'));
   promises.push(Mosts.Gainer.find({}, (error,data) => { response.gainers = data;}).select('-_id -created_at -__v'));
   Promise.all(promises).then(()=>{
     res.json(response);

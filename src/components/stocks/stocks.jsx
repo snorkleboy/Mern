@@ -1,27 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../../css/chart.css';
+import List from './list';
 class Stocks extends React.Component {
     constructor(props) {
         super(props);
-        console.log('stock comp',props);
-        this.clickAppl = this.clickAppl.bind(this);
+        console.log('stock comp',props, props.match.params);
+        this.state={data:[]};
     }
-    clickAppl(e){
-        // console.log('here');
-        // console.log(this.props);
-        e.preventDefault();
-        this.props.fetchAppl();
+    componentDidMount(){
+        // fetch(API + DEFAULT_QUERY)
+        //     .then(response => response.json())
+        //     .then(data => this.setState({ hits: data.hits }));
+        // console.log(this.props.match.params.ticker);
+        this.props.fetchSymbol(this.props.match.params.ticker)
+        .then((data)=>{console.log('det fetch',data); return this.setState({'data':data})})
     }
     componentDidUpdate(newProps,oldProps){
-        // console.log(newProps);
+        // console.log('stockdetials updating',oldProps,newProps, this.state);
     }
     render(){
-        let data = this.props.stocks['dataset'] ? this.props.stocks['dataset'] : null;
-        data = data ? 
-            Object.keys(data).map((key, id) => <h1 key={key}>{key+id}:{data[key]}</h1>)
-        :
-            null;
         return(
             <div className='stocks'>
                 <main className='graphs'>
@@ -29,20 +27,90 @@ class Stocks extends React.Component {
                     <div className='secondaryGraph'>secondaryGraph</div>
                     <Link to='/stocks/ticker'>tickerLINK</Link>
                     <Link to='/stocks/123'>idLINK</Link>
+
                 </main>
                 <main>
                     <div className='stats'>stats</div>
                     <div className='options'>options</div>
-                    <button onClick={this.clickAppl} className='appl'>APPLE</button>     
+                    <h1> detail info</h1>
+                    <List
+                        data={{
+                            'headers': info,
+                            'entries': [this.state.data]
+                        }}
+                    /> 
+                    <h1>price info</h1>
+                    <List
+                        data={{
+                            'headers': prices,
+                            'entries': [this.state.data]
+                        }}
+                    />    
+
                 </main>            
-                <div>
-                    APPlE DATA
-                    <div>
-                        {data}
-                    </div>
-                </div>
+
             </div>
         );
     }
+    getHeaders(obj) {
+        // console.log('here', Object.keys(obj));
+        return (obj) ?
+            Object.keys(obj)
+            :
+            [];
+    }
+
+
 }
+
+const info = [
+    'symbol',
+    'latestEPS',
+    'revenue',
+    'cash',
+    'debt',
+    'revenuePerShare',
+    'peRatioHigh',
+    'peRatioLow',
+    'beta',
+    'profitMargin',
+    'priceToSales',
+    'priceToBook',
+    'institutionPercent',
+    'insiderPercent',
+    'shortRatio',
+    'profitMargin',
+    'priceToSales',
+    'priceToBook',
+    'shortInterest',
+    'dividendYield',
+    'sharesOutstanding',
+    'float',
+    'returnOnEquity',
+    'consensusEPS',
+    'EPSSurprisePercent',
+    'EBITDA',
+    'grossProfit',
+
+]
+const prices = [
+    'day5ChangePercent',
+    'day200MovingAvg',
+    'day50MovingAvg',
+    'marketcap',
+    'week52high',
+    'week52low',
+    'week52change',
+    'month6ChangePercent',
+    'month3ChangePercent',
+    'month1ChangePercent',
+    'ytdChangePercent',
+    'year5ChangePercent',
+    'year2ChangePercent',
+    'year1ChangePercent',
+    'peRatioHigh',
+    'peRatioLow',
+]
+
+
 export default Stocks;

@@ -1,6 +1,6 @@
 import * as StockAPI from '../../util/stockAPI.js';
 import IEXAPI from '../../util/IEXAPI';
-
+const API = new IEXAPI();
 export const thunker = (fetchFunc, action = receiveStocksFromIEX) => () => dispatch => fetchFunc().then((success) => dispatch(action(success)),
     (fail) => console.log(fail));
 
@@ -71,11 +71,12 @@ export const receiveMostVolume = (stocks) => ({
 export const getMosts = () => dispatch => StockAPI.FetchMosts()
     .then((res) => dispatch(receiveMosts(res)))
 
-//IEXAPI FETCHES
-export const getGainers = IEXAPI.thunker(IEXAPI.fetchGainers, receiveGainers);
-export const getLosers = IEXAPI.thunker(IEXAPI.fetchLosers, receiveLosers);
-export const getVolumes = IEXAPI.thunker(IEXAPI.fetchIEXVolume, receiveMostActive);
-export const getMostActives = IEXAPI.thunker(IEXAPI.fetchMostActive, receiveMostVolume);
+//IEXAPI FETCHE AND SAVE
+
+export const getGainers = API.thunker(API.fetchGainers, receiveGainers);
+export const getLosers = API.thunker(API.fetchLosers, receiveLosers);
+export const getVolumes = API.thunker(API.fetchIEXVolume, receiveMostActive);
+export const getMostActives = API.thunker(API.fetchMostActive, receiveMostVolume);
 
 export const FetchStocks = (string) => dispatch => StockAPI.FetchStocks(string)
     .then((success) => dispatch(receiveStocks(success)),
