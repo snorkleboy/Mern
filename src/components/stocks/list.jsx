@@ -21,7 +21,8 @@ export default class List extends React.Component {
         }      
     }
     
-
+//makes headers as top row
+//makes entry[header] for all other rows by iterating through entries and pulling out data by header
     tableMaker(headers = this.props.data.headers || [], entries = this.props.data.entries || []) {
         return (
             <tbody>
@@ -29,7 +30,8 @@ export default class List extends React.Component {
                     {headers.map((header,i) => <th key={`${header}+${i}`}>{header}</th>)}
                 </tr>
                 {entries.map((entry,i) => (
-                    <tr key={`${entry} + ${i}`}>                  
+                    <tr key={`${entry} + ${i}`}>
+
                         {headers.map((header, j) =>(                        
                             <th key={`${entry[header]}+${i}+${j}`}>
                                 <Link to={`/stocks/${entry['symbol']}`}> 
@@ -37,8 +39,9 @@ export default class List extends React.Component {
                                 </Link>
                             </th>)
                         )}
+                        
                     </tr> 
-                )
+                    )
                 )}
             </tbody>
         );

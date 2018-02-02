@@ -33,12 +33,9 @@ const filterMods = [
     'previousClose',
     'peRatio',
     'avgTotalVolume'
-    
-
 ];
 const mods = [
     "displayPercent=true",
-
 ];
 const IEX_URL = 'https://api.iextrading.com/1.0/';
 
@@ -61,7 +58,6 @@ const IEXAPI = class{
         this.fetchMostActive = this.fetchMostActive.bind(this);
         this.fetchIEXVolume = this.fetchIEXVolume.bind(this);
         this.fetchIEXPercent = this.fetchIEXPercent.bind(this);
-        // console.log('IEXAPI CONSUTRCTION', this);
     }
 
     
@@ -70,23 +66,23 @@ const IEXAPI = class{
     addFilters(filters){ filters.forEach((filter) => this.filters.push(filter)); return this; }
     setFilters(filters){ this.filters = filters; return this; }
 
-    attrWriter(){
-    const filtersString = this.filters.length > 0 ? `filter=${this.filters.join(',')}` : '';
-    const modsString = this.mods.length > 0 ? this.mods.join('&') : '';
-    const query = (filtersString !== '' || modsString !== '');
+    attrWriter() {
+        const filtersString = this.filters.length > 0 ? `filter=${this.filters.join(',')}` : '';
+        const modsString = this.mods.length > 0 ? this.mods.join('&') : '';
+        const query = (filtersString !== '' || modsString !== '');
 
-    let string = '';
-    if (query) {
-        string = string + '?';
-        if (filtersString) {
-            string = string + filtersString;
-            string = string + modsString ? '&' + modsString : '';
-        } else {
-            string = string + modsString;
+        let string = '';
+
+        if (query) {
+            string = '?';
+            if (filtersString) {
+                string = string + filtersString;
+                string = string + (modsString ? `&${modsString}` : '');
+            } else {
+                string = string + modsString;
+            }
         }
-    }
-    // console.log("STRING =", string, IEX_URL+string )
-    return (string);
+        return (string);
     }
     //retuns fetch function thunk in a thunk that calls receiveStocks, would be called like thunker(fetchGainers)() or thunker(fetchGainers, ReceiveStocks)()
     thunker(fetchFunc, action = StockActions.receiveStocksFromIEX){
@@ -94,7 +90,8 @@ const IEXAPI = class{
         (fail) => console.log(fail));
     }
     fetchChart(ticker,time){
-        return fetch(IEX_URL + `/stock/${ticker}/chart/${time}` + this.attrWriter(), {
+        console.log('chart url', IEX_URL + `/stock/${ticker}/chart/${time}?displayPercent=true`)
+        return fetch(IEX_URL + `/stock/${ticker}/chart/${time}/?displayPercent=true`, {
             method: 'GET'
         }).then((res) => res.json());}
 
@@ -104,7 +101,9 @@ const IEXAPI = class{
             method: 'GET'
         }).then((res) => res.json());
     }
+    fetchBatchdetail(ticker, time){
 
+    }
     fetchNews(ticker,last){
         return fetch(IEX_URL + `stock/${ticker}/news` + this.attrWriter()+ last ? `/last/${last.val}` : '',{
             method: 'GET'
@@ -114,11 +113,12 @@ const IEXAPI = class{
     fetchDetails(ticker){
         return fetch(IEX_URL + `stock/${ticker}/stats` + this.attrWriter(),{
             method: 'GET'
-        }).then((res) => res.json());
+        }).then((res) => res.json(),(fail)=>console.log('IEXAPI fail',fail));
     }
 
     
     fetchGainers() {
+        console.log('gainers', IEX_URL + 'stock/market/list/gainers' + this.attrWriter())
         return (fetch(IEX_URL + 'stock/market/list/gainers' + this.attrWriter(), {
             method: 'GET'
         }).then((res) => res.json()));

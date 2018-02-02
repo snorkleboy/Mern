@@ -40,7 +40,7 @@ const mods = [
 const IEX_URL = 'https://api.iextrading.com/1.0/';
 
 const IEXAPI = class {
-    constructor(modifers = mods, filters = filterMods) {
+    constructor(filters = filterMods, modifers = mods) {
 
         this.mods = modifers || [];
         this.filters = filters || [];

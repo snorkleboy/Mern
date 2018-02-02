@@ -2,24 +2,30 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../../css/chart.css';
 import List from './list';
+import Chart from './chart';
+import { TypeChooser } from "react-stockcharts/lib/helper";
+import { timeParse } from "d3-time-format";
+
 class Stocks extends React.Component {
     constructor(props) {
         super(props);
         console.log('stock comp',props, props.match.params);
-        this.state={data:[]};
+        this.state={data:[],chart:[]};
     }
     componentDidMount(){
-        // fetch(API + DEFAULT_QUERY)
-        //     .then(response => response.json())
-        //     .then(data => this.setState({ hits: data.hits }));
-        // console.log(this.props.match.params.ticker);
         this.props.fetchSymbol(this.props.match.params.ticker)
-        .then((data)=>{console.log('det fetch',data); return this.setState({'data':data})})
+        .then((data)=>this.setState({'data':data}));
+
+        this.props.fetchChart(this.props.match.params.ticker,'3m').then((data)=>this.setState({'chart':data}));
     }
     componentDidUpdate(newProps,oldProps){
         // console.log('stockdetials updating',oldProps,newProps, this.state);
     }
     render(){
+        var parseTime = timeParse("%Y %m %d");
+        const testdata = [{ 'date': new Date("2017-10-30"), 'close': 123 }, { 'date': new Date("2017-11-30"),'close':321}]
+
+
         return(
             <div className='stocks'>
                 <main className='graphs'>
@@ -45,7 +51,22 @@ class Stocks extends React.Component {
                             'headers': prices,
                             'entries': [this.state.data]
                         }}
-                    />    
+                    />
+                    <h1>chart attempt</h1>
+                    {this.state.chart.length>0 ?
+                            (<TypeChooser>
+                            {type => <Chart type={type} data={this.state.chart} />}
+                            </TypeChooser>)
+                        :
+                            'loading'
+                    }
+                    <h1> chart data</h1>
+                    <List
+                        data={{
+                            'headers': this.getHeaders(this.state.chart[0]),
+                            'entries':this.state.chart
+                        }}
+                    />
 
                 </main>            
 
