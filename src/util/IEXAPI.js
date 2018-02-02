@@ -24,13 +24,14 @@ import * as StockActions from '../components/stocks/stockActions';
 
 const filterMods = [
     'symbol',
+    'changePercent',
+    'ytdChange',
+    'marketCap',
     'open',
     'close',
     'previousClose',
-    'changePercent',
-    'marketCap',
     'peRatio',
-    'ytdChange'
+    
 
 ];
 const mods = [

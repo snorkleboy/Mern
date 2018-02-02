@@ -23,14 +23,13 @@
 const fetch = require('node-fetch');
 const filterMods = [
     'symbol',
+    'changePercent',
+    'ytdChange',
+    'marketCap',
     'open',
     'close',
     'previousClose',
-    'changePercent',
-    'marketCap',
     'peRatio',
-    'ytdChange'
-
 ];
 const mods = [
     "displayPercent=true",
