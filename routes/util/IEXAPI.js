@@ -23,13 +23,15 @@
 const fetch = require('node-fetch');
 const filterMods = [
     'symbol',
+    'change',
     'changePercent',
     'ytdChange',
     'marketCap',
-    'open',
-    'close',
+    'high',
+    'low',
     'previousClose',
     'peRatio',
+    'avgTotalVolume'
 ];
 const mods = [
     "displayPercent=true",
@@ -59,7 +61,6 @@ const IEXAPI = class {
         // console.log('IEXAPI CONSUTRCTION', this);
     }
 
-
     addMods(modif) { modif.forEach((modi) => this.mods.push(modi)); return this; }
     setMods(modif) { this.filters = modif; return this; }
     addFilters(filters) { filters.forEach((filter) => this.filters.push(filter)); return this; }
@@ -71,16 +72,16 @@ const IEXAPI = class {
         const query = (filtersString !== '' || modsString !== '');
 
         let string = '';
+        
         if (query) {
-            string = string + '?';
+            string = '?';
             if (filtersString) {
                 string = string + filtersString;
-                string + modsString ? '&' + modsString : '';
+                string = string + (modsString ? `&${modsString}` : '');
             } else {
                 string = string + modsString;
             }
         }
-        // console.log("STRING =", string, IEX_URL+string )
         return (string);
     }
     fetchChart(ticker, time) {

@@ -22,6 +22,7 @@ const startTimer = ()=> {
     },7000);
 };
 if (!timer) startTimer();
+
 const Fetcher = function(req,res,next){
 
 };

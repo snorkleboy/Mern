@@ -25,12 +25,14 @@ import * as StockActions from '../components/stocks/stockActions';
 const filterMods = [
     'symbol',
     'changePercent',
+    'change',
     'ytdChange',
     'marketCap',
-    'open',
-    'close',
+    'high',
+    'low',
     'previousClose',
     'peRatio',
+    'avgTotalVolume'
     
 
 ];
@@ -78,7 +80,7 @@ const IEXAPI = class{
         string = string + '?';
         if (filtersString) {
             string = string + filtersString;
-            string + modsString ? '&' + modsString : '';
+            string = string + modsString ? '&' + modsString : '';
         } else {
             string = string + modsString;
         }

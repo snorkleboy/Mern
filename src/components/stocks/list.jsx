@@ -2,6 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../../css/stocklist.css';
 
+
+String.prototype.precTrim = function (num) {
+    const ind = this.indexOf('.')
+    if (ind !== -1) {
+        return this.slice(0, ind + num + 1);
+    }
+    return this
+}
+
+
 export default class List extends React.Component {
     constructor(props) {
         super(props);
@@ -22,8 +32,8 @@ export default class List extends React.Component {
                     <tr key={`${entry} + ${i}`}>                  
                         {headers.map((header, j) =>(                        
                             <th key={`${entry[header]}+${i}+${j}`}>
-                                <Link to={`/stocks/${entry['symbol'] || entry['ticker'] || entry['name'] || entry['company']}`}> 
-                                    {entry[header] || 'unlisted'}
+                                <Link to={`/stocks/${entry['symbol']}`}> 
+                                    {entry[header] ? entry[header].toString().precTrim(3) : 'unlisted'}
                                 </Link>
                             </th>)
                         )}
@@ -43,3 +53,5 @@ export default class List extends React.Component {
         );
     }
 }
+
+
