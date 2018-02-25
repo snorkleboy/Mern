@@ -9,11 +9,11 @@ class Signup extends React.Component {
     render() {
         return (
             <div className='Signup'>
-                <main className='form'>
+                <section className='form'>
                     <div className='username'>username</div>
                     <div className='password'>password</div>
                     <Link to='/stocks'>signin</Link>
-                </main>
+                </section>
             </div>
         );
     }

@@ -15,7 +15,7 @@
 
 
 .dot{
-        fill: #ffab00;
-        stroke: #fff;
+        fill: none;
+        stroke: #ffab00;
         stroke-width: 2px;
 }

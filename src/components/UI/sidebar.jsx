@@ -12,7 +12,7 @@ export default class Stocks extends React.Component {
     render(){
         return(
             <div className='sidebarHolder'>
-                <main className='sidebar'>
+                <section className='sidebar'>
                 <div className='logo'>
                     Tfin
                     
@@ -42,7 +42,7 @@ export default class Stocks extends React.Component {
                     <div className='aknow'>
                         credits to IEX and Quandl
                     </div>
-                </main>
+                </section>
             </div>
         );
     }

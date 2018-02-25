@@ -19,15 +19,15 @@ class Stocks extends React.Component {
     }
     render(){
         return(
-            <div className='stocks'>
-                <main className='graphs'>
+            <main className='stocks'>
+                <section className='graphs'>
                     <div className='primaryGraph'>primaryGraph        </div>
                     <div className='secondaryGraph'>secondaryGraph</div>
                     <Link to='/stocks/ticker'>tickerLINK</Link>
                     <Link to='/stocks/123'>idLINK</Link>
 
-                </main>
-                <main>
+                </section>
+                <section>
                     <div className='stats'>stats</div>
                     <div className='options'>options</div>
                     <h1> detail info</h1>
@@ -56,9 +56,9 @@ class Stocks extends React.Component {
                     <h1> chart data</h1>
 
 
-                </main>            
+                </section>            
 
-            </div>
+            </main>
         );
     }
     getHeaders(obj) {
