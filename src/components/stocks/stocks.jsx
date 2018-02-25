@@ -3,29 +3,21 @@ import { Link } from 'react-router-dom';
 import '../../css/chart.css';
 import List from './list';
 import Chart from './chart';
-import { TypeChooser } from "react-stockcharts/lib/helper";
-import { timeParse } from "d3-time-format";
 
 class Stocks extends React.Component {
     constructor(props) {
         super(props);
-        console.log('stock comp',props, props.match.params);
         this.state={data:[],chart:[]};
     }
     componentDidMount(){
         this.props.fetchSymbol(this.props.match.params.ticker)
         .then((data)=>this.setState({'data':data}));
 
-        this.props.fetchChart(this.props.match.params.ticker,'3m').then((data)=>this.setState({'chart':data}));
+        this.props.fetchChart(this.props.match.params.ticker,'5y').then((data)=>this.setState({'chart':data}));
     }
     componentDidUpdate(newProps,oldProps){
-        // console.log('stockdetials updating',oldProps,newProps, this.state);
     }
     render(){
-        var parseTime = timeParse("%Y %m %d");
-        const testdata = [{ 'date': new Date("2017-10-30"), 'close': 123 }, { 'date': new Date("2017-11-30"),'close':321}]
-
-
         return(
             <div className='stocks'>
                 <main className='graphs'>
@@ -54,19 +46,15 @@ class Stocks extends React.Component {
                     />
                     <h1>chart attempt</h1>
                     {this.state.chart.length>0 ?
-                            (<TypeChooser>
-                            {type => <Chart type={type} data={this.state.chart} />}
-                            </TypeChooser>)
+                        (<Chart data={this.state.chart} width={1000} ratio={.5} />)
                         :
-                            'loading'
+                            `LOADING
+                            LOADING
+                            LOADING
+                            LOADING`
                     }
                     <h1> chart data</h1>
-                    <List
-                        data={{
-                            'headers': this.getHeaders(this.state.chart[0]),
-                            'entries':this.state.chart
-                        }}
-                    />
+
 
                 </main>            
 
@@ -84,6 +72,13 @@ class Stocks extends React.Component {
 
 }
 
+
+// <List
+//     data={{
+//         'headers': this.getHeaders(this.state.chart[0]),
+//         'entries': this.state.chart
+//     }}
+// />
 const info = [
     'symbol',
     'latestEPS',

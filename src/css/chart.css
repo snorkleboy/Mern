@@ -2,3 +2,20 @@
     background-color: rgb(173, 230, 178);
     width: 100%;
 }
+
+.axis {
+    font: 14px sans-serif;
+}
+
+.line {
+    fill: steelblue;
+    stroke: steelblue;
+    stroke-width: 2px;
+}
+
+
+.dot{
+        fill: #ffab00;
+        stroke: #fff;
+        stroke-width: 2px;
+}
