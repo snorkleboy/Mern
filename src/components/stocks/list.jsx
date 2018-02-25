@@ -21,7 +21,7 @@ export default class List extends React.Component {
 //makes entry[header] for all other rows by iterating through entries and pulling out data by header
     listMaker(headers = this.props.data.headers || [], entries = this.props.data.entries || []) {
         return (
-            <section class='table'>
+            <section class='grid'>
                 <header className='row'>
                     {headers.map((header,i) => <div className='chart-header' key={`${header}+${i}`}>{header}</div>)}
                 </header>

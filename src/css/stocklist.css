@@ -2,7 +2,7 @@
   background-color: rgb(252, 240, 255);
   width: 100%;
 }
-.table{
+.grid{
   display: grid;
 }
 .chart-header{
