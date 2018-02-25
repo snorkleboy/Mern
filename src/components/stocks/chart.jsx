@@ -4,7 +4,7 @@ import * as d3 from "d3";
 class Chart extends React.Component {
     constructor(props){
         super(props);
-        this.state = { "data" : Object.values(this.props.data).slice(0,10)}
+        this.state = { "data" : Object.values(this.props.data)}
         console.log('chart con',props);
     }
 
