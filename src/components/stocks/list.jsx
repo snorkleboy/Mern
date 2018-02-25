@@ -15,43 +15,33 @@ String.prototype.precTrim = function (num) {
 export default class List extends React.Component {
     constructor(props) {
         super(props);
-        console.log('list comp',props);
-        if (this.props.data === undefined) {
-            console.log('List.jsx error:', 'list must be passed props.data.headers and props.data.entries');            
-        }      
     }
     
 //makes headers as top row
 //makes entry[header] for all other rows by iterating through entries and pulling out data by header
-    tableMaker(headers = this.props.data.headers || [], entries = this.props.data.entries || []) {
+    listMaker(headers = this.props.data.headers || [], entries = this.props.data.entries || []) {
         return (
-            <tbody>
-                <tr>
-                    {headers.map((header,i) => <th key={`${header}+${i}`}>{header}</th>)}
-                </tr>
+            <section class='table'>
+                <header className='row'>
+                    {headers.map((header,i) => <div className='chart-header' key={`${header}+${i}`}>{header}</div>)}
+                </header>
                 {entries.map((entry,i) => (
-                    <tr key={`${entry} + ${i}`}>
-
+                    <Link className='row' key={`${entry} + ${i}`} to={`/stocks/${entry['symbol']}`}>
                         {headers.map((header, j) =>(                        
-                            <th key={`${entry[header]}+${i}+${j}`}>
-                                <Link to={`/stocks/${entry['symbol']}`}> 
+                            <div key={`${entry[header]}+${i}+${j}`}>
                                     {entry[header] ? entry[header].toString().precTrim(3) : 'unlisted'}
-                                </Link>
-                            </th>)
+                            </div>)
                         )}
-                        
-                    </tr> 
+                    </Link>
                     )
                 )}
-            </tbody>
+            </section>
         );
     }
     render(){
         return(
             <main className='stockList'>
-                <table >
-                    {this.tableMaker()}
-                </table>
+                    {this.listMaker()}
             </main>
         );
     }

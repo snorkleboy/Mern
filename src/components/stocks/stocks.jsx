@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../../css/chart.css';
 import List from './list';
-import Chart from './chart';
+import Chart from './chart'
+import Table from './table';
 
 class Stocks extends React.Component {
     constructor(props) {
@@ -21,39 +22,34 @@ class Stocks extends React.Component {
         return(
             <main className='stocks'>
                 <section className='graphs'>
-                    <div className='primaryGraph'>primaryGraph        </div>
-                    <div className='secondaryGraph'>secondaryGraph</div>
-                    <Link to='/stocks/ticker'>tickerLINK</Link>
-                    <Link to='/stocks/123'>idLINK</Link>
-
-                </section>
-                <section>
-                    <div className='stats'>stats</div>
-                    <div className='options'>options</div>
-                    <h1> detail info</h1>
-                    <List
-                        data={{
-                            'headers': info,
-                            'entries': [this.state.data]
-                        }}
-                    /> 
-                    <h1>price info</h1>
-                    <List
-                        data={{
-                            'headers': prices,
-                            'entries': [this.state.data]
-                        }}
-                    />
-                    <h1>chart attempt</h1>
-                    {this.state.chart.length>0 ?
+                    {this.state.chart.length > 0 ?
                         (<Chart data={this.state.chart} width={1000} ratio={.5} />)
                         :
-                            `LOADING
+                        `LOADING
                             LOADING
                             LOADING
                             LOADING`
                     }
                     <h1> chart data</h1>
+                </section>
+                <section>
+                    <div className='stats'>stats</div>
+                    <div className='options'>options</div>
+                    <h1> detail info</h1>
+                    <Table
+                        data={{
+                            'headers': info,
+                            'entries': this.state.data
+                        }}
+                    /> 
+                    <h1>price info</h1>
+                    <Table
+                        data={{
+                            'headers': prices,
+                            'entries': this.state.data
+                        }}
+                    />
+
 
 
                 </section>            
