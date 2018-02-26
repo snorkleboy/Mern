@@ -11,14 +11,13 @@ class Stocks extends React.Component {
         this.state={data:[],chart:[]};
     }
     componentDidMount(){
-        this.props.fetchSymbol(this.props.match.params.ticker)
-        .then((data)=>this.setState({'data':data}));
-
-        this.props.fetchChart(this.props.match.params.ticker,'5y').then((data)=>this.setState({'chart':data}));
+        this.getData(this.props.match);
     }
-    componentWillUpdate(newp,news){
-        console.log("STOCKS STATE",news)
+    getData(match){
+        this.props.fetchSymbol(match.params.ticker)
+            .then((data) => this.setState({ 'data': data }));
 
+        this.props.fetchChart(match.params.ticker, '5y').then((data) => this.setState({ 'chart': data }));
     }
     componentDidUpdate(newProps,oldProps){
     }
@@ -47,6 +46,13 @@ class Stocks extends React.Component {
 
             </main>
         );
+    }
+    componentWillUpdate(newp, news) {
+        console.log("WILLUPDATE STOCKS", newp, this.props)
+        if (newp.location.pathname !== this.props.location.pathname) {
+            console.log("REFTECHING", newp, this.props)
+            this.getData(newp.match);
+        }
     }
     getHeaders(obj) {
         // console.log('here', Object.keys(obj));

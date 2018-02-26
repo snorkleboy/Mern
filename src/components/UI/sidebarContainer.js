@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router'
 
 import Sidebar from './sidebar';
 import * as StockActions from '../../components/stocks/stockActions';
@@ -15,4 +16,4 @@ const mapDispatch = (dispatch, ownProps) => {
     });
 };
 
-export default connect(mapState, mapDispatch)(Sidebar);
+export default withRouter(connect(mapState, mapDispatch)(Sidebar));

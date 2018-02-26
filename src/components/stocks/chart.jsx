@@ -2,6 +2,7 @@
 import React from "react";
 import * as d3 from "d3";
 import Graph from './d3/graph'
+
 class Chart extends React.Component {
     constructor(props){
         super(props);
@@ -51,9 +52,7 @@ class Chart extends React.Component {
             </section>
         );
     }
-    componentWillUpdate(newp,news){
-        console.log('willUpdate',news);
-    }
+    
     componentDidUpdate(oldprops,prevstate){
     }
     componentDidMount(){

@@ -28,6 +28,7 @@ class Graph extends React.Component {
 
     make(props) {
         const { data, type } = props;
+        console.log('graph make',data.ticker)
         const chart = document.getElementById('chartD3')
         chart.innerHTML=''
         const chartArea = [props.width, props.height]
