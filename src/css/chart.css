@@ -9,13 +9,17 @@
 
 .line {
     fill: none;
-    stroke: steelblue;
+    stroke: rgb(12, 75, 126);
+    stroke-width: 2px;
+}
+.volume{
+    fill: rgb(180, 154, 70);
+    stroke: rgb(70, 180, 94);
     stroke-width: 2px;
 }
 
-
 .dot{
         fill: none;
-        stroke: #ffab00;
+        stroke: #ffbb00;
         stroke-width: 2px;
 }

@@ -5,12 +5,11 @@ const FileStream = require('fs');
     
 const Log = function(log){
     // console.log(log);
-    const fd = FileStream.appendFile('logs/FetchLogs.txt', JSON.stringify(log), function (err) {
+    const fd = FileStream.appendFile(__dirname +'/logs/FetchLogs.txt', JSON.stringify(log), function (err) {
         if (err) {
             console.log('err!', err, Date.now);
             throw err;
         }
-        
     });
 }
 
