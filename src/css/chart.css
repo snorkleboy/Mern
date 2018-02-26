@@ -6,7 +6,6 @@
 .axis {
     font: 14px sans-serif;
 }
-
 .line {
     fill: none;
     stroke: rgb(12, 75, 126);
@@ -17,9 +16,28 @@
     stroke: rgb(70, 180, 94);
     stroke-width: 2px;
 }
-
+.chartD3{
+}
 .dot{
         fill: none;
         stroke: #ffbb00;
         stroke-width: 2px;
+}
+
+
+.svg-container {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+    /* aspect ratio */
+    vertical-align: top;
+    overflow: hidden;
+}
+
+.svg-content-responsive {
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    left: 0;
 }

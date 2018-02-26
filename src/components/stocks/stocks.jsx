@@ -22,14 +22,7 @@ class Stocks extends React.Component {
         return(
             <main className='stocks'>
                 <section className='graphs'>
-                    {this.state.chart.length > 0 ?
-                        (<Chart data={this.state.chart} width={1000} ratio={.5} />)
-                        :
-                        `LOADING
-                            LOADING
-                            LOADING
-                            LOADING`
-                    }
+                        <Chart data={this.state.chart}/>
                     <h1> chart data</h1>
                 </section>
                 <section>

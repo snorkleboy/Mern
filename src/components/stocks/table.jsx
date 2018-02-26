@@ -51,7 +51,6 @@ function columnizer(headers, entry){
     headers.forEach((header)=>{
         columns.push(new item(header, entry[header]))
     })
-    console.log(columns)
     return columns;
 }
 
