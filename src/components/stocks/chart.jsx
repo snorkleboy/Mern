@@ -5,31 +5,33 @@ import Graph from './d3/graph'
 class Chart extends React.Component {
     constructor(props){
         super(props);
-        this.getData = () => this.props.data ? Object.values(this.props.data) : []
+        this.state={"range":7}
+        
     }
-
+    function
     render() {
-        const { data, type, width, ratio } = this.props;
+        const { data, width, ratio } = this.props;
+        const type = { 'volume': true }
         return (
             <section className='chart'>
                 <div className='top Menu'>
-                    <select id='timescale' className='timescale'>
-                        <option>1d</option>
-                        <option>1w</option>
-                        <option>1m</option>
-                        <option>3m</option>
-                        <option>6m</option>
-                        <option>1y</option>
-                        <option>3y</option>
-                        <option>max</option>
+                    <select onChange={this.handleTimeChange.bind(this)} id='timescale' className='timescale'>
+                        <option value='1'>1d</option>
+                        <option value='7'>1w</option>
+                        <option value='30'>1m</option>
+                        <option value='90'>3m</option>
+                        <option value='180'>6m</option>
+                        <option value='360'>1y</option>
+                        <option value='720'>3y</option>
+                        <option value='5000'>max</option>
                     </select>
                 </div>
                 <div className='svg-container'>
                         {
-                            this.getData().length > 0 ?
+                            data.length > 0 ?
                                 <Graph
-                                    data={this.getData()}
-                                    type={'default'}
+                                    data={data.slice(data.length-this.state.range,data.length)}
+                                    type={type}
                                     width={500} 
                                     height={300}
                                 />
@@ -49,11 +51,18 @@ class Chart extends React.Component {
             </section>
         );
     }
-    componentWillUpdate(newprops){
-        console.log('chart update',newprops)
+    componentWillUpdate(newp,news){
+        console.log('willUpdate',news);
+    }
+    componentDidUpdate(oldprops,prevstate){
     }
     componentDidMount(){
         
+    }
+
+    handleTimeChange(e){
+        e.preventDefault();
+        this.setState({"range":e.target.value})
     }
 }
 

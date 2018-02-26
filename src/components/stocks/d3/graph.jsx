@@ -4,7 +4,7 @@ import * as d3 from "d3";
 class Graph extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { "data": Object.values(this.props.data) }
+        this.make = this.make.bind(this);
         // console.log('chart con',props);
     }
 
@@ -16,28 +16,30 @@ class Graph extends React.Component {
     }
 
     componentDidMount() {
-        const { data,type } = this.props;
+        this.make();
+    }
+    componentDidUpdate(nextprops){
+        this.make();
+    }
+    make() {
+        const { data, type } = this.props;
         const chart = document.getElementById('chartD3')
+        chart.innerHTML=''
         const chartArea = [this.props.width, this.props.height]
-        console.log('area',chart,chartArea)
-        setupPriceLineChart(data, chartArea)
+        setupPriceLineChart(data, chartArea, type)
     }
 }
-
-function setupPriceLineChart(allEntries, chartArea) {
-
+function setupPriceLineChart(allEntries, chartArea,type) {
+    console.log(allEntries)
     const MARGINS = {
         top: 0,
         right: 25,
         bottom: 25,
         left: 0,
-        hori: ()=>MARGINS.right + MARGINS.left,
-        vert: ()=>MARGINS.top + MARGINS.bottom
-
+        hori: () => MARGINS.right + MARGINS.left,
+        vert: () => MARGINS.top + MARGINS.bottom
     }
-    console.log('horizontal',MARGINS.hori())
     const formatDate = d3.timeFormat("%Y-%m-%d")
-
     
     let chart = d3.select("#chartD3")
     .attr("preserveAspectRatio", "xMinYMin meet")
@@ -50,44 +52,49 @@ function setupPriceLineChart(allEntries, chartArea) {
         .range([chartArea[0]- MARGINS.hori(), 0])
         .domain([new Date(allEntries[last].date), new Date(allEntries[0].date)]);
 
-    let maxY = d3.max(allEntries, (entry) => entry.close) * 1.1
-    let minY = d3.min(allEntries, (entry) => entry.close) * .95
+    // price line
+    const maxY = d3.max(allEntries, (entry) => entry.close) * 1.1
+    const minY = d3.min(allEntries, (entry) => entry.close) * .95
     const y = d3.scaleLinear()
         .range([chartArea[1] - MARGINS.vert(), 0])
         .domain([minY, maxY]);
-
-
-    maxY = d3.max(allEntries, (entry) => entry.volume)
-    minY = d3.min(allEntries, (entry) => entry.volume)
-    const volY = d3.scaleLog()
-        .range([0, (chartArea[1]) / 5])
-        .domain([maxY, minY])
-
-    const area = d3.area()
-        .x(function (d) { return x(new Date(d.date)); })
-        .y1(function (d) { return volY(d.volume); })
-        .y0(y(0))
 
     const line = d3.line()
         .x((data) => x(new Date(data.date)))
         .y((data) => y(data.close))
 
-    // //volume
-    chart.append("g")
-        .attr("transform", "translate("+ 0 + "," + (chartArea[1] - chartArea[1]/5 - MARGINS.bottom) + ")")
-        .append('svg')
-        .attr('width', chartArea[0] - MARGINS.hori())
-        .attr("height", (chartArea[1]) / 5)
-        .append("path")
-        .datum(allEntries)
-        .attr("class", "volume")
-        .attr("d", area)
-    // price line
+
     chart.append("g")
         .append("path")
         .datum(allEntries)
         .attr("class", "line")
         .attr("d", line)
+
+
+    // //volume
+    if (type['volume']){
+        const volmaxY = d3.max(allEntries, (entry) => entry.volume)
+        const volminY = d3.min(allEntries, (entry) => entry.volume)
+        const volY = d3.scaleLog()
+            .range([0, (chartArea[1]) / 5])
+            .domain([volmaxY, volminY])
+
+        const area = d3.area()
+            .x(function (d) { return x(new Date(d.date)); })
+            .y1(function (d) { return volY(d.volume); })
+            .y0(y(0))
+
+        chart.append("g")
+            .attr("transform", "translate(" + 0 + "," + (chartArea[1] - chartArea[1] / 5 - MARGINS.bottom) + ")")
+            .append('svg')
+            .attr('width', chartArea[0] - MARGINS.hori())
+            .attr("height", (chartArea[1]) / 5)
+            .append("path")
+            .datum(allEntries)
+            .attr("class", "volume")
+            .attr("d", area)
+    }
+
 
     // axis'
     const axis = chart.append("g")
@@ -101,6 +108,7 @@ function setupPriceLineChart(allEntries, chartArea) {
         .attr("transform", "translate(0," + ((chartArea[1])- MARGINS.bottom)+ ")")
         .attr('class', 'x axis')
         .call(d3.axisBottom(x));
+
     // price line dots?
     chart.selectAll(".dot")
         .data(allEntries)
