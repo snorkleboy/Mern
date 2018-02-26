@@ -15,8 +15,8 @@ const app = express();
 
     // Here we find an appropriate database to connect to, defaulting to
     // localhost if we don't find one.
-    const uristring =
-    process.env.MONGOLAB_URI ||
+const uristring ="mongodb://<dbuser>:<dbpassword>@ds115446.mlab.com:15446/heroku_b8c2zknk"
+    const temp = process.env.MONGOLAB_URI ||
     process.env.MONGOHQ_URL ||
     'mongodb://localhost/mern-crud';
 
