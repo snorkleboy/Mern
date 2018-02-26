@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../../css/table.css';
+import prettify from '../../util/prettify'
 
 
 String.prototype.precTrim = function (num) {
@@ -49,7 +50,7 @@ function item(header,entry){
 function columnizer(headers, entry){
     const columns = [];
     headers.forEach((header)=>{
-        columns.push(new item(header, entry[header]))
+        columns.push(new item(header, prettify(entry[header])))
     })
     return columns;
 }

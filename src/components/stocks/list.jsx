@@ -1,15 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../../css/stocklist.css';
-
-
-String.prototype.precTrim = function (num) {
-    const ind = this.indexOf('.')
-    if (ind !== -1) {
-        return this.slice(0, ind + num + 1);
-    }
-    return this
-}
+import prettify from '../../util/prettify'
 
 
 export default class List extends React.Component {
@@ -22,14 +14,14 @@ export default class List extends React.Component {
     listMaker(headers = this.props.data.headers || [], entries = this.props.data.entries || []) {
         return (
             <section class='grid'>
-                <header className='row'>
+                <div className='row rowHeader'>
                     {headers.map((header,i) => <div className='chart-header' key={`${header}+${i}`}>{header}</div>)}
-                </header>
+                </div>
                 {entries.map((entry,i) => (
                     <Link className='row' key={`${entry} + ${i}`} to={`/stocks/${entry['symbol']}`}>
                         {headers.map((header, j) =>(                        
                             <div key={`${entry[header]}+${i}+${j}`}>
-                                    {entry[header] ? entry[header].toString().precTrim(3) : 'unlisted'}
+                                {entry[header] ? prettify(entry[header]) : 'unlisted'}
                             </div>)
                         )}
                     </Link>

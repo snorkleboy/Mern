@@ -66,5 +66,5 @@ border-image: linear-gradient(to top, rgb(95, 95, 95), rgba(0, 0, 0, 0)) 1 100%;
 }
 
 .x text{
-    transform: rotate(45deg);
+    transform: rotate(20deg);
 }

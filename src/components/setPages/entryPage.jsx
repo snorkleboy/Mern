@@ -23,8 +23,15 @@ export default class Stocks extends React.Component {
         // console.log("ENTRYPAGE PROPS.STOCKS",this.props.stocks)
         return(
             <main className='entry'>
-                <div className='lists'>
-                    <div className='gainers'>
+            <section className='welcome'>
+                <article>
+                    <div className='logo'></div>
+                    <h1>welcome</h1>
+
+                </article>
+            </section>
+                <section className='lists'>
+                    <article className='gainers'>
                     <h1>gainers</h1>
                         <List
                             data={{
@@ -33,9 +40,9 @@ export default class Stocks extends React.Component {
                             }}
                         /> 
                         
-                    </div>
+                    </article>
 
-                    <div className='losers'>
+                    <article className='losers'>
                     <h1>losers</h1>
                         <List
                             data={{
@@ -43,9 +50,9 @@ export default class Stocks extends React.Component {
                                 'entries':this.getEntries(this.props.stocks.losers)
                             }}
                         />
-                    </div>
+                    </article>
 
-                    <div className='mostActive'>
+                    <article className='mostActive'>
                     <h1>most active</h1>
                         <List
                             data={{
@@ -53,9 +60,9 @@ export default class Stocks extends React.Component {
                                 'entries': this.getEntries(this.props.stocks.mostActive)
                             }}
                         />
-                    </div>
+                    </article>
 
-                    <div className='mostVolume'>
+                    <article className='mostVolume'>
                     <h1>most volume</h1>
                         <List
                             data={{
@@ -63,8 +70,8 @@ export default class Stocks extends React.Component {
                                 'entries': this.getEntries(this.props.stocks.mostVolume)
                             }}
                         />
-                    </div>
-                </div>
+                    </article>
+                </section>
                 
             </main>
             
