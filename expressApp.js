@@ -6,6 +6,8 @@ const bodyParser = require('body-parser');
 const http = require('http');         // For serving a basic web page.
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
+const FetchSaveMosts = require('.bin/data/fetchSaveMosts');
+
 const router = require('./routes/router');
 // const Fetcher = require('./bin/fetcher/fetcher');
 const app = express();
@@ -33,6 +35,7 @@ mongoose.connect(uristring, { promiseLibrary: require('bluebird') }, function (e
       console.log ('ERROR connecting to: ' + uristring + '. ' + err);
       } else {
       console.log ('Succeeded connected to: ' + uristring);
+        FetchSaveMosts();
       }
     });
 
