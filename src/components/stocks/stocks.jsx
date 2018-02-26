@@ -24,8 +24,8 @@ class Stocks extends React.Component {
     }
     render(){
         return(
-            <main className='stocks'>
-                <section className='graphs'>
+            <main className='stock'>
+                <section >
                         <Chart data={this.state.chart}/>
                 </section>
                 <section>

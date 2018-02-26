@@ -1,6 +1,10 @@
-.stocks{
-    background-color: rgb(173, 230, 178);
+.stock{
+    background-color: rgb(31, 163, 157);
     width: 85vw;
+    padding:2.5%;
+    border-width: 3px;
+    border-style: solid;
+    border-image: linear-gradient(to bottom, rgb(95, 95, 95), rgba(0, 0, 0, 0)) 1 100%;
 }
 
 .axis {
@@ -16,7 +20,26 @@
     stroke: rgb(180, 154, 70);
     stroke-width: 1px;
 }
+.chart{
+        background-color: rgb(36, 14, 117);
+        padding: 10px;
+
+}
+
+.chart .menu{
+    padding: 5px;
+    background-color: whitesmoke;
+}
+.top .clickable{
+    padding: 5px;
+    background-color: white;
+}
 .chartD3{
+    background-color: white;
+    border-radius: 12px;
+border-width: 3px;
+border-style: solid;
+border-image: linear-gradient(to top, rgb(95, 95, 95), rgba(0, 0, 0, 0)) 1 100%;
 }
 .dot{
         fill: none;

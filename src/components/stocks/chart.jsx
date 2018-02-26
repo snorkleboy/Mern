@@ -14,8 +14,8 @@ class Chart extends React.Component {
         const type = { 'volume': true }
         return (
             <section className='chart'>
-                <div className='top Menu'>
-                    <select onChange={this.handleTimeChange.bind(this)} id='timescale' className='timescale'>
+                <div className='top menu'>
+                    <select  onChange={this.handleTimeChange.bind(this)} id='timescale' className='clickable timescale'>
                         <option value='1'>1d</option>
                         <option value='7'>1w</option>
                         <option value='30'>1m</option>
@@ -40,7 +40,7 @@ class Chart extends React.Component {
                         }
                 </div>
                 
-                <div className='bottom Menu'>
+                <div className='bottom menu'>
                         <div>
                             <ul>
                                 <li>volume</li>
