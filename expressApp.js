@@ -4,7 +4,7 @@ const favicon = require('serve-favicon');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const router = require('./routes/router');
-const Fetcher = require('./bin/fetcher/fetcher');
+// const Fetcher = require('./bin/fetcher/fetcher');
 const app = express();
 
 
