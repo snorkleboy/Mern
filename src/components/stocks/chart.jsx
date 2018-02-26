@@ -5,7 +5,7 @@ import Graph from './d3/graph'
 class Chart extends React.Component {
     constructor(props){
         super(props);
-        this.state={"range":7}
+        this.state = { "range": 5000}
         
     }
     function
@@ -23,7 +23,7 @@ class Chart extends React.Component {
                         <option value='180'>6m</option>
                         <option value='360'>1y</option>
                         <option value='720'>3y</option>
-                        <option value='5000'>max</option>
+                        <option selected="selected" value='5000'>max</option>
                     </select>
                 </div>
                 <div className='svg-container'>

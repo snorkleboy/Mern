@@ -16,16 +16,21 @@ class Graph extends React.Component {
     }
 
     componentDidMount() {
-        this.make();
+        this.make(this.props);
     }
-    componentDidUpdate(nextprops){
-        this.make();
+    componentWillReceiveProps(nextprops){
+        this.make(nextprops);
     }
-    make() {
-        const { data, type } = this.props;
+    shouldComponentUpdate(){
+        console.log("SHOUDL UPDATE FALSE")
+        return false;
+    }
+
+    make(props) {
+        const { data, type } = props;
         const chart = document.getElementById('chartD3')
         chart.innerHTML=''
-        const chartArea = [this.props.width, this.props.height]
+        const chartArea = [props.width, props.height]
         setupPriceLineChart(data, chartArea, type)
     }
 }
@@ -104,10 +109,12 @@ function setupPriceLineChart(allEntries, chartArea,type) {
         .attr("transform", "translate(" + (chartArea[0] - MARGINS.right) + "," + 0 + ")")
         .call(d3.axisRight(y));
     // x axis
+    const xAxis = d3.axisBottom(x).tickFormat(d3.timeFormat("%y-%m-%d"));
     axis.append("g")
         .attr("transform", "translate(0," + ((chartArea[1])- MARGINS.bottom)+ ")")
         .attr('class', 'x axis')
-        .call(d3.axisBottom(x));
+        .call(xAxis)
+    
 
     // price line dots?
     chart.selectAll(".dot")
