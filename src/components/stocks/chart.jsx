@@ -25,7 +25,6 @@ class Chart extends React.Component {
                     </select>
                 </div>
                 <div className='svg-container'>
-                    <svg id='chartD3' className='chartD3 svg-content-responsive'>
                         {
                             this.getData().length > 0 ?
                                 <Graph
@@ -37,8 +36,6 @@ class Chart extends React.Component {
                             :
                                 null
                         }
-                        
-                    </svg>
                 </div>
                 
                 <div className='bottom Menu'>

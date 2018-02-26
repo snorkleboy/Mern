@@ -13,8 +13,8 @@
 }
 .volume{
     fill: rgb(180, 154, 70);
-    stroke: rgb(70, 180, 94);
-    stroke-width: 2px;
+    stroke: rgb(180, 154, 70);
+    stroke-width: 1px;
 }
 .chartD3{
 }
@@ -29,7 +29,7 @@
     display: inline-block;
     position: relative;
     width: 100%;
-    padding-bottom: 100%;
+    padding-bottom: 55%;
     /* aspect ratio */
     vertical-align: top;
     overflow: hidden;

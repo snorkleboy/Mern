@@ -10,9 +10,8 @@ class Graph extends React.Component {
 
     render() {
         return (
-            <g id='' className=''>
-
-            </g>
+            <svg id='chartD3' className='chartD3 svg-content-responsive'>
+            </svg>
         );
     }
 
@@ -28,27 +27,33 @@ class Graph extends React.Component {
 function setupPriceLineChart(allEntries, chartArea) {
 
     const MARGINS = {
-        top: 10,
-        right: 10,
-        bottom: 10,
-        left: 10
+        top: 0,
+        right: 25,
+        bottom: 25,
+        left: 0,
+        hori: ()=>MARGINS.right + MARGINS.left,
+        vert: ()=>MARGINS.top + MARGINS.bottom
+
     }
+    console.log('horizontal',MARGINS.hori())
     const formatDate = d3.timeFormat("%Y-%m-%d")
 
     
-    const chart = d3.select("#chartD3")
+    let chart = d3.select("#chartD3")
     .attr("preserveAspectRatio", "xMinYMin meet")
     .attr("viewBox", `0 0 ${chartArea[0]} ${chartArea[1]}`)
+
+    chart = chart.append("g").attr("transform", "translate(" + MARGINS.left + "," + -MARGINS.bottom + ")")
     const last = allEntries.length - 1
 
     const x = d3.scaleTime()
-        .range([chartArea[0], 0])
+        .range([chartArea[0]- MARGINS.hori(), 0])
         .domain([new Date(allEntries[last].date), new Date(allEntries[0].date)]);
 
     let maxY = d3.max(allEntries, (entry) => entry.close) * 1.1
-    let minY = d3.min(allEntries, (entry) => entry.close) * .9
+    let minY = d3.min(allEntries, (entry) => entry.close) * .95
     const y = d3.scaleLinear()
-        .range([chartArea[1], 0])
+        .range([chartArea[1] - MARGINS.vert(), 0])
         .domain([minY, maxY]);
 
 
@@ -67,12 +72,11 @@ function setupPriceLineChart(allEntries, chartArea) {
         .x((data) => x(new Date(data.date)))
         .y((data) => y(data.close))
 
-
     // //volume
     chart.append("g")
-        .attr("transform", "translate(" + MARGINS.left + "," + ((chartArea[1] - (chartArea[1]) / 5) - 2 * MARGINS.bottom) + ")")
+        .attr("transform", "translate("+ 0 + "," + (chartArea[1] - chartArea[1]/5 - MARGINS.bottom) + ")")
         .append('svg')
-        .attr('width', chartArea[0])
+        .attr('width', chartArea[0] - MARGINS.hori())
         .attr("height", (chartArea[1]) / 5)
         .append("path")
         .datum(allEntries)
@@ -81,20 +85,20 @@ function setupPriceLineChart(allEntries, chartArea) {
     // price line
     chart.append("g")
         .append("path")
-        .attr("transform", "translate(" + MARGINS.left + "," + (MARGINS.bottom) + ")")
         .datum(allEntries)
         .attr("class", "line")
         .attr("d", line)
+
     // axis'
     const axis = chart.append("g")
     // y axis
     axis.append("g")
         .attr('class', 'y axis')
-        .attr("transform", "translate(" + 0 + "," + (MARGINS.bottom) + ")")
+        .attr("transform", "translate(" + (chartArea[0] - MARGINS.right) + "," + 0 + ")")
         .call(d3.axisRight(y));
     // x axis
     axis.append("g")
-        .attr("transform", "translate(0," + (chartArea[1] - MARGINS.bottom * 2) + ")")
+        .attr("transform", "translate(0," + ((chartArea[1])- MARGINS.bottom)+ ")")
         .attr('class', 'x axis')
         .call(d3.axisBottom(x));
     // price line dots?
@@ -102,8 +106,8 @@ function setupPriceLineChart(allEntries, chartArea) {
         .data(allEntries)
         .enter().append("circle") // Uses the enter().append() method
         .attr("class", "dot") // Assign a class for styling
-        .attr("cx", ((data) => MARGINS.left + x(new Date(data.date))))
-        .attr("cy", (data) => MARGINS.bottom + y(data.close))
+        .attr("cx", ((data) => x(new Date(data.date))))
+        .attr("cy", (data) => y(data.close))
         .attr("r", 1);
 
 }
