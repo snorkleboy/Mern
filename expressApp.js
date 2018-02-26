@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const http = require('http');         // For serving a basic web page.
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
-const FetchSaveMosts = require('.bin/data/fetchSaveMosts');
+const FetchSaveMosts = require('./bin/data/fetchSaveMosts');
 
 const router = require('./routes/router');
 // const Fetcher = require('./bin/fetcher/fetcher');
