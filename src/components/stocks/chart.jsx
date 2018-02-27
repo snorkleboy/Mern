@@ -3,16 +3,21 @@ import React from "react";
 import * as d3 from "d3";
 import Graph from './d3/graph'
 
+const width = 500;
+const height = 300;
 class Chart extends React.Component {
     constructor(props){
         super(props);
         this.state = { "range": 5000}
         
     }
-    function
+
     render() {
         const { data, width, ratio } = this.props;
         const type = { 'volume': true }
+        const dataSlice = data.slice(data.length - this.state.range, data.length)
+
+
         return (
             <section className='chart'>
                 <div className='top menu'>
@@ -27,15 +32,18 @@ class Chart extends React.Component {
                 </div>
                 <div className='svg-container'>
                         {
-                            data.length > 0 ?
-                                <Graph
-                                    data={data.slice(data.length-this.state.range,data.length)}
-                                    type={type}
-                                    width={500} 
-                                    height={300}
-                                />
-                            :
-                                null
+                            <svg id='d3Top'>
+                                data.length > 0 ?
+                                    <Graph
+                                        data={dataSlice}
+                                        type={type}
+                                        xScale={x}
+                                        width={width} 
+                                        height={height}
+                                    />
+                                :
+                                    null
+                            </svg>
                         }
                 </div>
                 
@@ -52,6 +60,9 @@ class Chart extends React.Component {
     }
     
     componentDidUpdate(oldprops,prevstate){
+        let chart = d3.select("#d3Top")
+        .attr("preserveAspectRatio", "xMinYMin meet")
+        .attr("viewBox", `0 0 ${width} ${height}`)
     }
     componentDidMount(){
         

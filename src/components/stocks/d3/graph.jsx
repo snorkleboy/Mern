@@ -9,8 +9,34 @@ class Graph extends React.Component {
     }
 
     render() {
+        const x = d3.scaleTime()
+            .range([chartArea[0] - MARGINS.hori(), 0])
+            .domain([new Date(data[data.length - 1].date), new Date(data[0].date)]);
+        const MARGINS = {
+            top: 0,
+            right: 25,
+            bottom: 25,
+            left: 0,
+            hori: () => MARGINS.right + MARGINS.left,
+            vert: () => MARGINS.top + MARGINS.bottom
+        };
         return (
             <svg id='chartD3' className='chartD3 svg-content-responsive'>
+                <axis/>
+                <line
+                    name={'priceLine'}
+                    data={data}
+                    dataGrabber={(entry) => entry.close}
+                    fudge={[.95,1.1]}
+                    x={x}
+                    axis={{"true":"true","side":"right"}}
+                    margins={MARGINS}
+                    classname={"line"}
+                />
+                <line/>
+                <line/>
+                <line/>
+                
             </svg>
         );
     }
@@ -35,8 +61,8 @@ class Graph extends React.Component {
         setupPriceLineChart(data, chartArea, type)
     }
 }
-function setupPriceLineChart(allEntries, chartArea,type) {
-    console.log(allEntries)
+function setupPriceLineChart({data, width,height,x,type,optoins}) {
+    console.log(data)
     const MARGINS = {
         top: 0,
         right: 25,
@@ -48,60 +74,53 @@ function setupPriceLineChart(allEntries, chartArea,type) {
     const formatDate = d3.timeFormat("%Y-%m-%d")
     
     let chart = d3.select("#chartD3")
-    .attr("preserveAspectRatio", "xMinYMin meet")
-    .attr("viewBox", `0 0 ${chartArea[0]} ${chartArea[1]}`)
-
     chart = chart.append("g").attr("transform", "translate(" + MARGINS.left + "," + -MARGINS.bottom + ")")
-    const last = allEntries.length - 1
-
-    const x = d3.scaleTime()
-        .range([chartArea[0]- MARGINS.hori(), 0])
-        .domain([new Date(allEntries[last].date), new Date(allEntries[0].date)]);
+    const last = data.length - 1
 
     // price line
-    const maxY = d3.max(allEntries, (entry) => entry.close) * 1.1
-    const minY = d3.min(allEntries, (entry) => entry.close) * .95
+    const maxY = d3.max(data, (entry) => entry.close) * 1.1
+    const minY = d3.min(data, (entry) => entry.close) * .95
     const y = d3.scaleLinear()
         .range([chartArea[1] - MARGINS.vert(), 0])
         .domain([minY, maxY]);
 
     const priceLine = d3.line()
-        .x((data) => x(new Date(data.date)))
-        .y((data) => y(data.close))
+        .x((d) => x(new Date(d.date)))
+        .y((d) => y(d.close))
 
     chart.append("g")
         .append("path")
-        .datum(allEntries)
+        .datum(data)
         .attr("class", "line")
         .attr("d", priceLine)
 
     //moving average
     const MAline = d3.line()
-        .x((data) => x(new Date(data.date)))
-        .y((data) => y(data.ma))
+        .x((d) => x(new Date(d.date)))
+        .y((d) => y(d.ma))
 
     const MALineUp = d3.line()
-        .x((data) => x(new Date(data.date)))
-        .y((data) => y(data.ma + 2*data.stdev))
+        .x((d) => x(new Date(d.date)))
+        .y((d) => y(d.ma + 2*d.stdev))
 
     const MALineDown = d3.line()
-        .x((data) => x(new Date(data.date)))
-        .y((data) => y(data.ma - 2 * data.stdev))
+        .x((d) => x(new Date(d.date)))
+        .y((d) => y(d.ma - 2 * d.stdev))
     chart.append("g")
         .append("path")
-        .datum(allEntries)
+        .datum(data)
         .attr("class", "MA")
         .style("stroke-dasharray", ("3, 3"))
         .attr("d", MALineUp)
     chart.append("g")
         .append("path")
-        .datum(allEntries)
+        .datum(data)
         .attr("class", "MA down")
         .style("stroke-dasharray", ("5, 5"))
         .attr("d", MALineDown)
     chart.append("g")
         .append("path")
-        .datum(allEntries)
+        .datum(data)
         .attr("class", "MA up")
         .style("stroke-dasharray", ("5, 5"))
         .attr("d", MAline)
@@ -110,8 +129,8 @@ function setupPriceLineChart(allEntries, chartArea,type) {
 
     // //volume
     if (type['volume']){
-        const volmaxY = d3.max(allEntries, (entry) => entry.volume)
-        const volminY = d3.min(allEntries, (entry) => entry.volume)
+        const volmaxY = d3.max(data, (entry) => entry.volume)
+        const volminY = d3.min(data, (entry) => entry.volume)
         const volY = d3.scaleLog()
             .range([0, (chartArea[1]) / 5])
             .domain([volmaxY, volminY])
@@ -127,7 +146,7 @@ function setupPriceLineChart(allEntries, chartArea,type) {
             .attr('width', chartArea[0] - MARGINS.hori())
             .attr("height", (chartArea[1]) / 5)
             .append("path")
-            .datum(allEntries)
+            .datum(data)
             .attr("class", "volume")
             .attr("d", area)
     }
@@ -149,11 +168,11 @@ function setupPriceLineChart(allEntries, chartArea,type) {
 
     // price line dots?
     chart.append("g").selectAll(".dot")
-        .data(allEntries)
+        .data(data)
         .enter().append("circle") // Uses the enter().append() method
         .attr("class", "dot") // Assign a class for styling
-        .attr("cx", ((data) => x(new Date(data.date))))
-        .attr("cy", (data) => y(data.close))
+        .attr("cx", ((d) => x(new Date(d.date))))
+        .attr("cy", (d) => y(d.close))
         .attr("r", 1);
 
 
@@ -162,15 +181,15 @@ function setupPriceLineChart(allEntries, chartArea,type) {
         .range([0, (chartArea[1]) / 5])
         .domain([110,-10]);
     const rsiline = d3.line()
-        .x((data) => x(new Date(data.date)))
-        .y((data) => yrsi(data.rsi))
+        .x((d) => x(new Date(d.date)))
+        .y((d) => yrsi(d.rsi))
 
     const rsiArea = chart.append("g").attr("transform", "translate(" + 0 + "," + (chartArea[1] / 5 - MARGINS.bottom) + ")")
     rsiArea.append('svg')
         .attr('width', chartArea[0] - MARGINS.hori())
         .attr("height", (chartArea[1]) / 5)
         .append("path")
-        .datum(allEntries)
+        .datum(data)
         .attr("class", "line")
         .attr("d", rsiline)
     // y axis
