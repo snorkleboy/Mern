@@ -65,16 +65,47 @@ function setupPriceLineChart(allEntries, chartArea,type) {
         .range([chartArea[1] - MARGINS.vert(), 0])
         .domain([minY, maxY]);
 
-    const line = d3.line()
+    const priceLine = d3.line()
         .x((data) => x(new Date(data.date)))
         .y((data) => y(data.close))
-
 
     chart.append("g")
         .append("path")
         .datum(allEntries)
         .attr("class", "line")
-        .attr("d", line)
+        .attr("d", priceLine)
+
+    //moving average
+    const MAline = d3.line()
+        .x((data) => x(new Date(data.date)))
+        .y((data) => y(data.ma))
+
+    const MALineUp = d3.line()
+        .x((data) => x(new Date(data.date)))
+        .y((data) => y(data.ma + 2*data.stdev))
+
+    const MALineDown = d3.line()
+        .x((data) => x(new Date(data.date)))
+        .y((data) => y(data.ma - 2 * data.stdev))
+    chart.append("g")
+        .append("path")
+        .datum(allEntries)
+        .attr("class", "MA")
+        .style("stroke-dasharray", ("3, 3"))
+        .attr("d", MALineUp)
+    chart.append("g")
+        .append("path")
+        .datum(allEntries)
+        .attr("class", "MA down")
+        .style("stroke-dasharray", ("5, 5"))
+        .attr("d", MALineDown)
+    chart.append("g")
+        .append("path")
+        .datum(allEntries)
+        .attr("class", "MA up")
+        .style("stroke-dasharray", ("5, 5"))
+        .attr("d", MAline)
+
 
 
     // //volume

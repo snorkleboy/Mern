@@ -17,7 +17,7 @@ class Stocks extends React.Component {
         this.props.fetchSymbol(match.params.ticker)
             .then((data) => this.setState({ 'data': data }));
 
-        this.props.fetchChart(match.params.ticker, '5y').then((data) => this.setState({ 'chart': data }));
+        this.props.fetchChart(match.params.ticker, '5y').then((data) => this.setState({ 'chart': addMa(data,14) }));
     }
     componentDidUpdate(newProps,oldProps){
     }
@@ -63,6 +63,38 @@ class Stocks extends React.Component {
     }
 
 
+}
+function addMa(data, avgN) {
+    const first = [[], []]
+
+    console.log('calc ma', avgN,data)
+    let sums = getInitialMA(data, avgN)
+    for (let i = avgN; i < data.length; i++) {
+        // the new 20 day sum is sum - num[-20] + num[i]
+        sums[0] = sums[0] - data[i - avgN].close + data[i].close
+        sums[1] = sums[1] - (data[i - avgN].close * data[i - avgN].close) + (data[i].close * data[i].close)
+        data[i].ma = (sums[0] / avgN)
+        const var2 = sums[1] / avgN - Math.pow(data[i].ma, 2);
+        data[i].stdev = Math.pow(var2,1/2)
+        console.log(data[i].stdev,var2,Math.pow(var2,1.2))
+    }
+    console.log('calc ma done', avgN, data)
+
+    return data
+}
+
+function getInitialMA(data, n) {
+    data[0].ma = data[0].close;
+    let sum = data[0].close;
+    let squareSum = data[0].close*data[0].close;
+    for (let i = 1; i < n; i++) {
+        sum += data[i].close
+        squareSum += data[i].close * data[i].close
+        data[i].ma = sum / (i + 1)
+        const var2 = squareSum / i - Math.pow(data[i].ma, 2);
+        data[i].stdev = Math.pow(var2,1/2)
+    }
+    return [sum,squareSum];
 }
 
 
