@@ -17,8 +17,6 @@ class Chart extends React.Component {
             <section className='chart'>
                 <div className='top menu'>
                     <select  onChange={this.handleTimeChange.bind(this)} id='timescale' className='clickable timescale'>
-                        <option value='1'>1d</option>
-                        <option value='7'>1w</option>
                         <option value='30'>1m</option>
                         <option value='90'>3m</option>
                         <option value='180'>6m</option>

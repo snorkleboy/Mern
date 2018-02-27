@@ -67,7 +67,6 @@ class Stocks extends React.Component {
 function addMa(data, avgN) {
     const first = [[], []]
 
-    console.log('calc ma', avgN,data)
     let sums = getInitialMA(data, avgN)
     for (let i = avgN; i < data.length; i++) {
         // the new 20 day sum is sum - num[-20] + num[i]
@@ -76,25 +75,55 @@ function addMa(data, avgN) {
         data[i].ma = (sums[0] / avgN)
         const var2 = sums[1] / avgN - Math.pow(data[i].ma, 2);
         data[i].stdev = Math.pow(var2,1/2)
-        console.log(data[i].stdev,var2,Math.pow(var2,1.2))
+
+        if (data[i-avgN].change >= 0){
+            sums[2] = sums[2] - data[i-avgN].change
+        }else{
+            sums[3] = sums[3] +data[i-avgN].change
+        }
+        const change = data[i].close - data[i - 1].close
+        if (change>0){
+            sums[2] += change
+        }else{
+            sums[3] += -change
+        }
+        // data[i].change = change
+        data[i].rsi = (sums[2] / i) / (sums[3] / i)
+        data[i].rsi = 100 - 100 / (1 + data[i].rsi)
     }
-    console.log('calc ma done', avgN, data)
 
     return data
 }
 
 function getInitialMA(data, n) {
     data[0].ma = data[0].close;
+    data[0].change = 0;
+    data[0].rsi = 50
     let sum = data[0].close;
     let squareSum = data[0].close*data[0].close;
+    let gainsTot = 1;
+    let lossesTot =1;
     for (let i = 1; i < n; i++) {
         sum += data[i].close
         squareSum += data[i].close * data[i].close
         data[i].ma = sum / (i + 1)
         const var2 = squareSum / i - Math.pow(data[i].ma, 2);
         data[i].stdev = Math.pow(var2,1/2)
+
+        
+        const change = data[i].close-data[i-1].close
+        if (change >= 0){
+            gainsTot += change
+        }else{
+            lossesTot += -change
+        }
+        // data[i].change = change;
+        data[i].rsi = (gainsTot/n)/(lossesTot/n)
+        
+        data[i].rsi = 100 - 100/(1+data[i].rsi)
+        console.log('g l ag/av rsi',gainsTot, lossesTot, n, (gainsTot / n) / (lossesTot / n), data[i].rsi)
     }
-    return [sum,squareSum];
+    return [sum, squareSum, gainsTot, lossesTot];
 }
 
 

@@ -132,7 +132,6 @@ function setupPriceLineChart(allEntries, chartArea,type) {
             .attr("d", area)
     }
 
-
     // axis'
     const axis = chart.append("g")
     // y axis
@@ -149,13 +148,36 @@ function setupPriceLineChart(allEntries, chartArea,type) {
     
 
     // price line dots?
-    chart.selectAll(".dot")
+    chart.append("g").selectAll(".dot")
         .data(allEntries)
         .enter().append("circle") // Uses the enter().append() method
         .attr("class", "dot") // Assign a class for styling
         .attr("cx", ((data) => x(new Date(data.date))))
         .attr("cy", (data) => y(data.close))
         .attr("r", 1);
+
+
+    // rsi
+    const yrsi = d3.scaleLinear()
+        .range([0, (chartArea[1]) / 5])
+        .domain([110,-10]);
+    const rsiline = d3.line()
+        .x((data) => x(new Date(data.date)))
+        .y((data) => yrsi(data.rsi))
+
+    const rsiArea = chart.append("g").attr("transform", "translate(" + 0 + "," + (chartArea[1] / 5 - MARGINS.bottom) + ")")
+    rsiArea.append('svg')
+        .attr('width', chartArea[0] - MARGINS.hori())
+        .attr("height", (chartArea[1]) / 5)
+        .append("path")
+        .datum(allEntries)
+        .attr("class", "line")
+        .attr("d", rsiline)
+    // y axis
+    rsiArea.append("g")
+        .attr('class', 'y axis')
+        .attr("transform", "translate(" + (20) + "," + 0 + ")")
+        .call(d3.axisLeft(yrsi));
 
 }
 
