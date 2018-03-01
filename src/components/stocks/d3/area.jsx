@@ -1,17 +1,16 @@
 
 import React from "react";
 import * as d3 from "d3";
-class Graph extends React.Component {
+export default class Area extends React.Component {
     constructor(props) {
         super(props);
         this.make = this.make.bind(this);
-        // console.log('chart con',props);
     }
     render() {
         return (
-            <svg id={`d3${this.props.name}`}>
+            <g id={`d3${this.props.name}`}>
 
-            </svg>
+            </g>
 
         );
     }
@@ -24,23 +23,27 @@ class Graph extends React.Component {
     shouldComponentUpdate() {
         return false;
     }
-    make({ data, dataGrabber, x, fudge, axis }) {
-        // price line
-        const maxY = d3.max(data, (entry) => entry.close) * 1.1
-        const minY = d3.min(data, (entry) => entry.close) * .95
-        const y = d3.scaleLinear()
-            .range([chartArea[1] - MARGINS.vert(), 0])
-            .domain([minY, maxY]);
+    make({ data, dataGrabber, x, y, width, height, classname, name, position }) {
+        document.getElementById(`d3${name}`).innerHTML = ''
 
-        const priceLine = d3.line()
+        const chart = d3.select(`#d3${name}`)
+        chart.attr("transform", "translate(" + position[0] + "," + position[1] + ")")
+
+        const area = d3.area()
             .x((d) => x(new Date(d.date)))
-            .y((d) => y(d.close))
-
-        chart.append("g")
+            .y0(height)
+            .y1((d)=> y(d.volume))
+        chart.append('svg')
+            .attr('width', width)
+            .attr("height", height)
             .append("path")
             .datum(data)
-            .attr("class", "line")
-            .attr("d", priceLine)
+            .attr("class", "volume")
+            .attr("transform", "translate(" + 0 + "," + height/2 + ")")
+            .attr("d", area)
+        console.log('area con', data, dataGrabber(data[2]), y(dataGrabber(data[2])));
+
+
 
     }
 }

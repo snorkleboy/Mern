@@ -13,7 +13,7 @@ class Chart extends React.Component {
     }
 
     render() {
-        const { data, width, ratio } = this.props;
+        const { data, ratio } = this.props;
         const type = { 'volume': true }
         const dataSlice = data.slice(data.length - this.state.range, data.length)
 
@@ -31,20 +31,20 @@ class Chart extends React.Component {
                     </select>
                 </div>
                 <div className='svg-container'>
+                    <svg id='d3Top' className='chartD3 svg-content-responsive'>
+
                         {
-                            <svg id='d3Top'>
-                                data.length > 0 ?
-                                    <Graph
-                                        data={dataSlice}
-                                        type={type}
-                                        xScale={x}
-                                        width={width} 
-                                        height={height}
-                                    />
-                                :
-                                    null
-                            </svg>
+                            data.length > 0 ?
+                                <Graph
+                                    data={dataSlice}
+                                    type={type}y
+                                    width={width} 
+                                    height={height}
+                                />
+                            :
+                                null
                         }
+                    </svg>
                 </div>
                 
                 <div className='bottom menu'>

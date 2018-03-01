@@ -2,39 +2,18 @@
 import React from "react";
 import * as d3 from "d3";
 
-
-export default function makeLine({ data, dataGrabber, x, fudge, axis, MARGINS, width, height, classname, name }) {
-    const chart = d3.select(`d3${this.props.name}`)
-    const maxY = d3.max(data, dataGrabber) * fudge[1]
-    const minY = d3.min(data, dataGrabber) * fudge[0]
-    const y = d3.scaleLinear()
-        .range(height - MARGINS.vert(), 0])
-        .domain([minY, maxY]);
-
-    const line = d3.line()
-        .x((d) => x(new Date(d.date)))
-        .y((d) => y(dataGrabber(x)))
-
-    chart.append("g")
-        .append("path")
-        .datum(data)
-        .attr("class", classname)
-        .attr("d", line)
-
-}
-
-
-class line extends React.Component {
+class Line extends React.Component {
     constructor(props) {
         super(props);
         this.make = this.make.bind(this);
-        // console.log('chart con',props);
+        console.log('line con',props);
     }
     render(){
         return(
-            <svg id={`d3${this.props.name}`}>
+            <g id={`d3${this.props.name}`}>
 
-            </svg>
+            </g>
+
 
         );
     }
@@ -47,23 +26,25 @@ class line extends React.Component {
     shouldComponentUpdate() {
         return false;
     }
-    make({data,dataGrabber,x,fudge,axis,MARGINS,width,height,classname,name}){
-        const chart = d3.select(`d3${this.props.name}`)
-        const maxY = d3.max(data, dataGrabber) * fudge[1]
-        const minY = d3.min(data, dataGrabber) * fudge[0]
-        const y = d3.scaleLinear()
-            .range(height - MARGINS.vert(), 0])
-            .domain([minY, maxY]);
+    make({ data, dataGrabber, x,y, width,height,classname,name,position}){
+        document.getElementById(`d3${name}`).innerHTML = ''
+
+        let chart = d3.select(`#d3${name}`)
+        chart.attr("transform", "translate("+ position[0]+"," + position[1] + ")")
+        chart.innerHtml = '';
 
         const line = d3.line()
             .x((d) => x(new Date(d.date)))
-            .y((d) => y(dataGrabber(x)))
+            .y((d) => y(dataGrabber(d)))
 
-        chart.append("g")
+        chart.append("svg")
+            .attr('width',width)
+            .attr('height',height)
             .append("path")
             .datum(data)
             .attr("class", classname)
             .attr("d", line)
-
     }
 }
+
+export default Line

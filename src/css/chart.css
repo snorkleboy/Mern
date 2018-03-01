@@ -73,7 +73,6 @@ border-image: linear-gradient(to top, rgb(95, 95, 95), rgba(0, 0, 0, 0)) 1 100%;
 
 .svg-content-responsive {
     display: inline-block;
-    position: absolute;
     top: 10px;
     left: 0;
 }
