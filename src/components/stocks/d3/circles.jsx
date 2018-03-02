@@ -25,7 +25,7 @@ class Circles extends React.Component {
     shouldComponentUpdate() {
         return false;
     }
-    make({ x,y, name, position, data }) {
+    make({ x,y, name,position, data }) {
         document.getElementById(`d3${name}`).innerHTML = ''
 
         const chart = d3.select(`#d3${name}`)
@@ -33,8 +33,8 @@ class Circles extends React.Component {
         .data(data)
         .enter().append("circle") // Uses the enter().append() method
         .attr("class", "dot") // Assign a class for styling
-        .attr("cx", ((d) => x(new Date(d.date))))
-        .attr("cy", (d) => y(d.close))
+        .attr("cx", ((d) => position[0] + x(new Date(d.date))))
+        .attr("cy", (d) => position[1] + y(d.close))
         .attr("r", 1);
 
 

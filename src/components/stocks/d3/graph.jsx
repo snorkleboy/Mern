@@ -1,21 +1,19 @@
 
 import React from "react";
 import * as d3 from "d3";
-import Line from './line';
-import Area from './area';
-import Xaxis from './timeAxis'
-import Yaxis from './yAxis';
-import Circles from './circles';
+import PriceLine from './composed/priceGraph';
+import VolumeGraph from './composed/volumeGraph';
+import RSIGraph from './composed/RSIGraph';
+import Xaxis from '../timeAxis'
+
 class Graph extends React.Component {
     constructor(props) {
         super(props);
-        // this.make = this.make.bind(this);
-        // console.log('chart con',props);
+        
     }
-
     render() {
         const AXISWIDTH=[25,25]
-
+// calculate x axis, height and width, which is shared by all D3 elements within this component
         const topHeight = this.props.height-AXISWIDTH[0];
         const width = this.props.width-AXISWIDTH[1];
         const xDate = d3.scaleTime()
@@ -23,119 +21,36 @@ class Graph extends React.Component {
             .domain([new Date(this.props.data[this.props.data.length - 1].date), new Date(this.props.data[0].date)]);
         return (
             <g>
-                {
-                    (function(){
-                        const dataGrabber = (entry) => entry.close;
-                        const height = topHeight*(4/5);
-                        const maxY = d3.max(this.props.data, dataGrabber)
-                        const minY = d3.min(this.props.data, dataGrabber)
-                        const y = d3.scaleLinear()
-                            .range([height, 0])
-                            .domain([minY, maxY]);
-                        return (
-                            <g>
-                                <Line
-                                    name={'priceLine'}
-                                    data={this.props.data}
-                                    dataGrabber={dataGrabber}
-                                    x={xDate}
-                                    y={y}
-                                    classname={"line"}
-                                    width={width}
-                                    height={height}
-                                    position={[0, 0]}
-                                />
-                                <Xaxis
-                                    name={'priceLineXAxis'}
-                                    x={xDate}
-                                    position={[0, topHeight]}
-                                />
-                                <Yaxis 
-                                    name={'priceLineYaxis'}
-                                    y={y}
-                                    position={[width, 0]}
-                                />
-                                <Circles
-                                    name={'priceDot'}
-                                    dataGrabber={dataGrabber}
-                                    x={xDate}
-                                    y={y}
-                                    data={this.props.data}
-                                    position={[width, 0]}
-                                />
-                            </g>
-                        )
-                    }).bind(this)()
-                }
-                
-                {(function(){
-                    const height = topHeight * (1/10)
-                    const dataGrabber = (entry) => entry.volume
-                    const volmaxY = d3.max(this.props.data, dataGrabber)
-                    const volminY = d3.min(this.props.data, dataGrabber)
-                    console.log("MAXMIN",volmaxY,volminY)
-                    const y = d3.scaleLog()
-                        .range([0, height / 10])
-                        .domain([volminY, volmaxY])
-
-                    return (
-                    <g>
-                        <Area
-                            name={'VolumeArea'}
-                            data={this.props.data}
-                            dataGrabber={dataGrabber}
-                            x={xDate}
-                            y={y}
-                            classname={"line"}
-                            width={width}
-                            height={height}
-                            position={[0, topHeight*8/10 ]}
-                        />
-
-                    </g>
-                    )
-                }).bind(this)()
-                }
-
-
-                {(function(){
-                    const datagrabber = (entry) => entry.rsi;
-                    const height = topHeight * (1/10);
-                    const maxY = d3.max(this.props.data, datagrabber)
-                    const minY = d3.min(this.props.data, datagrabber)
-                    const y = d3.scaleLinear()
-                        .range([height, 0])
-                        .domain([minY, maxY]);
-                    return (
-                    <g>
-                            <Line
-                                name={'RSILine'}
-                                data={this.props.data}
-                                dataGrabber={datagrabber}
-                                x={xDate}
-                                y={y}
-                                classname={"line"}
-                                width={width}
-                                height={height}
-                                position={[0, topHeight * 9 / 10 ]}
-                            />
-                            <Yaxis
-                                name={'RSIYaxis'}
-                                y={y}
-                                ticks={2}
-                                position={[width, topHeight * 9 / 10]}
-                            />
-                    </g>
-                    )
-                }).bind(this)()
-                }
+                <PriceLine 
+                    height={topHeight * (4 / 5)} 
+                    width={width} 
+                    xDate={xDate} 
+                    position={[0,0]}
+                />
+                <VolumeGraph 
+                    height={topHeight * (1 / 10)} 
+                    width={width} 
+                    xDate={xDate} 
+                    position={[0, topHeight * 8 / 10]}
+                />
+                <RSIGraph 
+                    height={topHeight * (1 / 10)} 
+                    width={width} 
+                    xDate={xDate} 
+                    position={[0, topHeight * 9 / 10]}
+                />
+                <Xaxis 
+                    name={'priceLineXAxis'} 
+                    x={xDate} 
+                    position={[0, topHeight]}
+                />
 
             </g>
 
                 
         );
     }
-
+    // original implimentation-
     componentDidMount() {
         // this.make(this.props);
     }

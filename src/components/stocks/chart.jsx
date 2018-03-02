@@ -37,7 +37,7 @@ class Chart extends React.Component {
                             data.length > 0 ?
                                 <Graph
                                     data={dataSlice}
-                                    type={type}y
+                                    type={type}
                                     width={width} 
                                     height={height}
                                 />

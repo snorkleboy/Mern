@@ -13,8 +13,6 @@ class Line extends React.Component {
             <g id={`d3${this.props.name}`}>
 
             </g>
-
-
         );
     }
     componentDidMount() {
