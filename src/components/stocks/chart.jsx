@@ -133,7 +133,6 @@ function addMa(data, avgN) {
         data[i].rsi = 100 - 100 / (1 + data[i].rsi)
 
     }
-    console.log(data);
     return data
 }
 // gets first N values of rollig sums and averages and stdevs. 
