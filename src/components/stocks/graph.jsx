@@ -1,10 +1,10 @@
 
 import React from "react";
 import * as d3 from "d3";
-import PriceLine from './composed/priceGraph';
-import VolumeGraph from './composed/volumeGraph';
-import RSIGraph from './composed/RSIGraph';
-import Xaxis from './timeAxis'
+import PriceLine from '../d3/composed/priceGraph';
+import VolumeGraph from '../d3/composed/volumeGraph';
+import RSIGraph from '../d3/composed/RSIGraph';
+import Xaxis from '../d3/timeAxis'
 
 class Graph extends React.Component {
     constructor(props) {

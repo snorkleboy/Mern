@@ -25,14 +25,14 @@ class Axis extends React.Component {
     shouldComponentUpdate() {
         return false;
     }
-    make({ y, name, position,ticks }) {
+    make({ y, name, position,ticks,label, }) {
         document.getElementById(`d3${name}`).innerHTML = ''
 
         // axis'
         const axisEl = d3.select(`#d3${name}`)
         axisEl.innerHtml = '';
 
-        const axis = d3.axisRight(y).ticks(ticks, ".2s")
+        const axis = d3.axisRight(y).ticks(ticks, ".2s").tickSize(-(500), 0, 0)
         axisEl.attr('class', 'y axis')
         .attr("transform", "translate(" + position[0] + "," + position[1] + ")")
         .call(axis);

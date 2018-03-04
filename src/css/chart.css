@@ -10,6 +10,10 @@
 .axis {
     font: 8px sans-serif;
 }
+.tick line{
+        stroke: rgba(12, 75, 126, 0.39);
+        stroke-width: 1px
+}
 .line {
     fill: none;
     stroke: rgb(12, 75, 126);

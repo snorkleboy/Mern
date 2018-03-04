@@ -1,7 +1,6 @@
 
 import React from "react";
-import * as d3 from "d3";
-import Graph from '../d3/graph'
+import Graph from './graph'
 
 const width = 500;
 const height = 300;
@@ -16,8 +15,6 @@ class Chart extends React.Component {
         const { data, ratio } = this.props;
         const type = { 'volume': true }
         const dataSlice = data.slice(data.length - this.state.range, data.length)
-
-
         return (
             <section className='chart'>
                 <div className='top menu'>
@@ -31,7 +28,11 @@ class Chart extends React.Component {
                     </select>
                 </div>
                 <div className='svg-container'>
-                    <svg id='d3Top' className='chartD3 svg-content-responsive'>
+                    <svg id='d3Top'
+                        className='chartD3 svg-content-responsive'
+                        preserveAspectRatio=  "xMinYMin meet"
+                        viewBox={`0 0 ${width} ${height}`}
+                    >
 
                         {
                             data.length > 0 ?
@@ -58,16 +59,6 @@ class Chart extends React.Component {
             </section>
         );
     }
-    
-    componentDidUpdate(oldprops,prevstate){
-        let chart = d3.select("#d3Top")
-        .attr("preserveAspectRatio", "xMinYMin meet")
-        .attr("viewBox", `0 0 ${width} ${height}`)
-    }
-    componentDidMount(){
-        
-    }
-
     handleTimeChange(e){
         e.preventDefault();
         this.setState({"range":e.target.value})
