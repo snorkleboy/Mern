@@ -5,13 +5,11 @@ import List from '../stocks/list';
 export default class Stocks extends React.Component {
     constructor(props) {
         super(props);
-        console.log('entrypage', props);
     }
     componentDidMount(){
         this.ensure();
     }
     componentWillUpdate(prevprops,newprops){
-        console.log('entrypage willupdate',prevprops, newprops);
     }
     ensure(){
         if (this.props.stocks.gainers.length < 1){
@@ -19,7 +17,6 @@ export default class Stocks extends React.Component {
         }
     }
     render(){
-        // console.log("ENTRYPAGE PROPS.STOCKS",this.props.stocks)
         return(
             <main className='entry'>
             <section className='welcome'>

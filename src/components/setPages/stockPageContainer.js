@@ -47,7 +47,6 @@ const IEX_DETAILS=[
 'day5ChangePercent'
 ]
 
-console.log(API);
 const API = new IEXAPI(IEX_DETAILS);
 // API.setFilters([
 

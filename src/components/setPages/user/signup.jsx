@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 
 class Signup extends React.Component {
     constructor(props) {
-        super(props);
-        console.log(props);
+        super(props);;
     }
     componentDidMount(){
         this.props.getMosts();

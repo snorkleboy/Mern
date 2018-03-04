@@ -12,9 +12,6 @@ export default function VolumeGraph({data,height, width, xDate,position}) {
     const y = d3.scaleLinear()
         .range([0, height])
         .domain([volmaxY, volminY])
-    console.log("MAXMIN", volmaxY, volminY)
-
-    console.log("DATA VOLUME MAP",data.map((entry) => [entry.volume, y(entry.volume)]))
 
     return (
         <g>

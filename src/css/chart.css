@@ -26,7 +26,7 @@
     stroke-width: 1px;
     z-index: 2;
 }
-.down .up{
+.bolDown .bolUp{
     fill: none;
     stroke: rgba(40, 126, 196, 0.301);
     stroke-width: 1px;
@@ -69,7 +69,6 @@ border-image: linear-gradient(to top, rgb(95, 95, 95), rgba(0, 0, 0, 0)) 1 100%;
     display: inline-block;
     position: relative;
     width: 100%;
-    padding-bottom: 55%;
     /* aspect ratio */
     vertical-align: top;
     overflow: hidden;

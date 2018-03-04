@@ -6,7 +6,6 @@ class Axis extends React.Component {
     constructor(props) {
         super(props);
         this.make = this.make.bind(this);
-        console.log('line con', props);
     }
     render() {
         return (

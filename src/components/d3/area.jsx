@@ -41,7 +41,6 @@ export default class Area extends React.Component {
             .attr("class", "volume")
             .attr("d", area)
 
-        console.log('area con', data, dataGrabber(data[2]), y(dataGrabber(data[2])));
 
 
 

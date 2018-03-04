@@ -6,7 +6,6 @@ import '../../../css/sidebar.css';
 export default class Stocks extends React.Component {
     constructor(props) {
         super(props);
-        console.log('sidebar',props);
     }
     handleSearch(e){
         e.preventDefault();

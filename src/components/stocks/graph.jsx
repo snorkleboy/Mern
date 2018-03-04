@@ -24,7 +24,8 @@ class Graph extends React.Component {
                 <PriceLine 
                     height={topHeight * (4 / 5)} 
                     width={width} 
-                    xDate={xDate} 
+                    xDate={xDate}
+                    options={this.props.options} 
                     position={[0,0]}
                     data={this.props.data}
                 />

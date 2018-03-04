@@ -5,7 +5,6 @@ class Graph extends React.Component {
     constructor(props) {
         super(props);
         this.make = this.make.bind(this);
-        // console.log('chart con',props);
     }
     render() {
         return (
