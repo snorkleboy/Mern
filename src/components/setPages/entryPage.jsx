@@ -14,7 +14,6 @@ export default class Stocks extends React.Component {
         console.log('entrypage willupdate',prevprops, newprops);
     }
     ensure(){
-        console.log(this.props);
         if (this.props.stocks.gainers.length < 1){
             this.props.getMosts();
         }

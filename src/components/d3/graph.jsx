@@ -4,7 +4,7 @@ import * as d3 from "d3";
 import PriceLine from './composed/priceGraph';
 import VolumeGraph from './composed/volumeGraph';
 import RSIGraph from './composed/RSIGraph';
-import Xaxis from '../timeAxis'
+import Xaxis from './timeAxis'
 
 class Graph extends React.Component {
     constructor(props) {
@@ -12,7 +12,7 @@ class Graph extends React.Component {
         
     }
     render() {
-        const AXISWIDTH=[25,25]
+        const AXISWIDTH=[25,40]
 // calculate x axis, height and width, which is shared by all D3 elements within this component
         const topHeight = this.props.height-AXISWIDTH[0];
         const width = this.props.width-AXISWIDTH[1];
@@ -26,23 +26,27 @@ class Graph extends React.Component {
                     width={width} 
                     xDate={xDate} 
                     position={[0,0]}
+                    data={this.props.data}
                 />
                 <VolumeGraph 
                     height={topHeight * (1 / 10)} 
                     width={width} 
                     xDate={xDate} 
                     position={[0, topHeight * 8 / 10]}
+                    data={this.props.data}
                 />
                 <RSIGraph 
                     height={topHeight * (1 / 10)} 
                     width={width} 
                     xDate={xDate} 
                     position={[0, topHeight * 9 / 10]}
+                    data={this.props.data}
                 />
                 <Xaxis 
                     name={'priceLineXAxis'} 
                     x={xDate} 
                     position={[0, topHeight]}
+                    data={this.props.data}
                 />
 
             </g>

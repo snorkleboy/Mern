@@ -2,14 +2,13 @@
 import React from "react";
 import * as d3 from "d3";
 import Line from '../line';
-import Xaxis from '../timeAxis'
 import Yaxis from '../yAxis';
 
-export default function RSIGraph({height, width, xDate,position}) {
+export default function RSIGraph({data,height, width, xDate,position}) {
     // RSI GRAPH
     const datagrabber = (entry) => entry.rsi;
-    const maxY = d3.max(this.props.data, datagrabber)
-    const minY = d3.min(this.props.data, datagrabber)
+    const maxY = d3.max(data, datagrabber)
+    const minY = d3.min(data, datagrabber)
     const y = d3.scaleLinear()
         .range([height, 0])
         .domain([minY, maxY]);
@@ -17,7 +16,7 @@ export default function RSIGraph({height, width, xDate,position}) {
         <g>
             <Line
                 name={'RSILine'}
-                data={this.props.data}
+                data={data}
                 dataGrabber={datagrabber}
                 x={xDate}
                 y={y}

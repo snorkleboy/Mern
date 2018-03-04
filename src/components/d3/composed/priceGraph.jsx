@@ -5,13 +5,13 @@ import Line from '../line';
 import Yaxis from '../yAxis';
 import Circles from '../circles';
 
-export default function PriceLine({height, width, xDate,position}){
+export default function PriceLine({data,height, width, xDate,position}){
     // PRICE LINE
     // comes with circles which activate toolTips
     // 
     const dataGrabber = (entry) => entry.close;
-    const maxY = d3.max(this.props.data, dataGrabber)
-    const minY = d3.min(this.props.data, dataGrabber)
+    const maxY = d3.max(data, dataGrabber)
+    const minY = d3.min(data, dataGrabber)
     const y = d3.scaleLinear()
         .range([height, 0])
         .domain([minY, maxY]);
@@ -19,7 +19,7 @@ export default function PriceLine({height, width, xDate,position}){
         <g>
             <Line
                 name={'priceLine'}
-                data={this.props.data}
+                data={data}
                 dataGrabber={dataGrabber}
                 x={xDate}
                 y={y}
@@ -38,7 +38,7 @@ export default function PriceLine({height, width, xDate,position}){
                 dataGrabber={dataGrabber}
                 x={xDate}
                 y={y}
-                data={this.props.data}
+                data={data}
                 position={position}
             />
         </g>

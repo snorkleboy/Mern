@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../../css/chart.css';
-import List from './list';
-import Chart from './chart'
-import Table from './table';
+import List from '../stocks/list';
+import Chart from '../stocks/chart'
+import Table from '../stocks/table';
 
 class Stocks extends React.Component {
     constructor(props) {

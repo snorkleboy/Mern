@@ -6,6 +6,9 @@ class Signup extends React.Component {
         super(props);
         console.log(props);
     }
+    componentDidMount(){
+        this.props.getMosts();
+    }
     render() {
         return (
             <div className='Signup'>

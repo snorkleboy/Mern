@@ -31,12 +31,12 @@ class Axis extends React.Component {
         // axis'
         const axisEl = d3.select(`#d3${name}`)
         axisEl.innerHtml = '';
+
+        const axis = d3.axisRight(y).ticks(ticks, ".2s")
         axisEl.attr('class', 'y axis')
         .attr("transform", "translate(" + position[0] + "," + position[1] + ")")
-            .call(d3.axisRight(y).ticks(ticks));
-        if (ticks){
-            axisEl
-        }
+        .call(axis);
+
 
 
     }

@@ -1,7 +1,7 @@
 
 import React from "react";
 import * as d3 from "d3";
-import Graph from './d3/graph'
+import Graph from '../d3/graph'
 
 const width = 500;
 const height = 300;

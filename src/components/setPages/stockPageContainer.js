@@ -2,9 +2,9 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router'
 
 
-import * as StockActions from './stockActions';
+import * as StockActions from '../stocks/stockActions';
 import IEXAPI from '../../util/IEXAPI';
-import Stocks from './stocks';
+import StockPage from './stockPage';
 const IEX_DETAILS=[
 'companyName'	,
 'marketcap'	,
@@ -66,4 +66,4 @@ const mapDispatch = (dispatch, ownProps)=>{
     });
 };
 
-export default withRouter(connect(mapState, mapDispatch)(Stocks));
+export default withRouter(connect(mapState, mapDispatch)(StockPage));

@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router'
 
 import Sidebar from './sidebar';
-import * as StockActions from '../../components/stocks/stockActions';
+import * as StockActions from '../../stocks/stockActions';
 
 const mapState = (state, Ownprops) => {
     return ({
