@@ -145,8 +145,8 @@ function getInitialMA(data, n) {
     data[0].rsi = 50;
     let sum = data[0].close;
     let squareSum = data[0].close*data[0].close;
-    let var2 = squareSum / (1) - Math.pow(data[0].ma, 2);
-    data[0].stdev = Math.pow(var2, 1 / 2)
+    let var2;
+    data[0].stdev = data[0].close * .025;
     let gainsTot = 1;
     let lossesTot =1;
     for (let i = 1; i < n; i++) {
