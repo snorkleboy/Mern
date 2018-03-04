@@ -61,6 +61,8 @@ class Chart extends React.Component {
                                 null
                         }
                     </svg>
+                    <div id='d3Tooltip' className='tooltip'>
+                    </div>
                 </div>
                 
                 <div className='bottom menu'>

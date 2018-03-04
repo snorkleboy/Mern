@@ -81,5 +81,19 @@ border-image: linear-gradient(to top, rgb(95, 95, 95), rgba(0, 0, 0, 0)) 1 100%;
 }
 
 .x text{
-    transform: rotate(20deg);
+    transform: rotate(6deg);
+}
+
+.tooltip {
+    position: absolute;
+    text-align: center;
+    width: fit-content;
+    height: fit-content;
+    padding: 2px;
+    font: 12px sans-serif;
+    background: lightsteelblue;
+    border: 0px;
+    border-radius: 8px;
+    pointer-events: none;
+    transition: .2s all;
 }
