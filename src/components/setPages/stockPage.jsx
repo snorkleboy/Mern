@@ -17,7 +17,7 @@ class Stocks extends React.Component {
         this.props.fetchSymbol(match.params.ticker)
             .then((data) => this.setState({ 'data': data }));
 
-        this.props.fetchChart(match.params.ticker, '5y').then((data) => this.setState({ 'chart': data }));
+        this.props.fetchChart(match.params.ticker, '5y').then((data) => this.setState({'chart': data}));
     }
     componentDidUpdate(newProps,oldProps){
     }
