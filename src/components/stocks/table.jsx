@@ -23,12 +23,12 @@ export default class Table extends React.Component {
     tableMaker(headers = this.props.data.headers || [], entry = this.props.data.entries || []) {
         const columns = columnizer(headers, entry);
         return (
-            <section class='table'>
-                {columns.map((item)=>{
+            <section className='table'>
+                {columns.map((item,i)=>{
                         return (
-                        <article className='item'>
-                            <span>{item.header}</span>
-                            <span>{item.entry}</span>
+                        <article id={i+i} className='item'>
+                                <span id={item.header + i.toString()}>{item.header}</span>
+                                <span id={item.entry + i.toString()}>{item.entry}</span>
                         </article>
                         )
                 })}

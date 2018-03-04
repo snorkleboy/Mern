@@ -99,7 +99,6 @@ function addMa(data, avgN) {
     const first = [[], []]
     // sums holds [movingSum, MovingsquareSum, NumIncreaseIntervals, NumDecreaseIntervals];
     let sums = getInitialMA(data, avgN)
-    console.log("INTIALS", sums,data.slice(0,avgN))
     for (let i = avgN; i < data.length; i++) {
         // get new sum by removing oldest element and adding new
         // the new 20 day sum is sum - num[-20] + num[i]
@@ -134,7 +133,7 @@ function addMa(data, avgN) {
         data[i].rsi = 100 - 100 / (1 + data[i].rsi)
 
     }
-
+    console.log(data);
     return data
 }
 // gets first N values of rollig sums and averages and stdevs. 
@@ -144,16 +143,18 @@ function addMa(data, avgN) {
 function getInitialMA(data, n) {
     data[0].ma = data[0].close;
     data[0].change = 0;
-    data[0].rsi = 50
+    data[0].rsi = 50;
     let sum = data[0].close;
     let squareSum = data[0].close*data[0].close;
+    let var2 = squareSum / (1) - Math.pow(data[0].ma, 2);
+    data[0].stdev = Math.pow(var2, 1 / 2)
     let gainsTot = 1;
     let lossesTot =1;
     for (let i = 1; i < n; i++) {
         sum += data[i].close
         squareSum += data[i].close * data[i].close
         data[i].ma = sum / (i + 1)
-        const var2 = squareSum / (i+1) - Math.pow(data[i].ma, 2);
+        var2 = squareSum / (i+1) - Math.pow(data[i].ma, 2);
         data[i].stdev = Math.pow(var2,1/2)
 
         // get total numver of increase and decreases for RSI

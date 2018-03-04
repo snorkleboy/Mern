@@ -91,9 +91,10 @@ border-image: linear-gradient(to top, rgb(95, 95, 95), rgba(0, 0, 0, 0)) 1 100%;
     height: fit-content;
     padding: 2px;
     font: 12px sans-serif;
-    background: lightsteelblue;
-    border: 0px;
-    border-radius: 8px;
+    background: rgba(111, 127, 148, 0.301);
+    border: 1px rgba(128, 128, 128, 0.582);
     pointer-events: none;
-    transition: .2s all;
+    transition: .2s opacity;
+    font-size: 14px;
+    font-weight: 600;
 }
