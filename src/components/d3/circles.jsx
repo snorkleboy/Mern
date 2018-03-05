@@ -38,8 +38,8 @@ class Circles extends React.Component {
         .attr("r", 1)
         .on("mouseover", function (d) {
             divEL.innerHTML = `<h1>${d.date}</h1>  <br/>  <h1>Price:${d.close}</h1>  <br/>  <h1>Average:${Math.round(d.ma)}</h1>  <br/>  <h1>RSI:${Math.round(d.rsi)}</h1>`
-            divEL.style.left= (d3.event.pageX) + "px";
-            divEL.style.top= (d3.event.pageY - 28) + "px";
+            divEL.style.left = (d3.event.pageX - divEL.clientWidth/2) + "px";
+            divEL.style.top = (d3.event.pageY - divEL.clientHeight*1.1) + "px";
             divEL.style.opacity = '1'    
         })
         .on("mouseout", function (d) {

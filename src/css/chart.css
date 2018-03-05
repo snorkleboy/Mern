@@ -96,4 +96,5 @@ border-image: linear-gradient(to top, rgb(95, 95, 95), rgba(0, 0, 0, 0)) 1 100%;
     transition: .2s opacity;
     font-size: 14px;
     font-weight: 600;
+    z-index: 10;
 }
