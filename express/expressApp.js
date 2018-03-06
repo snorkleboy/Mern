@@ -36,15 +36,14 @@ mongoose.connect(uristring, { promiseLibrary: require('bluebird') }, function (e
       }
     });
 
-
   //middleware = function((req,res,next)=>{}) express() and express().router are valid middlewares
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ 'extended': 'false' }));
 // app.use(Fetcher);
 app.use(router);
-app.use(express.static(path.join(__dirname, 'build')));
-app.use('*',express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, '../build')));
+app.use('*',express.static(path.join(__dirname, '../build')));
 
 
 

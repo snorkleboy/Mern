@@ -1,6 +1,6 @@
 
 import React from "react";
-import Graph from './graph'
+import Graph from './D3graph'
 
 const width = 500;
 const height = 300;
