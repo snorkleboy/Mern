@@ -8,7 +8,7 @@ class Chart extends React.Component {
     constructor(props){
         super(props);
         this.state = { 
-                "range": 5000,
+                "range": 720,
                 'ma': true,
                 'bollinger':false,
                 'candleStick':false,
@@ -36,12 +36,13 @@ class Chart extends React.Component {
             <section className='chart'>
                 <div className='top menu'>
                     <select  onChange={this.handleTimeChange.bind(this)} id='timescale' className='clickable timescale'>
+                        <option value='16'>2w</option>
                         <option value='30'>1m</option>
                         <option value='90'>3m</option>
                         <option value='180'>6m</option>
-                        <option value='360'>1y</option>
-                        <option value='720'>3y</option>
-                        <option selected="selected" value='5000'>max</option>
+                        <option selected="selected" value='360'>1y</option>
+                        <option value='1080'>3y</option>
+                        <option  value='5000'>max</option>
                     </select>
                 </div>
                 <div className='svg-container'>
@@ -72,16 +73,31 @@ class Chart extends React.Component {
                         <div>
                             <ul>
                                 <li>Moving Average
-                                    <input onClick={this.handleMAclick.bind(this)} checked={this.state.ma} type="checkbox"></input>
+                                    <input onChange={this.handleMAclick.bind(this)} checked={this.state.ma} type="checkbox"></input>
                                 </li>
                                 <li>Bollinger Bands
-                                    <input onClick={this.handleBollingerClick.bind(this)} type="checkbox"></input>
-                                </li>
-                                <li>Candle Stick
-                                    <input onClick={this.handleCandleStick.bind(this)} type="checkbox"></input>
+                                    <input onChange={this.handleBollingerClick.bind(this)} type="checkbox"></input>
                                 </li>
                                 <li>Price Point Marker
-                                    <input onClick={this.handlePricePoint.bind(this)} type="checkbox" checked={this.state.pricePoint}></input>
+                                <br/>
+                                    <label>Circle Markers<input 
+                                        onChange={this.handlePricePoint.bind(this)} 
+                                        type="radio"
+                                        name='pricePointSelection' 
+                                        checked={this.state.pricePoint}>
+                                    </input></label>
+                                    <label>Candle Sticks<input 
+                                        onChange={this.handleCandleStick.bind(this)} 
+                                        type="radio"
+                                        name='pricePointSelection' 
+                                        checked={this.state.candleSticks}>
+                                    </input></label>
+                                    <label>None<input
+                                        onChange={this.handleNone.bind(this)}
+                                        type="radio"
+                                        name='pricePointSelection'
+                                        checked={this.state.candleSticks}>
+                                    </input></label>
                                 </li>
                             </ul>
                         </div>
@@ -91,11 +107,14 @@ class Chart extends React.Component {
     }
     componentDidUpdate(){
     }
+    handleNone(){
+        this.setState({ "candleStick": false, "pricePoint": false })
+    }
     handlePricePoint() {
-        this.setState({ "pricePoint": !this.state.pricePoint })
+        this.setState({ "pricePoint": true, "candleStick": false })
     }
     handleCandleStick(){
-        this.setState({"candleStick":!this.state.candleStick})
+        this.setState({ "candleStick": true, "pricePoint": false})
     }
     handleMAclick(){
         this.setState({'ma': !this.state.ma})

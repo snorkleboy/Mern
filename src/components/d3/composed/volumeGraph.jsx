@@ -14,7 +14,7 @@ export default function VolumeGraph({data,height, width, xDate,position}) {
         .domain([volmaxY, volminY])
 
     return (
-        <g>
+        <g id='volume Graph'>
             <Area
                 name={'VolumeArea'}
                 data={data}

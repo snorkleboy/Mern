@@ -13,7 +13,7 @@ export default function RSIGraph({data,height, width, xDate,position}) {
         .range([height, 0])
         .domain([0, 100]);
     return (
-        <g>
+        <g id='RSILine Graph'>
             <Line
                 name={'RSILine'}
                 data={data}

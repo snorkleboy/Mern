@@ -16,7 +16,7 @@ export default function PriceLine({data,height, width, xDate,position,options}){
         .range([height, 0])
         .domain([minY, maxY]);
     return (
-        <g>
+        <g id='priceline graph'>
             <Line
                 name={'priceLine'}
                 data={data}

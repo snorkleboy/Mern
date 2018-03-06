@@ -29,7 +29,7 @@ export default function PriceLine({y,dataGrabber, data, height, width, xDate, po
     const boll = ()=> (
     <g>
         <Line
-            name={'priceLineBollBottom'}
+            name={'priceLineBoll-Bottom'}
             data={data}
             dataGrabber={(d) => d.ma - d.stdev * 2}
             x={xDate}
@@ -40,7 +40,7 @@ export default function PriceLine({y,dataGrabber, data, height, width, xDate, po
             position={position}
         />
         <Line
-            name={'priceLineBollTop'}
+            name={'priceLineBoll-Top'}
             data={data}
             dataGrabber={(d) => d.ma + d.stdev * 2 }
             x={xDate}
@@ -55,7 +55,7 @@ export default function PriceLine({y,dataGrabber, data, height, width, xDate, po
 
 
         return(
-            <g>
+            <g id='ma and bollinger'>
                 {
                     options.ma ? ma() : null
                 }
