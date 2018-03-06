@@ -19,7 +19,6 @@ class Circles extends React.Component {
         this.make(this.props);
     }
     shouldComponentUpdate(nextProps,nextState) {
-        console.log("CIRCLES CLASSES SHOULD UPDATE")
         if 
         ( 
             nextProps.options.candleStick !== this.props.options.candleStick    || 
@@ -36,7 +35,7 @@ class Circles extends React.Component {
     }
     clear(name){
         const chart = d3.select(`#d3${name}`)
-        chart.selectAll('.child').transition().duration(1).attr('r', .1).attr("height", 0).remove()
+        chart.selectAll('.child').transition().duration(400).attr('r', .1).attr("height", 0).attr("stroke-width",0).remove()
     }
     make({ x,y, name,position, data,options}) {
         const divEL = document.getElementById('d3Tooltip')
@@ -66,43 +65,68 @@ class Circles extends React.Component {
         // else append circles circles centered on d.close
         // bind the tooltips after
         let dataObj = null;
+        let temp
+        const maxElForTransitions = 500
         if (options.candleStick) {
+
+
+            const lines = maker(chart, data, '.candleStickline')
+            temp = lines.enter().append("line")
+                .attr("class", "candleStick-stick child")
+                .attr("x1", (d) => position[0] + x(new Date(d.date)) + 1)
+                .attr("y1", (d) => position[1] + y(Math.max(d.high, d.low)))
+                .attr("x2", (d) => position[0] + x(new Date(d.date)) + 1)
+                .attr("y2", (d) => position[1] + y(Math.max(d.high, d.low)))
+                .attr('stroke-width', 0)
+                .attr("stroke", 'grey')
+            
+
+                // only apply transitions if there isnt too much data
+            if (data.length< maxElForTransitions){
+                temp.transition()           // apply a transition
+                    .duration(750)
+                    .attr("y2", (d) => position[1] + y(Math.min(d.high, d.low)))
+                    .attr("stroke-width", 1)
+            }else{
+                temp.attr("y2", (d) => position[1] + y(Math.min(d.high, d.low)))
+                    .attr("stroke-width", 1)
+            }
+                
             dataObj = maker(chart, data, '.bar')
-            dataObj.enter().append("rect")
+            temp = dataObj.enter().append("rect")
                 .attr("class", "candleStick child")
                 .attr("x", (d) => position[0] + x(new Date(d.date)))
                 .attr("y", (d) => position[1] + y(Math.max(d.open,d.close)))
-                .attr("width", 1.5)
+                .attr("width", 2)
                 .attr("fill", (d) => d.change >= 0 ? "green" : "red")
                 .on("mouseover", toolTipper)
                 .on("mouseout", deToolTipper)
-                .transition()           // apply a transition
-                .duration(750)
-                .attr("height", (d) => { return y(d.low) - y(d.high) })
-
-            dataObj.selectAll("rect")
-                .append("line")
-                .attr("class", "candleStick-stick child")
-                .attr("x1", (d) => position[0] + x(new Date(d.date)))
-                .attr("y1", (d) => position[1] + y(Math.max(d.open, d.close)))
-                .transition()           // apply a transition
-                .delay(500)
-                .duration(750)
-                .attr("x2", (d) => position[0] + x(new Date(d.date)))
-                .attr("y2", (d) => position[1] + y(Math.min(d.open, d.close)))
+            // only apply transitions if there isnt too much data
+            if (data.length < maxElForTransitions) {
+                temp.transition()           // apply a transition
+                    .duration(750)
+                    .attr("height", (d) => { return y(Math.min(d.open, d.close)) - y(Math.max(d.open, d.close)) })
+            } else {
+                temp.attr("height", (d) => { return y(Math.min(d.open, d.close)) - y(Math.max(d.open, d.close)) })
+            }
         }
         if (options.pricePoint) {
             dataObj = maker(chart, data, '.dot child')
-            dataObj.enter().append("circle") // Uses the enter().append() method
+            temp = dataObj.enter().append("circle") // Uses the enter().append() method
                 .attr("class", "dot child") // Assign a class for styling
                 .attr("cx", ((d) => position[0] + x(new Date(d.date))))
                 .attr("cy", (d) => position[1] + y(d.close))
                 .attr("r", .1)
                 .on("mouseover", toolTipper)
                 .on("mouseout", deToolTipper)
-                .transition()           // apply a transition
-                .duration(450)
-                .attr("r", 2)
+            // only apply transitions if there isnt too much data
+            if (data.length< maxElForTransitions){
+                temp.transition()           // apply a transition
+                    .duration(750)
+                    .attr("r", 2)
+            }else{
+                temp.attr("r", 2)
+            }
         }
     }
 }
