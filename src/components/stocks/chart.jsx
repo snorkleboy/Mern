@@ -44,6 +44,9 @@ class Chart extends React.Component {
                         <option value='1080'>3y</option>
                         <option  value='5000'>max</option>
                     </select>
+                    <h1>
+                        {this.props.name}
+                    </h1>
                 </div>
                 <div className='svg-container'>
                     <svg id='d3Top'
@@ -81,19 +84,19 @@ class Chart extends React.Component {
                                 <li>Price Point Marker
                                 <br/>
                                     <label>Circle Markers<input 
-                                        onChange={this.handlePricePoint.bind(this)} 
+                                    onClick={this.handlePricePoint.bind(this)} 
                                         type="radio"
                                         name='pricePointSelection' 
                                         checked={this.state.pricePoint}>
                                     </input></label>
                                     <label>Candle Sticks<input 
-                                        onChange={this.handleCandleStick.bind(this)} 
+                                        onClick={this.handleCandleStick.bind(this)} 
                                         type="radio"
                                         name='pricePointSelection' 
                                         checked={this.state.candleSticks}>
                                     </input></label>
                                     <label>None<input
-                                        onChange={this.handleNone.bind(this)}
+                                        onClick={this.handleNone.bind(this)}
                                         type="radio"
                                         name='pricePointSelection'
                                         checked={this.state.candleSticks}>

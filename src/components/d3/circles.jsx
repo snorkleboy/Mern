@@ -18,16 +18,27 @@ class Circles extends React.Component {
     componentDidMount() {
         this.make(this.props);
     }
-    componentWillReceiveProps(nextprops) {
-        this.make(nextprops);
-    }
-    shouldComponentUpdate() {
+    shouldComponentUpdate(nextProps,nextState) {
+        if 
+        ( 
+            nextProps.options.candleStick !== this.props.options.candleStick || 
+            nextProps.options.pricePoint !== this.props.options.pricePoint   ||
+            nextProps.data[0] !== this.props.data[0]
+        )
+        {
+            this.clear(this.props.name)
+            this.make(nextProps);
+        }
+
         return false;
+    }
+    clear(name){
+        const chart = d3.select(`#d3${name}`)
+        chart.selectAll('.child').transition().duration(400).attr('r', .1).attr("height", 0).remove()
     }
     make({ x,y, name,position, data,options}) {
         const divEL = document.getElementById('d3Tooltip')
         const chart = d3.select(`#d3${name}`)
-        chart.selectAll('.child').transition().duration(400).attr('r', .1).attr("height",0).remove()
 
 
         // this function starts the process of making data bound d3 elements
@@ -78,9 +89,6 @@ class Circles extends React.Component {
                 .duration(450)
                 .attr("r", 1.3)
         }
-    
-
-
     }
 }
 

@@ -51,8 +51,9 @@ export default function PriceLine({data,height, width, xDate,position,options}){
                 y={y}
                 data={data}
                 position={position}
-                options={options}
-            />
+                options={{
+                    "candleStick": options.candleStick, 'pricePoint':options.pricePoint}}
+    />
         </g>
     )
 }

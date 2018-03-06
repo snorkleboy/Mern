@@ -19,13 +19,13 @@ class Stocks extends React.Component {
 
         this.props.fetchChart(match.params.ticker, '5y').then((data) => this.setState({'chart': data}));
     }
-    componentDidUpdate(newProps,oldProps){
+    componentDidUpdate(prevprops,prevstate){
     }
     render(){
         return(
             <main className='stock'>
                 <section >
-                        <Chart data={this.state.chart}/>
+                        <Chart name={this.state.data.companyName} data={this.state.chart}/>
                 </section>
                 <section>
                     <h1> detail info</h1>
