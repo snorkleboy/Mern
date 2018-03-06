@@ -11,8 +11,12 @@
     font: 8px sans-serif;
 }
 .tick line{
-        stroke: rgba(12, 75, 126, 0.39);
+        stroke: rgba(62, 88, 109, 0.171);
         stroke-width: 1px
+}
+.y line{
+    stroke: rgba(62, 88, 109, 0.445);
+    stroke-width: 1px
 }
 .line {
     fill: none;
@@ -82,7 +86,10 @@ border-image: linear-gradient(to top, rgb(95, 95, 95), rgba(0, 0, 0, 0)) 1 100%;
 .x text{
     transform: rotate(6deg);
 }
-
+.candleStick{
+    stroke: #000000;
+    stroke-width: .15;
+}
 .tooltip {
     position: absolute;
     text-align: center;
@@ -90,7 +97,7 @@ border-image: linear-gradient(to top, rgb(95, 95, 95), rgba(0, 0, 0, 0)) 1 100%;
     height: fit-content;
     padding: 2px;
     font: 12px sans-serif;
-    background: rgba(111, 127, 148, 0.301);
+    background: rgba(255, 255, 255, 0.877);
     border: 1px rgba(128, 128, 128, 0.582);
     pointer-events: none;
     transition: .2s opacity;

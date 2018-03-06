@@ -42,6 +42,7 @@ export default function PriceLine({data,height, width, xDate,position,options}){
                 name={'priceLineYaxis'}
                 y={y}
                 position={[position[0]+width,position[1]]}
+                label={"$"}
             />
             <Circles
                 name={'priceDot'}
@@ -50,6 +51,7 @@ export default function PriceLine({data,height, width, xDate,position,options}){
                 y={y}
                 data={data}
                 position={position}
+                options={options}
             />
         </g>
     )

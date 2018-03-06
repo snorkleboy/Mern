@@ -10,7 +10,8 @@ class Chart extends React.Component {
         this.state = { 
                 "range": 5000,
                 'ma': false,
-                'bollinger':false
+                'bollinger':false,
+                'candleStick':false
         }
         
     }
@@ -75,6 +76,9 @@ class Chart extends React.Component {
                                 <li>Bollinger Bands
                                     <input onClick={this.handleBollingerClick.bind(this)} type="checkbox"></input>
                                 </li>
+                                <li>Candle Stick
+                                    <input onClick={this.handleCandleStick.bind(this)} type="checkbox"></input>
+                                </li>
                             </ul>
                         </div>
                 </div>
@@ -82,6 +86,9 @@ class Chart extends React.Component {
         );
     }
     componentDidUpdate(){
+    }
+    handleCandleStick(){
+        this.setState({"candleStick":!this.state.candleStick})
     }
     handleMAclick(){
         this.setState({'ma': !this.state.ma})

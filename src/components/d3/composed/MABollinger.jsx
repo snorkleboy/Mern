@@ -6,7 +6,7 @@ export default function PriceLine({y,dataGrabber, data, height, width, xDate, po
     if (!y){
         const maxY = d3.max(data, dataGrabber)
         const minY = d3.min(data, dataGrabber)
-        var y = d3.scaleLinear()
+        y = d3.scaleLinear()
             .range([height, 0])
             .domain([minY, maxY]);
     }

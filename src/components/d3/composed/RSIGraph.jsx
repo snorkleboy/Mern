@@ -11,7 +11,7 @@ export default function RSIGraph({data,height, width, xDate,position}) {
     const minY = d3.min(data, datagrabber)
     const y = d3.scaleLinear()
         .range([height, 0])
-        .domain([minY, maxY]);
+        .domain([0, 100]);
     return (
         <g>
             <Line
@@ -28,7 +28,7 @@ export default function RSIGraph({data,height, width, xDate,position}) {
             <Yaxis
                 name={'RSIYaxis'}
                 y={y}
-                ticks={2}
+                explicitTicks={[50]}
                 position={[position[0] + width, position[1]]}
             />
         </g>
