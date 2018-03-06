@@ -15,11 +15,13 @@ export default class List extends React.Component {
             </tr>
                     {entries.map((entry,i) => (
                         <tr>
-                                {headers.map((header, j) =>(                        
-                                    <td key={`${entry[header]}+${i}+${j}`}>
+                            {headers.map((header, j) =>(                        
+                                <td key={`${entry[header]}+${i}+${j}`}>
+                                    <Link className='row' key={`${entry} + ${i}+${j}`} to={`/stocks/${entry['symbol']}`}>
                                         {entry[header] ? prettify(entry[header]) : 'unlisted'}
-                                    </td>)
-                                )}
+                                    </Link>
+                                </td>)
+                            )}
                         </tr>
                         )
                     )}

@@ -1,22 +1,26 @@
 .stockList{
-  background-color: rgb(252, 240, 255);
+  background-color: white;
   width: 100%;
 }
-.grid{
-  display: grid;
-}
 
+tr{
+  background-color: white;
+}
+tr:hover {
+  background-color: #f5f5f5;
+}
 .chart-header{
   text-align: center;
   border: 1px solid rgb(25, 8, 104);
   border-width: 0 1px 0 1px;
 }
+table{
+  text-align: center;
+}
 .row{
   color: rgb(33, 20, 104);
   display:inline-table;
-  text-align: left;
-  border:1px solid rgb(25, 8, 104);
-  border-width: 1px 0 1px 0;
+  text-align: center;
 
 }
 .rowHeader{
