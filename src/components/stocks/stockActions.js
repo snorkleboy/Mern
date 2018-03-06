@@ -69,7 +69,7 @@ export const receiveMostVolume = (stocks) => ({
 
 //MONGO FETCHES
 export const getMosts = () => dispatch => StockAPI.FetchMosts()
-    .then((res) => dispatch(receiveMosts(res)))
+    .then((res) => dispatch(receiveMosts(res)), (fail)=>console.log(fail,'fetchMosts'))
 
 //IEXAPI FETCHE AND SAVE
 

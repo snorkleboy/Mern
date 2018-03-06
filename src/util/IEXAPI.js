@@ -104,7 +104,8 @@ const IEXAPI = class{
 
     }
     fetchNews(ticker,last){
-        return fetch(IEX_URL + `stock/${ticker}/news` + this.attrWriter()+ last ? `/last/${last.val}` : '',{
+        
+        return fetch(IEX_URL + `stock/${ticker}/news` + (last ? `/last/${last}` : '') ,{
             method: 'GET'
         }).then((res) => res.json());
     }
@@ -112,7 +113,7 @@ const IEXAPI = class{
     fetchDetails(ticker){
         return fetch(IEX_URL + `stock/${ticker}/stats` + this.attrWriter(),{
             method: 'GET'
-        }).then((res) => res.json(),(fail)=>console.log('IEXAPI fail',fail));
+        }).then((res) => res.json(),(fail)=>console.log('IEXAPI fail',fail))
     }
 
     
@@ -151,9 +152,9 @@ const IEXAPI = class{
 }
 
 
-const API = new IEXAPI()
-export default IEXAPI;
 if (process.env.NODE_ENV !== 'production') {
     // must use 'require' (import only allowed at top of file)
-    window.IEXAPI = new IEXAPI();
+    window.iex = new IEXAPI();
 }
+
+export default IEXAPI;

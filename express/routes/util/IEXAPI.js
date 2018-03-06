@@ -144,5 +144,4 @@ const IEXAPI = class {
     }
 }
 
-
 module.exports = new IEXAPI();

@@ -19,11 +19,13 @@ class Circles extends React.Component {
         this.make(this.props);
     }
     shouldComponentUpdate(nextProps,nextState) {
+        console.log("CIRCLES CLASSES SHOULD UPDATE")
         if 
         ( 
-            nextProps.options.candleStick !== this.props.options.candleStick || 
-            nextProps.options.pricePoint !== this.props.options.pricePoint   ||
-            nextProps.data[0] !== this.props.data[0]
+            nextProps.options.candleStick !== this.props.options.candleStick    || 
+            nextProps.options.pricePoint !== this.props.options.pricePoint      ||
+            nextProps.data.length !== this.props.length                         ||
+            nextProps.data[0] !== this.props[0] 
         )
         {
             this.clear(this.props.name)
@@ -34,7 +36,7 @@ class Circles extends React.Component {
     }
     clear(name){
         const chart = d3.select(`#d3${name}`)
-        chart.selectAll('.child').transition().duration(400).attr('r', .1).attr("height", 0).remove()
+        chart.selectAll('.child').transition().duration(1).attr('r', .1).attr("height", 0).remove()
     }
     make({ x,y, name,position, data,options}) {
         const divEL = document.getElementById('d3Tooltip')
@@ -58,7 +60,9 @@ class Circles extends React.Component {
             divEL.style.opacity = '0';
         }
 
-        // if candlesticks option, make candlesticks out of d3 rect type. its centered on d.high, and a hight of high-low (but since Y is reversed on the dom you do low-high)
+        // if candlesticks option, make candlesticks out of d3 rect type.
+        //  its centered on the highest of d.open or d.close, and a height of open-close (but since Y is reversed on the dom you do low-high)
+        // sticks protrude to d.low, d.high
         // else append circles circles centered on d.close
         // bind the tooltips after
         let dataObj = null;
@@ -67,17 +71,28 @@ class Circles extends React.Component {
             dataObj.enter().append("rect")
                 .attr("class", "candleStick child")
                 .attr("x", (d) => position[0] + x(new Date(d.date)))
-                .attr("y", (d) => position[1] + y(d.high))
+                .attr("y", (d) => position[1] + y(Math.max(d.open,d.close)))
                 .attr("width", 1.5)
                 .attr("fill", (d) => d.change >= 0 ? "green" : "red")
                 .on("mouseover", toolTipper)
                 .on("mouseout", deToolTipper)
                 .transition()           // apply a transition
-                .duration(1000)
+                .duration(750)
                 .attr("height", (d) => { return y(d.low) - y(d.high) })
+
+            dataObj.selectAll("rect")
+                .append("line")
+                .attr("class", "candleStick-stick child")
+                .attr("x1", (d) => position[0] + x(new Date(d.date)))
+                .attr("y1", (d) => position[1] + y(Math.max(d.open, d.close)))
+                .transition()           // apply a transition
+                .delay(500)
+                .duration(750)
+                .attr("x2", (d) => position[0] + x(new Date(d.date)))
+                .attr("y2", (d) => position[1] + y(Math.min(d.open, d.close)))
         }
         if (options.pricePoint) {
-            dataObj = maker(chart, data, '.dot')
+            dataObj = maker(chart, data, '.dot child')
             dataObj.enter().append("circle") // Uses the enter().append() method
                 .attr("class", "dot child") // Assign a class for styling
                 .attr("cx", ((d) => position[0] + x(new Date(d.date))))
@@ -87,7 +102,7 @@ class Circles extends React.Component {
                 .on("mouseout", deToolTipper)
                 .transition()           // apply a transition
                 .duration(450)
-                .attr("r", 1.3)
+                .attr("r", 2)
         }
     }
 }
