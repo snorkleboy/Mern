@@ -3,14 +3,26 @@ import { Link } from 'react-router-dom';
 import '../../../css/sidebar.css';
 
 
+
 export default class Stocks extends React.Component {
     constructor(props) {
         super(props);
+        this.handleKeyDown = this.handleKeyDown.bind(this);
     }
     handleSearch(e){
-        e.preventDefault();
         const val = document.getElementById('searchInput').value
         this.props.history.push("/stocks/"+val.toString())
+    }
+    handleKeyDown(event) {
+        if (event.keyCode == 13 /*enter*/) {
+            this.handleSearch();
+        }
+    }
+    componentDidMount(){
+        document.getElementById('searchInput').addEventListener("keypress",this.handleKeyDown)
+    }
+    componentWillUnmount(){
+        document.getElementById('searchInput').removeEventListener("keypress",this.handleKeyDown)
     }
     render(){
         return(
