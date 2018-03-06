@@ -5,15 +5,16 @@ import { HashRouter } from 'react-router-dom';
 import App from './App';
 import configureStore from './store/store';
 // import registerServiceWorker from './registerServiceWorker';
-document.addEventListener('DOMContentLoaded',()=>{
 const store = configureStore();
-ReactDOM.render(
-    <Provider store={store}>
-        <HashRouter>
-            <App />
-        </HashRouter>
-    </Provider>
-    ,   
-    document.getElementById('root')
-);
+document.addEventListener('DOMContentLoaded',()=>{
+    const root = document.getElementById('root')
+    ReactDOM.render(
+        <Provider store={store}>
+            <HashRouter>
+                <App />
+            </HashRouter>
+        </Provider>
+        , root   
+        
+    );
 })
