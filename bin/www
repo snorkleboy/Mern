@@ -25,11 +25,6 @@ app.set('port', port);
 const server = app.listen(port);
 
 
-server.on('connection', function (socket) {
-  console.log("A new connection was made by a client.");
-  socket.setTimeout(30 * 1000);
-  // 30 second timeout. Change this as you see fit.
-})
 
 function normalizePort(val) {
   port = parseInt(val, 10);

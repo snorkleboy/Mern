@@ -60,7 +60,6 @@ const mapDispatch = (dispatch, ownProps)=>{
     
     return({
         fetchSymbol: (symbol) => API.fetchDetails(symbol),
-        fetchBatchDetail: (symbol) => console.log(''),
         fetchChart: (symbol,time) => API.fetchChart(symbol,time)
     });
 };

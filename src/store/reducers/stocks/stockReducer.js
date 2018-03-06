@@ -22,7 +22,6 @@ export default (state = _stocks, action)=>{
             newstate = merge({}, state, action.payload);
             return newstate; 
         case RECEIVE_STOCKS_LIST:
-            console.log('state', state, 'payload', action.payload);
             newstate = merge({}, state, {lists:action.payload})
             return newstate;
         default:

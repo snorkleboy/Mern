@@ -63,7 +63,7 @@ export const FetchStocks = () => fetch('https://www.quandl.com/api/v3/datasets/E
 
 export const FetchMosts = () => fetch("/api/stocks/most/all",{
     method:"GET"
-}).then((res)=>{console.log(res);return res.json()})
+}).then((res)=>{return res.json()})
 
 export const FetchMostGainer = () => fetch('/api/stocks/most/gainer', {
     method: "GET"

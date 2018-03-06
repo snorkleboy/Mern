@@ -31,7 +31,6 @@ class Circles extends React.Component {
         const chart = d3.select(`#d3${name}`)
 
 
-        console.log(data)
         // this function starts the process of making data bound d3 elements
         function maker(el,dataa,classname){
             return el.append("g").selectAll(classname)

@@ -90,7 +90,6 @@ const IEXAPI = class{
         (fail) => console.log(fail));
     }
     fetchChart(ticker,time){
-        console.log('chart url', IEX_URL + `/stock/${ticker}/chart/${time}?displayPercent=true`)
         return fetch(IEX_URL + `/stock/${ticker}/chart/${time}/?displayPercent=true`, {
             method: 'GET'
         }).then((res) => res.json());}
@@ -118,7 +117,6 @@ const IEXAPI = class{
 
     
     fetchGainers() {
-        console.log('gainers', IEX_URL + 'stock/market/list/gainers' + this.attrWriter())
         return (fetch(IEX_URL + 'stock/market/list/gainers' + this.attrWriter(), {
             method: 'GET'
         }).then((res) => res.json()));
