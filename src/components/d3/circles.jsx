@@ -25,15 +25,14 @@ class Circles extends React.Component {
         return false;
     }
     make({ x,y, name,position, data,options}) {
-        document.getElementById(`d3${name}`).innerHTML = ''
-        const div = d3.select("d3Tooltip");
         const divEL = document.getElementById('d3Tooltip')
         const chart = d3.select(`#d3${name}`)
+        chart.selectAll('.child').transition().duration(400).attr('r', .1).attr("height",0).remove()
 
 
         // this function starts the process of making data bound d3 elements
         function maker(el,dataa,classname){
-            return el.append("g").selectAll(classname)
+            return el.selectAll(classname)
                 .data(dataa)
         }
 
@@ -55,7 +54,7 @@ class Circles extends React.Component {
         if (options.candleStick) {
             dataObj = maker(chart, data, '.bar')
             dataObj.enter().append("rect")
-                .attr("class", "candleStick")
+                .attr("class", "candleStick child")
                 .attr("x", (d) => position[0] + x(new Date(d.date)))
                 .attr("y", (d) => position[1] + y(d.high))
                 .attr("width", 1.5)
@@ -69,7 +68,7 @@ class Circles extends React.Component {
         if (options.pricePoint) {
             dataObj = maker(chart, data, '.dot')
             dataObj.enter().append("circle") // Uses the enter().append() method
-                .attr("class", "dot") // Assign a class for styling
+                .attr("class", "dot child") // Assign a class for styling
                 .attr("cx", ((d) => position[0] + x(new Date(d.date))))
                 .attr("cy", (d) => position[1] + y(d.close))
                 .attr("r", .1)

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 
-var app = require('../expressApp');
+var app = require('../express/expressApp');
 var debug = require('debug')('mean-app:server');
 var http = require('http');
 // console.log(app);

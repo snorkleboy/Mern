@@ -1,6 +1,6 @@
 
-const Mosts = require('../../models/mosts/mosts');
-const IEXAPI = require ('../../routes/util/IEXAPI');
+const Mosts = require('../../express/models/mosts/mosts');
+const IEXAPI = require ('../../express/routes/util/IEXAPI');
 const FileStream = require('fs');
     
 const Log = function(log){

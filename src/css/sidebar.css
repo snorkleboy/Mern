@@ -4,3 +4,7 @@
     height: 100vh;
     background-color: aliceblue;
 }
+
+.searchBar input {
+    background-color: white;
+}

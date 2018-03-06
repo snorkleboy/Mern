@@ -9,10 +9,10 @@ import {
   Link,
 } from 'react-router-dom';
 
-import Stock from './components/setPages/stockPageContainer';
-import Signup from './components/setPages/user/signupContainer';
-import Sidebar from './components/setPages/UI/sidebarContainer';
-import MainPage from './components/setPages/entryPageContainer';
+import Stock from './components/composed/stockPageContainer';
+import Signup from './components/composed/user/signupContainer';
+import Sidebar from './components/composed/UI/sidebarContainer';
+import MainPage from './components/composed/entryPageContainer';
 import List from './components/stocks/list';
 
 const SignedInApp = ()=>(

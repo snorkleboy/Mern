@@ -3,8 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { HashRouter } from 'react-router-dom';
 import App from './App';
-import configureStore from './store/store';
-// import registerServiceWorker from './registerServiceWorker';
+import configureStore from './components/store/store';
 const store = configureStore();
 document.addEventListener('DOMContentLoaded',()=>{
     const root = document.getElementById('root')

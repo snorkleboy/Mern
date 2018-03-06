@@ -1,7 +1,7 @@
 import {
     RECEIVE_STOCKS,
     RECEIVE_STOCKS_LIST
-} from '../../../components/stocks/stockActions';
+} from '../../../stocks/stockActions';
 import merge from 'lodash/merge';
 
 export const _stocks = {
