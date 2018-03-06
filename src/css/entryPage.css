@@ -1,5 +1,5 @@
 .entry{
-    width: 100%;
+    
     background-color: rgb(104, 245, 233);
     padding:2.5%;
 }
@@ -9,4 +9,26 @@
     flex-direction: column;
     border-radius: 5px;
     
+}
+article{
+    width: fit-content;
+}
+.spliter {
+    display: flex;
+    flex-direction: row;
+}
+.sidebarHolder{
+    width:20%;
+}
+.entry {
+    width: 80%;
+}
+@media (max-width: 360px) {
+
+}
+
+@media (max-width: 720px) {
+.spliter {
+    flex-direction: column-reverse;
+}
 }
