@@ -19,7 +19,7 @@ table{
 }
 .row{
   color: rgb(33, 20, 104);
-  display:inline-table;
+  display: table-row;
   text-align: center;
 
 }
