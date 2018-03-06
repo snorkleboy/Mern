@@ -13,9 +13,7 @@
 }
 .row{
   color: rgb(33, 20, 104);
-  display:grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 1fr;
+  display:inline-table;
   text-align: left;
   border:1px solid rgb(25, 8, 104);
   border-width: 1px 0 1px 0;

@@ -9,21 +9,21 @@ export default class List extends React.Component {
 //makes entry[header] for all other rows by iterating through entries and pulling out data by header
     listMaker(headers = this.props.data.headers || [], entries = this.props.data.entries || []) {
         return (
-            <section class='grid'>
-                <div className='row rowHeader'>
-                    {headers.map((header,i) => <div className='chart-header' key={`${header}+${i}`}>{header}</div>)}
-                </div>
-                {entries.map((entry,i) => (
-                    <Link className='row' key={`${entry} + ${i}`} to={`/stocks/${entry['symbol']}`}>
-                        {headers.map((header, j) =>(                        
-                            <div key={`${entry[header]}+${i}+${j}`}>
-                                {entry[header] ? prettify(entry[header]) : 'unlisted'}
-                            </div>)
-                        )}
-                    </Link>
-                    )
-                )}
-            </section>
+            <table className=''>
+            <tr>
+                    {headers.map((header,i) => <th className='' key={`${header}+${i}`}>{header}</th>)}
+            </tr>
+                    {entries.map((entry,i) => (
+                        <tr>
+                                {headers.map((header, j) =>(                        
+                                    <td key={`${entry[header]}+${i}+${j}`}>
+                                        {entry[header] ? prettify(entry[header]) : 'unlisted'}
+                                    </td>)
+                                )}
+                        </tr>
+                        )
+                    )}
+            </table>
         );
     }
     render(){
