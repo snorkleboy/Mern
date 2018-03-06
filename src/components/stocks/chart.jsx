@@ -9,9 +9,10 @@ class Chart extends React.Component {
         super(props);
         this.state = { 
                 "range": 5000,
-                'ma': false,
+                'ma': true,
                 'bollinger':false,
-                'candleStick':false
+                'candleStick':false,
+                'pricePoint':true
         }
         
     }
@@ -71,13 +72,16 @@ class Chart extends React.Component {
                         <div>
                             <ul>
                                 <li>Moving Average
-                                    <input onClick={this.handleMAclick.bind(this)}  type="checkbox"></input>
+                                    <input onClick={this.handleMAclick.bind(this)} checked={this.state.ma} type="checkbox"></input>
                                 </li>
                                 <li>Bollinger Bands
                                     <input onClick={this.handleBollingerClick.bind(this)} type="checkbox"></input>
                                 </li>
                                 <li>Candle Stick
                                     <input onClick={this.handleCandleStick.bind(this)} type="checkbox"></input>
+                                </li>
+                                <li>Price Point Marker
+                                    <input onClick={this.handlePricePoint.bind(this)} type="checkbox" checked={this.state.pricePoint}></input>
                                 </li>
                             </ul>
                         </div>
@@ -86,6 +90,9 @@ class Chart extends React.Component {
         );
     }
     componentDidUpdate(){
+    }
+    handlePricePoint() {
+        this.setState({ "pricePoint": !this.state.pricePoint })
     }
     handleCandleStick(){
         this.setState({"candleStick":!this.state.candleStick})

@@ -61,10 +61,17 @@ border-width: 3px;
 border-style: solid;
 border-image: linear-gradient(to top, rgb(95, 95, 95), rgba(0, 0, 0, 0)) 1 100%;
 }
+.slashTick{
+    fill: #ffbb00;
+    stroke: none;
+    stroke-width: .5;
+    z-index: 11;
+}
 .dot{
-        fill: none;
-        stroke: #ffbb00;
-        stroke-width: 2px;
+    fill: #ffbb00;
+    stroke: none;
+    stroke-width: .5;
+    z-index: 11;
 }
 
 
@@ -84,7 +91,7 @@ border-image: linear-gradient(to top, rgb(95, 95, 95), rgba(0, 0, 0, 0)) 1 100%;
 }
 
 .x text{
-    transform: rotate(6deg);
+    transform: rotate(15deg);
 }
 .candleStick{
     stroke: #000000;
