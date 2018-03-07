@@ -9,6 +9,7 @@ mongoose.Promise = require('bluebird');
 const FetchSaveMosts = require('../bin/data/fetchSaveMosts');
 const router = require('./routes/router');
 const app = express();
+var cookieSession = require('cookie-session')
 
 
     // Here we find an appropriate database to connect to, defaulting to
@@ -37,6 +38,14 @@ mongoose.connect(uristring, { promiseLibrary: require('bluebird') }, function (e
     });
 
   //middleware = function((req,res,next)=>{}) express() and express().router are valid middlewares
+app.use(cookieSession({
+  name: 'session',
+  keys: ['9879h9fh8934hf34fknkjnd139pud','23p982h39hdfojafnskfjan','apsfhiq9rh9pfuansojktrlc'],
+
+  // Cookie Options
+  maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}))
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ 'extended': 'false' }));

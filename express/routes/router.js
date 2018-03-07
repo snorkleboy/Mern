@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router([{ mergeParams: true}]);
+
 const APIController = require('./apiController');
 router.use(function timeLog(req, res, next) {
     console.log('in top router controller');
@@ -16,7 +17,6 @@ router.use(function timeLog(req, res, next) {
 //
 
 router.use('/api', APIController);
-
 
 
 
