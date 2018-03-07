@@ -1,5 +1,6 @@
 const express = require('express');
 const userController = express.Router();
+const User = require('../models/users/user')
 // const User = require('../models/user/user')
 
 
@@ -9,7 +10,9 @@ userController.use(function timeLog(req, res, next) {
     console.log('in User controller /api/User');
     next();
 });
-
+userController.get('/', (req, res, next) => {
+    res.json({"USERCONTROLLER":true})
+});
 // create user
 userController.post('/', (req, res, next) => {
     // Mosts.Gainer.find({}, (error, data) => {

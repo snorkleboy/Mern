@@ -10,7 +10,7 @@ APIController.use(function timeLog(req, res, next) {
 });
 
 APIController.use('/stocks', stockController);
-APIController.use('/user', userController);
+APIController.use('/users', userController);
 APIController.get('/', function (req, res, next) {
     res.send('express api, /stocks for stock controller /user for user controller');
 });
