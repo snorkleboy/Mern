@@ -35,8 +35,9 @@ userController.get('/delete', (req, res, next) => {
 userController.post('/', (req, res, next) => {
     newUser = new Users({ 'username': req.body.username});
     newUser.createPasswordDigest(req.body.password)
-        .then(passwordedUser => passwordedUser.save())
-        .then((savedUser) =>  res.json({"id":savedUser._id}))
+        .then((passwordedUser) => passwordedUser.save())
+        .then((savedUser) => savedUser.login())
+        .then((loggedInUser) => res.json({ "id": loggedInUser._id}))
         .catch((err) => res.json(err))
 });
 
@@ -49,21 +50,20 @@ userController.get('/:username', (req, res, next) => {
 
 // login
 userController.post('/:username/session', (req, res, next) => {
-    console.log("SESSION START", req.session);
     Users.authenticate(req.params.username, req.body.password)
         .then((matchedUser) => matchedUser.login(), (notmatched) => {res.json(notmatched)})
-        .then((token) => {
-            req.session.token =token; 
-
-            console.log("SESSION", req.session.token)
-            res.json({"ok":true})//(req.session.token)
-        })
+        .then((token) => {req.session.token =token; res.json({"ok":true})})
         .catch((err)=> res.json(err))
 });
 
 
 // logout
 userController.delete('/:username/session', (req, res, next) => {
+    req.session.token = null;
+    Users.findOne({ "username": req.params["username"] }, (err, user) => {
+        user.token = null
+        user.save().then(()=>res.json({"ok":true}))
+    });
     // login
     // post request with password will authenticate password and respond with session token
 
