@@ -21,7 +21,6 @@ const FetchSaveMosts = () => {
             Mosts.Gainer.remove({},()=>{
                 data.forEach((gainer,i) => {
                     Mosts.Gainer.create(gainer, (err, saved) => {
-                        // console.log('saved', saved);
                         // console.log('err', err);
                         Log({ 'date': Date.now(), 'log': (err || `saved gainers${i}`)})
                     });
