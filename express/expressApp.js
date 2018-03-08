@@ -48,7 +48,7 @@ app.use(cookieSession({
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ 'extended': 'false' }));
+app.use(bodyParser.urlencoded({ 'extended': 'true' }));
 // app.use(Fetcher);
 app.use(router);
 app.use(express.static(path.join(__dirname, '../build')));
