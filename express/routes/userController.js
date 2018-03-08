@@ -36,7 +36,7 @@ userController.post('/', (req, res, next) => {
     newUser = new Users({ 'username': req.body.username});
     newUser.createPasswordDigest(req.body.password)
         .then((passwordedUser) => passwordedUser.save())
-        .then((savedUser) => savedUser.login())
+        .then((savedUser) => savedUser.login(req.session.token))
         .then((loggedInUser) => res.json({ "id": loggedInUser._id}))
         .catch((err) => res.json(err))
 });
@@ -51,8 +51,8 @@ userController.get('/:username', (req, res, next) => {
 // login
 userController.post('/:username/session', (req, res, next) => {
     Users.authenticate(req.params.username, req.body.password)
-        .then((matchedUser) => matchedUser.login(), (notmatched) => {res.json(notmatched)})
-        .then((token) => {req.session.token =token; res.json({"ok":true})})
+        .then((matchedUser) => matchedUser.login(req.session.token), (notmatched) => {res.json(notmatched)})
+        .then((user) => {res.json({"ok":true})})
         .catch((err)=> res.json(err))
 });
 
