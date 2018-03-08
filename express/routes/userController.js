@@ -16,9 +16,9 @@ userController.get('/', (req, res, next) => {
 });
 // create user
 userController.post('/', (req, res, next) => {
-    console.log(req.body);
+    console.log();
     
-    // Users.create({'username':"usernamee",'password':"passwordd"},(error,mystery) => {console.log(error,mystery);res.json({'err':error,'thing':mystery})})
+    User.create({ 'username': req.body.username, 'password': req.body.password }, (error, newuser) => { console.log(error, newuser); res.json({ 'err': error, 'user': newuser})})
     // post request with uername and password makes new account and responds with sucess message && session token
 
 });
