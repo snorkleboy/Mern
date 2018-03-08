@@ -14,18 +14,26 @@ userController.get('/', (req, res, next) => {
     User.find({}, (err, data) => res.json(data))
 
 });
+userController.get('/delete', (req, res, next) => {
+    User.remove({}, (err, data) => res.json(data))
+
+});
 // create user
 userController.post('/', (req, res, next) => {
-    console.log();
-    
-    User.create({ 'username': req.body.username, 'password': req.body.password }, (error, newuser) => { console.log(error, newuser); res.json({ 'err': error, 'user': newuser})})
-    // post request with uername and password makes new account and responds with sucess message && session token
-
+    newUser = new User({ 'username': req.body.username});
+    newUser.createPasswordDigest(req.body.password)
+        .then(passwordedUser => passwordedUser.save())
+        .then((savedUser) => { res.json(err ? err : savedUser)})
+        .catch((err) => res.json(err))
 });
 
 // check if username is registered
 userController.get('/:username', (req, res, next) => {
-    res.json({"input":req.params["username"]})
+    User.findOne({ "username": req.params["username"]}, (err,user)=>{
+        console.log(err, user, req.params["username"] )
+        res.json({ "isUser": user ? true : false})
+    });
+    
 });
 
 // login
