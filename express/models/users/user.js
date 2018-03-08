@@ -13,36 +13,41 @@ const User_schema = new mongoose.Schema({
 });
 
 
-function resetToken() {  };
-function unsetToken() { };
 
-
-User_schema.methods.authenticate = function authenticate(username, password, token) {
-    const that = this;
+User_schema.statics.authenticate = function authenticate(username, password) {
+    const thisUser = this;
     return new Promise((resolve, reject)=>{
-        that.findOne({ 'username': username }, (err, user) => {
-            console.log("AUTNETICATE FIND", err, user, );
-            bcrypt.compare(password, user.password_digest, (err, res)=> err ? reject(err) : resolve(res));
+        thisUser.findOne({ 'username': username }, (err, user) => {
+            console.log("AUTNETICATE FIND", username, user,err);
+            if (user){
+                bcrypt.compare(password, user.password_digest)
+                    .then(res => res ? resolve(user) : reject({ "error": `wrong password` }));
+            }else{
+                reject({ "error": `could not find user ${username}` })
+            }
         });
     })
 };
     
 User_schema.methods.createPasswordDigest = function createPassWordDigest(password){
-    const that = this;
+    const thisUser = this;
     return new Promise((resolve, reject) => {
         bcrypt.hash(password, saltRounds, function (err, hash) {
             if (err){ 
                 reject(err);
             }else{ 
-                that.password_digest = hash;
-                resolve(that);
+                thisUser.password_digest = hash;
+                resolve(thisUser);
             }        
         });
     })
 }
-User_schema.methods.resetSessionToken = resetToken;
-User_schema.methods.unsetSessionToken = unsetToken;
+User_schema.methods.login = function(){
+
+};
+User_schema.methods.logout = function logout(){};
+User_schema.statics.checkToken = function checkToken(username, token){};
 User_schema.plugin(uniqueValidator);
 
-const User = mongoose.model('Users', User_schema);
-module.exports = User
+const Users = mongoose.model('Users', User_schema);
+module.exports = Users
