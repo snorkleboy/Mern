@@ -7,7 +7,9 @@ const Users = require('../models/users/user')
 // options = {
 //     method: 'POST',
 //     body: params,
+//     credentials: 'same-origin',
 //     headers: {
+
 //         'Accept': 'application/json',
 //         'Content-Type': 'application/json'
 //     }
@@ -16,13 +18,14 @@ const Users = require('../models/users/user')
 
 
 //nested under HOST/api/users
+
+
 userController.use(function timeLog(req, res, next) {
     console.log('in User controller /api/User');
     next();
 });
 userController.get('/', (req, res, next) => {
     Users.find({}, (err, data) => res.json(data))
-
 });
 userController.get('/delete', (req, res, next) => {
     Users.remove({}, (err, data) => res.json(data))
@@ -42,17 +45,22 @@ userController.get('/:username', (req, res, next) => {
     Users.findOne({ "username": req.params["username"]}, (err,user)=>{
         res.json({ "isUser": user ? true : false})
     });
-    
 });
 
 // login
 userController.post('/:username/session', (req, res, next) => {
+    console.log("SESSION START", req.session);
     Users.authenticate(req.params.username, req.body.password)
-        .then((user)=> res.json({"token":"none"}), (notmatched)=>res.json(notmatched))
-    // login
-    // post request with password will authenticate password and respond with session token
+        .then((matchedUser) => matchedUser.login(), (notmatched) => {res.json(notmatched)})
+        .then((token) => {
+            req.session.token =token; 
 
+            console.log("SESSION", req.session.token)
+            res.json({"ok":true})//(req.session.token)
+        })
+        .catch((err)=> res.json(err))
 });
+
 
 // logout
 userController.delete('/:username/session', (req, res, next) => {

@@ -1,33 +1,19 @@
 const express = require('express');
+const app = express();
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
-const http = require('http');         // For serving a basic web page.
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 const FetchSaveMosts = require('../bin/data/fetchSaveMosts');
 const router = require('./routes/router');
-const app = express();
-var cookieSession = require('cookie-session')
+const session = require('express-session')
 
-
-    // Here we find an appropriate database to connect to, defaulting to
-    // localhost if we don't find one.
-const temp ="mongodb://<dbuser>:<dbpassword>@ds115446.mlab.com:15446/heroku_b8c2zknk"
-const uristring = process.env.MONGOLAB_URI || process.env.MONGODB_URI ||  process.env.MONGOHQ_URL ||  'mongodb://localhost/mern-crud';
-
-    // The http server will listen to an appropriate port, or default to
-    // port 5000.
-    const theport = process.env.PORT || 5000;
-
-    // Makes connection asynchronously.  Mongoose will queue up database
-    // operations and release them when the connection is complete.
 
 //mongo
 //
-
-
+const uristring = process.env.MONGOLAB_URI || process.env.MONGODB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/mern-crud';
 mongoose.connect(uristring, { promiseLibrary: require('bluebird') }, function (err, res) {
       if (err) {
       console.log ('ERROR connecting to: ' + uristring + '. ' + err);
@@ -37,20 +23,32 @@ mongoose.connect(uristring, { promiseLibrary: require('bluebird') }, function (e
       }
     });
 
-  //middleware = function((req,res,next)=>{}) express() and express().router are valid middlewares
-app.use(cookieSession({
-  name: 'session',
-  keys: ['9879h9fh8934hf34fknkjnd139pud','23p982h39hdfojafnskfjan','apsfhiq9rh9pfuansojktrlc'],
 
-  // Cookie Options
-  maxAge: 24 * 60 * 60 * 1000 // 24 hours
-}))
+
+//////middleware
+
+// read and encrypt session cookies
+app.set('trust proxy', 1) // trust first proxy
+var sess = {
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false },
+}
+if (app.get('env') === 'production') {
+  app.set('trust proxy', 1) // trust first proxy
+  sess.cookie.secure = true // serve secure cookies
+}
+app.use(session(sess))
+
 
 app.use(logger('dev'));
+// gets parameters out of body
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ 'extended': 'true' }));
-// app.use(Fetcher);
+// router- all api nested under router
 app.use(router);
+// file server
 app.use(express.static(path.join(__dirname, '../build')));
 app.use('*',express.static(path.join(__dirname, '../build')));
 

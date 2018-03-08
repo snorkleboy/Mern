@@ -42,10 +42,24 @@ User_schema.methods.createPasswordDigest = function createPassWordDigest(passwor
         });
     })
 }
-User_schema.methods.login = function(){
-
+User_schema.methods.login = function(){ 
+    return new Promise((resolve, reject) => {
+        this.token = secureRandom(5);
+        this.save()
+        .then((user) => resolve(user.token))
+        .catch((err)=> reject(err))
+    })
 };
-User_schema.methods.logout = function logout(){};
+User_schema.statics.loggedIn = function loggedIn(token, scb, fcb) {
+    Users.findOne({ "token": token }, (err, user) => {
+        if (user) {
+            scb()
+        } else {
+            fcb(err)
+        }
+    })
+}
+User_schema.methods.logout = function logout(){return this.token = null;};
 User_schema.statics.checkToken = function checkToken(username, token){};
 User_schema.plugin(uniqueValidator);
 
