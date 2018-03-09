@@ -10,11 +10,12 @@ export default class List extends React.Component {
     listMaker(headers = this.props.data.headers || [], entries = this.props.data.entries || []) {
         return (
             <table className=''>
+            <tbody>
             <tr>
                     {headers.map((header,i) => <th className='' key={`${header}+${i}`}>{header}</th>)}
             </tr>
                     {entries.map((entry,i) => (
-
+            
                     <Link className='row' key={`${entry[i]} + ${i}`} to={`/stocks/${entry['symbol']}`}>
                             {headers.map((header, j) =>(                        
                                 <td key={`${entry[header]}+${i}+${j}`}>
@@ -24,6 +25,7 @@ export default class List extends React.Component {
                         </Link>
                         )
                     )}
+            </tbody>
             </table>
         );
     }

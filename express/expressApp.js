@@ -4,11 +4,12 @@ const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
+const session = require('express-session')
+
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 const FetchSaveMosts = require('../bin/data/fetchSaveMosts');
 const router = require('./routes/router');
-const session = require('express-session')
 
 
 //mongo
@@ -30,13 +31,12 @@ mongoose.connect(uristring, { promiseLibrary: require('bluebird') }, function (e
 // read and encrypt session cookies
 app.set('trust proxy', 1) // trust first proxy
 var sess = {
-  secret: 'keyboard cat',
+  secret: 'asofOAHij98h9UI4jq9rfmaklnfahYFAYdf9f9UIPaf8',
   resave: false,
   saveUninitialized: true,
   cookie: { secure: false },
 }
 if (app.get('env') === 'production') {
-  app.set('trust proxy', 1) // trust first proxy
   sess.cookie.secure = true // serve secure cookies
 }
 app.use(session(sess))
