@@ -1,5 +1,7 @@
 const express = require('express');
-const router = express.Router([{ mergeParams: true}]);
+const router = express.Router([{
+    mergeParams: true
+}]);
 
 const APIController = require('./apiController');
 router.use(function timeLog(req, res, next) {

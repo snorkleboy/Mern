@@ -1,5 +1,7 @@
 const express = require('express');
-const APIController = express.Router([{ mergeParams: true }]);
+const APIController = express.Router([{
+    mergeParams: true
+}]);
 const catcher = require('./util/catcher');
 const stockController = require('./stockController');
 const userController = require('./userController');
@@ -27,5 +29,3 @@ APIController.use(catcher);
 
 
 module.exports = APIController;
-
-

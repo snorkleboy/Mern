@@ -5,54 +5,69 @@ const Mosts = require('../models/mosts/mosts');
 
 
 //nested under HOST/api/stocks
-stockController.use(function timeLog (req, res, next) {
+stockController.use(function timeLog(req, res, next) {
   console.log('in stock controller /api/stocks');
   next();
 });
 
 stockController.get('/most/volume', (req, res, next) => {
-  Mosts.MostVolume.find((error,data)=>{
+  Mosts.MostVolume.find((error, data) => {
     res.json(data);
   }).select('-_id -created_at -__v');
-  
+
 });
 stockController.get('/most/gainer', (req, res, next) => {
-  Mosts.Gainer.find({},(error,data) => {
+  Mosts.Gainer.find({}, (error, data) => {
     res.json(data);
   }).select('-_id -created_at -__v');
 
 });
 stockController.get('/most/loser', (req, res, next) => {
-  Mosts.Loser.find({}, (error,data) => {
+  Mosts.Loser.find({}, (error, data) => {
     res.json(data);
   }).select('-_id -created_at -__v');
 });
 stockController.get('/most/active', (req, res, next) => {
-  Mosts.MostActive.find({}, (error,data) => {
+  Mosts.MostActive.find({}, (error, data) => {
     res.json(data);
   }).select('-_id -created_at -__v');
 });
 stockController.get('/most/all', (req, res, next) => {
-  const response = {gainers:[],losers:[],mostActive:[],MostVolume:[]};
+  const response = {
+    gainers: [],
+    losers: [],
+    mostActive: [],
+    MostVolume: []
+  };
   const promises = [];
-  promises.push(Mosts.MostActive.find({}, (error, data) => { response.mostActive = data; }).select('-_id -created_at -__v'));
-  promises.push(Mosts.Loser.find({}, (error,data) => { response.losers = data;}).select('-_id -created_at -__v'));
-  promises.push(Mosts.MostVolume.find({}, (error,data) => { response.mostVolume = data;}).select('-_id -created_at -__v'));
-  promises.push(Mosts.Gainer.find({}, (error,data) => { response.gainers = data;}).select('-_id -created_at -__v'));
-  Promise.all(promises).then(()=>{
+  promises.push(Mosts.MostActive.find({}, (error, data) => {
+    response.mostActive = data;
+  }).select('-_id -created_at -__v'));
+  promises.push(Mosts.Loser.find({}, (error, data) => {
+    response.losers = data;
+  }).select('-_id -created_at -__v'));
+  promises.push(Mosts.MostVolume.find({}, (error, data) => {
+    response.mostVolume = data;
+  }).select('-_id -created_at -__v'));
+  promises.push(Mosts.Gainer.find({}, (error, data) => {
+    response.gainers = data;
+  }).select('-_id -created_at -__v'));
+  Promise.all(promises).then(() => {
     res.json(response);
   })
-  
+
 });
 
 
 stockController.get('/time', function (req, res, next) {
-  res.json({date: Date.now()});
+  res.json({
+    date: Date.now()
+  });
 });
-stockController.get('/:id', (req, res, next)=> {
+stockController.get('/:id', (req, res, next) => {
   res.send(req.params.id);
 });
-stockController.get('/', function(req, res, next) {
+stockController.get('/', function (req, res, next) {
   Stock.find(function (err, stocks) {
     if (err) return next(err);
     res.json(stocks);

@@ -1,4 +1,6 @@
-import { connect } from 'react-redux';
+import {
+    connect
+} from 'react-redux';
 
 import List from './list';
 import * as StockActions from './stockActions';
@@ -11,7 +13,7 @@ const mapState = (state, Ownprops) => {
 const mapDispatch = (dispatch, ownProps) => {
 
     return ({
-        
+
     });
 };
 

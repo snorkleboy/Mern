@@ -39,7 +39,7 @@ const mods = [
 ];
 const IEX_URL = 'https://api.iextrading.com/1.0/';
 
-const IEXAPI = class{
+const IEXAPI = class {
     constructor(filters = filterMods, modifers = mods) {
 
         this.mods = modifers || [];
@@ -60,11 +60,23 @@ const IEXAPI = class{
         this.fetchIEXPercent = this.fetchIEXPercent.bind(this);
     }
 
-    
-    addMods(modif){ modif.forEach((modi) => this.mods.push(modi)); return this; }
-    setMods(modif){ this.filters = modif; return this; }
-    addFilters(filters){ filters.forEach((filter) => this.filters.push(filter)); return this; }
-    setFilters(filters){ this.filters = filters; return this; }
+
+    addMods(modif) {
+        modif.forEach((modi) => this.mods.push(modi));
+        return this;
+    }
+    setMods(modif) {
+        this.filters = modif;
+        return this;
+    }
+    addFilters(filters) {
+        filters.forEach((filter) => this.filters.push(filter));
+        return this;
+    }
+    setFilters(filters) {
+        this.filters = filters;
+        return this;
+    }
 
     attrWriter() {
         const filtersString = this.filters.length > 0 ? `filter=${this.filters.join(',')}` : '';
@@ -85,38 +97,39 @@ const IEXAPI = class{
         return (string);
     }
     //retuns fetch function thunk in a thunk that calls receiveStocks, would be called like thunker(fetchGainers)() or thunker(fetchGainers, ReceiveStocks)()
-    thunker(fetchFunc, action = StockActions.receiveStocksFromIEX){
+    thunker(fetchFunc, action = StockActions.receiveStocksFromIEX) {
         return () => dispatch => fetchFunc().then((success) => dispatch(action(success)),
-        (fail) => console.log(fail));
+            (fail) => console.log(fail));
     }
-    fetchChart(ticker,time){
+    fetchChart(ticker, time) {
         return fetch(IEX_URL + `/stock/${ticker}/chart/${time}/?displayPercent=true`, {
             method: 'GET'
-        }).then((res) => res.json());}
-
-
-    fetchFinancials(ticker){
-        return fetch(IEX_URL + `/stock/${ticker}/financials` + this.attrWriter(),{
-            method: 'GET'
-        }).then((res) => res.json());
-    }
-    fetchBatchdetail(ticker, time){
-
-    }
-    fetchNews(ticker,last){
-        
-        return fetch(IEX_URL + `stock/${ticker}/news` + (last ? `/last/${last}` : '') ,{
-            method: 'GET'
         }).then((res) => res.json());
     }
 
-    fetchDetails(ticker){
-        return fetch(IEX_URL + `stock/${ticker}/stats` + this.attrWriter(),{
+
+    fetchFinancials(ticker) {
+        return fetch(IEX_URL + `/stock/${ticker}/financials` + this.attrWriter(), {
             method: 'GET'
-        }).then((res) => res.json(),(fail)=>console.log('IEXAPI fail',fail))
+        }).then((res) => res.json());
+    }
+    fetchBatchdetail(ticker, time) {
+
+    }
+    fetchNews(ticker, last) {
+
+        return fetch(IEX_URL + `stock/${ticker}/news` + (last ? `/last/${last}` : ''), {
+            method: 'GET'
+        }).then((res) => res.json());
     }
 
-    
+    fetchDetails(ticker) {
+        return fetch(IEX_URL + `stock/${ticker}/stats` + this.attrWriter(), {
+            method: 'GET'
+        }).then((res) => res.json(), (fail) => console.log('IEXAPI fail', fail))
+    }
+
+
     fetchGainers() {
         return (fetch(IEX_URL + 'stock/market/list/gainers' + this.attrWriter(), {
             method: 'GET'
@@ -124,30 +137,30 @@ const IEXAPI = class{
 
     }
 
-    fetchMostActive(){
-        return fetch(IEX_URL + 'stock/market/list/mostactive' + this.attrWriter(),{
-        method: 'GET'
-    })
-    .then((res) => res.json());
+    fetchMostActive() {
+        return fetch(IEX_URL + 'stock/market/list/mostactive' + this.attrWriter(), {
+                method: 'GET'
+            })
+            .then((res) => res.json());
     }
 
-    fetchLosers(){
-        return fetch(IEX_URL + 'stock/market/list/losers' + this.attrWriter(),{
-        method: 'GET'
-    })
-    .then((res) => res.json());
+    fetchLosers() {
+        return fetch(IEX_URL + 'stock/market/list/losers' + this.attrWriter(), {
+                method: 'GET'
+            })
+            .then((res) => res.json());
     }
-    fetchIEXVolume(){
-        return fetch(IEX_URL + 'stock/market/list/iexvolume' + this.attrWriter(),{
-        method: 'GET'
-    })
-    .then((res) => res.json());
+    fetchIEXVolume() {
+        return fetch(IEX_URL + 'stock/market/list/iexvolume' + this.attrWriter(), {
+                method: 'GET'
+            })
+            .then((res) => res.json());
     }
-    fetchIEXPercent(){
-        return fetch(IEX_URL + 'stock/market/list/iexpercent' + this.attrWriter(),{
-        method: 'GET'
-    })
-    .then((res) => res.json());
+    fetchIEXPercent() {
+        return fetch(IEX_URL + 'stock/market/list/iexpercent' + this.attrWriter(), {
+                method: 'GET'
+            })
+            .then((res) => res.json());
     }
 }
 

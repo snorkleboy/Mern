@@ -133,33 +133,36 @@ class Chart extends React.Component {
 
 
 function addMa(data, avgN) {
-    const first = [[], []]
+    const first = [
+        [],
+        []
+    ]
     // sums holds [movingSum, MovingsquareSum, NumIncreaseIntervals, NumDecreaseIntervals];
     let sums = getInitialMA(data, avgN)
     for (let i = avgN; i < data.length; i++) {
         // get new sum by removing oldest element and adding new
         // the new 20 day sum is sum - num[-20] + num[i]
         sums[0] = sums[0] - data[i - avgN].close + data[i].close
-        sums[1] = sums[1] - (Math.pow(data[i - avgN].close,2)) + (Math.pow(data[i].close,2))
+        sums[1] = sums[1] - (Math.pow(data[i - avgN].close, 2)) + (Math.pow(data[i].close, 2))
         // calc new moving average as sum/n
         data[i].ma = (sums[0] / avgN)
         //  calc new varaince and then stdev
-        
-        const variance = sums[1] / avgN - Math.pow(data[i].ma, 2);//sums[1]/avgn = average square of value; Math.pow(data[i].ma, 2) = squared average/ 
-        data[i].stdev = Math.pow(variance,1/2)
+
+        const variance = sums[1] / avgN - Math.pow(data[i].ma, 2); //sums[1]/avgn = average square of value; Math.pow(data[i].ma, 2) = squared average/ 
+        data[i].stdev = Math.pow(variance, 1 / 2)
 
         // calc new NumIncreaseIntervals, NumDecreaseIntervals
         // remove one from increases or decreases depending on oldest element.
-        if (data[i-avgN].change >= 0){
-            sums[2] = sums[2] - data[i-avgN].change
-        }else{
-            sums[3] = sums[3] +data[i-avgN].change
+        if (data[i - avgN].change >= 0) {
+            sums[2] = sums[2] - data[i - avgN].change
+        } else {
+            sums[3] = sums[3] + data[i - avgN].change
         }
         // add on to increases or decreases depending on new element
         const change = data[i].close - data[i - 1].close
-        if (change>0){
+        if (change > 0) {
             sums[2] += change
-        }else{
+        } else {
             sums[3] += -change
         }
         // rawrsi is average increases/average decreases 
@@ -181,30 +184,30 @@ function getInitialMA(data, n) {
     data[0].change = 0;
     data[0].rsi = 50;
     let sum = data[0].close;
-    let squareSum = data[0].close*data[0].close;
+    let squareSum = data[0].close * data[0].close;
     let var2;
     data[0].stdev = data[0].close * .025;
     let gainsTot = 1;
-    let lossesTot =1;
+    let lossesTot = 1;
     for (let i = 1; i < n; i++) {
         sum += data[i].close
         squareSum += data[i].close * data[i].close
         data[i].ma = sum / (i + 1)
-        var2 = squareSum / (i+1) - Math.pow(data[i].ma, 2);
-        data[i].stdev = Math.pow(var2,1/2)
+        var2 = squareSum / (i + 1) - Math.pow(data[i].ma, 2);
+        data[i].stdev = Math.pow(var2, 1 / 2)
 
         // get total numver of increase and decreases for RSI
         // average is calculated using N instead of I for these first N values;
-        const change = data[i].close-data[i-1].close
-        if (change >= 0){
+        const change = data[i].close - data[i - 1].close
+        if (change >= 0) {
             gainsTot += change
-        }else{
+        } else {
             lossesTot += -change
         }
         // data[i].change = change;
-        data[i].rsi = (gainsTot/n)/(lossesTot/n)
-        
-        data[i].rsi = 100 - 100/(1+data[i].rsi)
+        data[i].rsi = (gainsTot / n) / (lossesTot / n)
+
+        data[i].rsi = 100 - 100 / (1 + data[i].rsi)
     }
     return [sum, squareSum, gainsTot, lossesTot];
 }

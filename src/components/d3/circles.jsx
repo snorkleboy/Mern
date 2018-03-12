@@ -43,7 +43,7 @@ class Circles extends React.Component {
 
 
         // this function starts the process of making data bound d3 elements
-        function maker(el,dataa,classname){
+        function maker(el, dataa, classname) {
             return el.selectAll(classname)
                 .data(dataa)
         }
@@ -79,35 +79,39 @@ class Circles extends React.Component {
                 .attr("y2", (d) => position[1] + y(Math.max(d.high, d.low)))
                 .attr('stroke-width', 0)
                 .attr("stroke", 'grey')
-            
 
-                // only apply transitions if there isnt too much data
-            if (data.length< maxElForTransitions){
-                temp.transition()           // apply a transition
+
+            // only apply transitions if there isnt too much data
+            if (data.length < maxElForTransitions) {
+                temp.transition() // apply a transition
                     .duration(750)
                     .attr("y2", (d) => position[1] + y(Math.min(d.high, d.low)))
                     .attr("stroke-width", 1)
-            }else{
+            } else {
                 temp.attr("y2", (d) => position[1] + y(Math.min(d.high, d.low)))
                     .attr("stroke-width", 1)
             }
-                
+
             dataObj = maker(chart, data, '.bar')
             temp = dataObj.enter().append("rect")
                 .attr("class", "candleStick child")
                 .attr("x", (d) => position[0] + x(new Date(d.date)))
-                .attr("y", (d) => position[1] + y(Math.max(d.open,d.close)))
+                .attr("y", (d) => position[1] + y(Math.max(d.open, d.close)))
                 .attr("width", 2)
                 .attr("fill", (d) => d.change >= 0 ? "green" : "red")
                 .on("mouseover", toolTipper)
                 .on("mouseout", deToolTipper)
             // only apply transitions if there isnt too much data
             if (data.length < maxElForTransitions) {
-                temp.transition()           // apply a transition
+                temp.transition() // apply a transition
                     .duration(750)
-                    .attr("height", (d) => { return y(Math.min(d.open, d.close)) - y(Math.max(d.open, d.close)) })
+                    .attr("height", (d) => {
+                        return y(Math.min(d.open, d.close)) - y(Math.max(d.open, d.close))
+                    })
             } else {
-                temp.attr("height", (d) => { return y(Math.min(d.open, d.close)) - y(Math.max(d.open, d.close)) })
+                temp.attr("height", (d) => {
+                    return y(Math.min(d.open, d.close)) - y(Math.max(d.open, d.close))
+                })
             }
         }
         if (options.pricePoint) {
@@ -120,11 +124,11 @@ class Circles extends React.Component {
                 .on("mouseover", toolTipper)
                 .on("mouseout", deToolTipper)
             // only apply transitions if there isnt too much data
-            if (data.length< maxElForTransitions){
-                temp.transition()           // apply a transition
+            if (data.length < maxElForTransitions) {
+                temp.transition() // apply a transition
                     .duration(750)
                     .attr("r", 2)
-            }else{
+            } else {
                 temp.attr("r", 2)
             }
         }

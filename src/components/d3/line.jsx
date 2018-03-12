@@ -28,7 +28,7 @@ class Line extends React.Component {
 
         let chart = d3.select(`#d3${name}`)
 
-        chart.attr("transform", "translate("+ position[0]+"," + position[1] + ")")
+        chart.attr("transform", "translate(" + position[0] + "," + position[1] + ")")
         chart.innerHtml = '';
 
         const line = d3.line()
@@ -36,8 +36,8 @@ class Line extends React.Component {
             .y((d) => y(dataGrabber(d)))
 
         chart.append("svg")
-            .attr('width',width)
-            .attr('height',height)
+            .attr('width', width)
+            .attr('height', height)
             .append("path")
             .datum(data)
             .attr("class", classname)

@@ -32,7 +32,7 @@ class Axis extends React.Component {
         axisEl.innerHtml = '';
         // x axis
         const xAxis = d3.axisBottom(x).tickSize(-(300), 0, 0).tickFormat(d3.timeFormat("%y-%m-%d"));
-        axisEl.attr("transform", "translate("+position[0] + "," + position[1]+")")
+        axisEl.attr("transform", "translate(" + position[0] + "," + position[1] + ")")
             .attr('class', 'x axis')
             .call(xAxis)
 

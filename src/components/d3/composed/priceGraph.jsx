@@ -10,8 +10,12 @@ export default function PriceLine({data,height, width, xDate,position,options}){
     // comes with circles which activate toolTips
     // 
     const dataGrabber = (entry) => entry.close;
-    const maxY = d3.max(data, (d)=>d.ma + d.stdev * 2 )
-    const minY = d3.min(data, (d) => { let low = d.ma - d.stdev * 2;low = d.ma < low ? d.ma : low ;return low >=0 ? low : 0}  )
+    const maxY = d3.max(data, (d) => d.ma + d.stdev * 2)
+    const minY = d3.min(data, (d) => {
+        let low = d.ma - d.stdev * 2;
+        low = d.ma < low ? d.ma : low;
+        return low >= 0 ? low : 0
+    })
     const y = d3.scaleLinear()
         .range([height, 0])
         .domain([minY, maxY]);

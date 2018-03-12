@@ -31,7 +31,7 @@ export default class Area extends React.Component {
 
         const area = d3.area()
             .x((d) => x(new Date(d.date)))
-            .y1((d)=> y(d.volume))
+            .y1((d) => y(d.volume))
             .y0(y(0))
         chart.append('svg')
             .attr('width', width)
@@ -40,10 +40,6 @@ export default class Area extends React.Component {
             .datum(data)
             .attr("class", "volume")
             .attr("d", area)
-
-
-
-
     }
 }
 //         const area = d3.area()

@@ -47,29 +47,37 @@ export const receiveMosts = (mosts) => ({
 });
 export const receiveGainers = (stocks) => ({
     type: RECEIVE_STOCKS_LIST,
-    payload: {gainers:stocks},
+    payload: {
+        gainers: stocks
+    },
     source: "iex gainers"
 });
 export const receiveLosers = (stocks) => ({
     type: RECEIVE_STOCKS_LIST,
-    payload: { losers: stocks },
+    payload: {
+        losers: stocks
+    },
     source: "iex losers"
 });
 export const receiveMostActive = (stocks) => ({
     type: RECEIVE_STOCKS_LIST,
-    payload: { mostActive: stocks },
+    payload: {
+        mostActive: stocks
+    },
     source: "iex active"
 });
 
 export const receiveMostVolume = (stocks) => ({
     type: RECEIVE_STOCKS_LIST,
-    payload: { mostVolume: stocks },
+    payload: {
+        mostVolume: stocks
+    },
     source: "iex most volume"
 });
 
 //MONGO FETCHES
 export const getMosts = () => dispatch => StockAPI.FetchMosts()
-    .then((res) => dispatch(receiveMosts(res)), (fail)=>console.log(fail,'fetchMosts'))
+    .then((res) => dispatch(receiveMosts(res)), (fail) => console.log(fail, 'fetchMosts'))
 
 //IEXAPI FETCHE AND SAVE
 
@@ -80,4 +88,4 @@ export const getMostActives = API.thunker(API.fetchMostActive, receiveMostVolume
 
 export const FetchStocks = (string) => dispatch => StockAPI.FetchStocks(string)
     .then((success) => dispatch(receiveStocks(success)),
-    (fail) => console.log(fail));
+        (fail) => console.log(fail));

@@ -1,23 +1,22 @@
-
 // data -
 //databased
-    //gainers w and d  //asc by d&w gain
-    //losers w and d    // des by d&w gain 
-    //most active w and d //volume asc d&w
-    //most spiked //volume change asc d&?w
-    //indicators/indexs w and d 
+//gainers w and d  //asc by d&w gain
+//losers w and d    // des by d&w gain 
+//most active w and d //volume asc d&w
+//most spiked //volume change asc d&?w
+//indicators/indexs w and d 
 
-    //basic list *searchable ?w and d?  download
+//basic list *searchable ?w and d?  download
 
- // need background and scheduled tasks to download WIKI / PRICES.json ? qopts.export every day
+// need background and scheduled tasks to download WIKI / PRICES.json ? qopts.export every day
 // need background and scheduled tasks to download iex stuff every night;
 
 //3rd part
-    //indepth
-    //financials    
-    //earnings
-    //news
-    //chart
+//indepth
+//financials    
+//earnings
+//news
+//chart
 
 
 //all tickers for 2018-01-25 250kb;
@@ -55,15 +54,16 @@
 import IEXAPI from './IEXAPI';
 
 
-export const FetchStocks = () => fetch('https://www.quandl.com/api/v3/datasets/EOD/AAPL.json?api_key=77ku-us9zDe-maSwnkXx',
-{
-    method:"GET"
-}).then((res)=>res.json())
+export const FetchStocks = () => fetch('https://www.quandl.com/api/v3/datasets/EOD/AAPL.json?api_key=77ku-us9zDe-maSwnkXx', {
+    method: "GET"
+}).then((res) => res.json())
 
 
-export const FetchMosts = () => fetch("/api/stocks/most/all",{
-    method:"GET"
-}).then((res)=>{return res.json()})
+export const FetchMosts = () => fetch("/api/stocks/most/all", {
+    method: "GET"
+}).then((res) => {
+    return res.json()
+})
 
 export const FetchMostGainer = () => fetch('/api/stocks/most/gainer', {
     method: "GET"
@@ -80,6 +80,3 @@ export const FetchMostVolume = () => fetch('/api/stocks/most/volume', {
 export const FetchMostActive = () => fetch('/api/stocks/most/active', {
     method: "GET"
 }).then((data) => data.json())
-
-
-

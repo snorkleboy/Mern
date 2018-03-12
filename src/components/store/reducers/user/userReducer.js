@@ -5,8 +5,8 @@ import {
 import merge from 'lodash/merge';
 
 const _user = {
-    errors:{},
-    user:null,
+    errors: {},
+    user: null,
 };
 
 export default (state = _user, action) => {
@@ -14,10 +14,14 @@ export default (state = _user, action) => {
     var newstate = {};
     switch (action.type) {
         case RECIEVE_USER:
-            newstate = merge({}, state, {user:action.payload});
+            newstate = merge({}, state, {
+                user: action.payload
+            });
             return newstate;
         case RECIEVE_USER_ERROR:
-            newstate = merge({}, state, { errors: action.payload })
+            newstate = merge({}, state, {
+                errors: action.payload
+            })
             return newstate;
         default:
             return state;

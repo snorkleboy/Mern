@@ -24,14 +24,16 @@ export default class Table extends React.Component {
         const columns = columnizer(headers, entry);
         return (
             <section className='table'>
-                {columns.map((item,i)=>{
+                {
+                    columns.map((item,i)=>{
                         return (
                         <article id={i+i} className='item'>
                                 <span id={item.header + i.toString()}>{item.header}</span>
                                 <span id={item.entry + i.toString()}>{item.entry}</span>
                         </article>
                         )
-                })}
+                    })
+                }
             </section>
         );
     }
@@ -43,13 +45,14 @@ export default class Table extends React.Component {
         );
     }
 }
-function item(header,entry){
+function item(header, entry) {
     this.header = header;
     this.entry = entry;
 }
-function columnizer(headers, entry){
+
+function columnizer(headers, entry) {
     const columns = [];
-    headers.forEach((header)=>{
+    headers.forEach((header) => {
         columns.push(new item(header, prettify(entry[header])))
     })
     return columns;

@@ -61,10 +61,22 @@ const IEXAPI = class {
         // console.log('IEXAPI CONSUTRCTION', this);
     }
 
-    addMods(modif) { modif.forEach((modi) => this.mods.push(modi)); return this; }
-    setMods(modif) { this.filters = modif; return this; }
-    addFilters(filters) { filters.forEach((filter) => this.filters.push(filter)); return this; }
-    setFilters(filters) { this.filters = filters; return this; }
+    addMods(modif) {
+        modif.forEach((modi) => this.mods.push(modi));
+        return this;
+    }
+    setMods(modif) {
+        this.filters = modif;
+        return this;
+    }
+    addFilters(filters) {
+        filters.forEach((filter) => this.filters.push(filter));
+        return this;
+    }
+    setFilters(filters) {
+        this.filters = filters;
+        return this;
+    }
 
     attrWriter() {
         const filtersString = this.filters.length > 0 ? `filter=${this.filters.join(',')}` : '';
@@ -72,7 +84,7 @@ const IEXAPI = class {
         const query = (filtersString !== '' || modsString !== '');
 
         let string = '';
-        
+
         if (query) {
             string = '?';
             if (filtersString) {
@@ -119,27 +131,27 @@ const IEXAPI = class {
 
     fetchMostActive() {
         return fetch(IEX_URL + 'stock/market/list/mostactive' + this.attrWriter(), {
-            method: 'GET'
-        })
+                method: 'GET'
+            })
             .then((res) => res.json());
     }
 
     fetchLosers() {
         return fetch(IEX_URL + 'stock/market/list/losers' + this.attrWriter(), {
-            method: 'GET'
-        })
+                method: 'GET'
+            })
             .then((res) => res.json());
     }
     fetchIEXVolume() {
         return fetch(IEX_URL + 'stock/market/list/iexvolume' + this.attrWriter(), {
-            method: 'GET'
-        })
+                method: 'GET'
+            })
             .then((res) => res.json());
     }
     fetchIEXPercent() {
         return fetch(IEX_URL + 'stock/market/list/iexpercent' + this.attrWriter(), {
-            method: 'GET'
-        })
+                method: 'GET'
+            })
             .then((res) => res.json());
     }
 }

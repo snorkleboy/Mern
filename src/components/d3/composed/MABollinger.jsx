@@ -3,7 +3,7 @@ import React from "react";
 import * as d3 from "d3";
 import Line from '../line';
 export default function PriceLine({y,dataGrabber, data, height, width, xDate, position, options }) {
-    if (!y){
+    if (!y) {
         const maxY = d3.max(data, dataGrabber)
         const minY = d3.min(data, dataGrabber)
         y = d3.scaleLinear()
