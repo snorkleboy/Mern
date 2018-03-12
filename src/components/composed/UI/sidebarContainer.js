@@ -3,16 +3,16 @@ import { withRouter } from 'react-router'
 
 import Sidebar from './sidebar';
 import * as StockActions from '../../stocks/stockActions';
+import * as UserActions from '../user/userActions';
 
 const mapState = (state, Ownprops) => {
     return ({
-        stocks: state.stocks
+        user: state.user.user
     });
 };
 const mapDispatch = (dispatch, ownProps) => {
 
     return ({
-
     });
 };
 

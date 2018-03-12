@@ -3,18 +3,41 @@
     height: 100vh;
 }
 
-.sidebar:before {
-    content: "";
-    /* clear: both; */
-    width: 100%;
-}
 .sidebar{
     position: absolute;
     background-color: aliceblue;
     width: 100%;
     height: 100vh;
-}
+    overflow: hidden;
 
-.searchBar input {
+}
+.sidebar li{
+    margin-top: 5%;
+}
+.sidebar input{
+    text-align: left;
+    padding-left: 5%;
+    padding: 2px;
+    border-bottom: 1px solid grey;
+}
+.user-bar{
+}
+.user-bar h1{
+    text-align: center;
+}
+.Credform{
+
+}
+.logo{
+    margin-bottom: 10%;
+}
+.inputForm {
+    display: flex;
+    flex-direction: row;
+}
+input {
     background-color: white;
+}
+.submitButton{
+    border-right: 1px solid grey;
 }

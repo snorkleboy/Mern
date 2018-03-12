@@ -18,7 +18,7 @@ import List from './components/stocks/list';
 const SignedInApp = ()=>(
   <div className='spliter'>
     <Switch>
-      <Route exact path='/stocks' component={MainPage} />
+      <Route exact path='/' component={MainPage} />
       <Route exact path='/stocks/:ticker' component={Stock} />
     </Switch>
     <Sidebar/>
@@ -29,8 +29,7 @@ class App extends Component {
     return (
       <div className="Router-level-div">
         <Switch>
-          <Route exact path='/' component={Signup} />
-          <Route path='/stocks' component={SignedInApp} />
+          <Route path='/' component={SignedInApp} />
         </Switch>
       </div>
     );

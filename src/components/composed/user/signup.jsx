@@ -33,7 +33,7 @@ class Signup extends React.Component {
         let submitHandler;   
         let message;
         if (!this.state.checked){
-            message = "Welcome to Tfin"
+            message = "Sign in/up"
             label = "Username";
             inputHandler =  this.handleUserName;
             submitHandler = this.handleCheckUsername;
@@ -47,10 +47,11 @@ class Signup extends React.Component {
             <div className='Signup'>
                 <section className='Credform'>
                     <h1>{message}</h1>
-                    <label>{label}
-                        <input onChange={inputHandler.bind(this)}/>
-                    </label> 
-                    <input onClick={submitHandler.bind(this)} type="submit"/>
+                    <span className='inputForm'>
+                        <input className="submitButton" onClick={submitHandler.bind(this)} type="submit" />
+                        <input placeholder={label} onChange={inputHandler.bind(this)} />
+                    </span>
+                    
                     <div className="errors">
                         {this.props.errors.error}
                     </div>
