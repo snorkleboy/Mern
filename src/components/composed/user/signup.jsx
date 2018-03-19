@@ -48,7 +48,7 @@ class Signup extends React.Component {
                 <section className='Credform'>
                     <h1>{message}</h1>
                     <span className='inputForm'>
-                        <input className="submitButton" onClick={submitHandler.bind(this)} type="submit" />
+                        <input className="submitButton" onClick={submitHandler.bind(this)} value={`submit`} type="submit" />
                         <input placeholder={label} onChange={inputHandler.bind(this)} />
                     </span>
                     
