@@ -3,6 +3,7 @@
   width: 100%;
   color: rgb(8, 54, 27);
   font-size: 1.25vw;
+  padding: 0 !important;
 }
 
 tr{
@@ -18,6 +19,7 @@ tr:hover {
 }
 table{
   text-align: center;
+  border-collapse: collapse;
 }
 .row{
   color: rgb(8, 54, 27);
@@ -25,6 +27,21 @@ table{
   text-align: center;
 
 }
+.row:hover{
+  background-color: rgba(252, 240, 134, 0.856);
+}
 .rowHeader{
   font-weight: bold;
+}
+
+table {
+  border-top: 1px solid rgb(41, 41, 41);
+}
+
+table,
+th,
+td {
+  border-left: 1px solid rgb(85, 85, 85);
+  border-right: 1px solid rgb(66, 66, 66);
+  border-bottom: 1px solid rgb(219, 219, 219);
 }
