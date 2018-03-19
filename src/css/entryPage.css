@@ -1,10 +1,12 @@
 .entry{
     
-    background-color: rgb(104, 245, 233);
+    background-color: rgb(148, 99, 8);
     padding:2.5%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .lists{
@@ -13,14 +15,18 @@
     border-radius: 5px;
     align-items: center;
     padding: 5%;
-    background-color: rgb(221, 221, 221);
+    background-color: rgb(241, 255, 160);
     border-radius: 5px;
     border:1px solid grey;
+    width: 100%;
     
 }
 .lists h1{
     text-align: center;
     font-size: 25px;
+}
+.lists *{
+    padding: .5%;
 }
 .welcome{
     display: flex;
@@ -34,10 +40,10 @@ article{
     display: flex;
     flex-direction: row;
 }
-.sidebarHolder{
+.sidebar{
     width:20%;
 }
-.entry {
+.not-sidebar {
     width: 80%;
 }
 @media (max-width: 360px) {
@@ -45,7 +51,7 @@ article{
 }
 
 @media (max-width: 720px) {
-.spliter {
-    flex-direction: column-reverse;
-}
+    .spliter {
+        flex-direction: column-reverse;
+    }
 }

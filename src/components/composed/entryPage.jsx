@@ -24,9 +24,7 @@ export default class Stocks extends React.Component {
             <main className='entry'>
             <section className='welcome'>
                 <article>
-                    <div className='logo'>
-                            <img src='http://res.cloudinary.com/flyakite/image/upload/c_crop,h_215,w_230,x_190,y_65/v1520824062/tfin_f26wwd.png' />
-                    </div>
+                    
                 </article>
             </section>
 

@@ -27,11 +27,10 @@ export default class Stocks extends React.Component {
     render(){
         console.log("SIDEBAR",this.props)
         return(
-            <div className='sidebarHolder'>
                 <section className='sidebar'>
-                    <div className='logo'>
-                        Tfin
-                    </div>
+                    <Link to='/' className='logo'>
+                        <img src='http://res.cloudinary.com/flyakite/image/upload/c_crop,g_custom/v1521431044/LogoMakr_8ZTKUQ_vznqxg.png' />
+                    </Link>
                     
                     <ul className='categories'>
                         <li>
@@ -44,7 +43,6 @@ export default class Stocks extends React.Component {
                                 }
                             </div>
                         </li>
-                        <li><Link to='/stocks'>homepage</Link></li>
                         <li className='searchBar inputForm'>
                             <input type='submit' onClick={this.handleSearch.bind(this)} value="search" className='submitButton searchSubmit ' />
                             <input id='searchInput' placeholder="search Ticker" />
@@ -54,7 +52,6 @@ export default class Stocks extends React.Component {
                         credits to IEX and Quandl
                     </div>
                 </section>
-            </div>
         );
     }
 }

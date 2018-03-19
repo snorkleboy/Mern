@@ -4,12 +4,20 @@
 }
 
 .sidebar{
-    position: absolute;
-    background-color: aliceblue;
-    width: 100%;
+    position: fixed;
+    background-color: rgb(241, 255, 160);
+    width: 20%;
     height: 100vh;
-    overflow: hidden;
+    padding:5px;
+    border-left: 1px solid grey;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    right: 0;
 
+}
+.logo img {
+    width: auto;
 }
 .sidebar li{
     margin-top: 5%;

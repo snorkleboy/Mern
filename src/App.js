@@ -18,8 +18,10 @@ import List from './components/stocks/list';
 const SignedInApp = ()=>(
   <div className='spliter'>
     <Switch>
-      <Route exact path='/' component={MainPage} />
-      <Route exact path='/stocks/:ticker' component={Stock} />
+      <main className="not-sidebar">
+        <Route exact path='/' component={MainPage} />
+        <Route exact path='/stocks/:ticker' component={Stock} />
+      </main>
     </Switch>
     <Sidebar/>
   </div>

@@ -1,6 +1,8 @@
 .stockList{
   background-color: white;
   width: 100%;
+    color: rgb(8, 54, 27);
+
 }
 
 tr{
@@ -18,12 +20,11 @@ table{
   text-align: center;
 }
 .row{
-  color: rgb(33, 20, 104);
+  color: rgb(8, 54, 27);
   display: table-row;
   text-align: center;
 
 }
 .rowHeader{
-  color: rgb(33, 20, 104);
   font-weight: bold;
 }
