@@ -17,6 +17,9 @@ export default class Stocks extends React.Component {
         }
     }
     render(){
+        console.log(this.props);
+        const date = this.props.stocks.gainers[0] ? new Date(this.props.stocks.gainers[0].latestTime).toLocaleDateString() : "Today"
+        console.log("date", date);
         return(
             <main className='entry'>
             <section className='welcome'>
@@ -24,10 +27,11 @@ export default class Stocks extends React.Component {
                     <div className='logo'>
                             <img src='http://res.cloudinary.com/flyakite/image/upload/c_crop,h_215,w_230,x_190,y_65/v1520824062/tfin_f26wwd.png' />
                     </div>
-                    <h1>welcome</h1>
                 </article>
             </section>
+
                 <section className='lists'>
+                    <h1>{date}'s Mosts'</h1>
                     <article className='gainers'>
                     <h1>gainers</h1>
                         <List
@@ -79,7 +83,7 @@ export default class Stocks extends React.Component {
     }
     getHeaders(array){
         return (array && !array.length == 0) ? 
-            Object.keys(array[0])
+            Object.keys(array[0]).filter((key) => key !=='latestTime')
         :
             [];
     }

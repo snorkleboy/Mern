@@ -22,6 +22,7 @@
 
 const fetch = require('node-fetch');
 const filterMods = [
+    'latestTime',
     'symbol',
     'change',
     'changePercent',
