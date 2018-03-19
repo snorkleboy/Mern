@@ -11,7 +11,6 @@ class Signup extends React.Component {
         this.state={username:'',password:'', checked:false, existingUser:false}
     }
     componentDidMount(){
-        this.props.getMosts();
     }
     componentWillReceiveProps(newProps, newState) {
         console.log(newState);

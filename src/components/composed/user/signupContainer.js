@@ -14,7 +14,6 @@ const mapState = (state, Ownprops) => {
 const mapDispatch = (dispatch, ownProps) => {
 
     return ({
-        getMosts: () => dispatch(StockActions.getMosts()),
         createUser: (username, password) => dispatch(UserActions.createUser(username,password)),
         login:(username,password)=> dispatch(UserActions.login(username,password)),
         checkUserName: UserActions.checkUserName

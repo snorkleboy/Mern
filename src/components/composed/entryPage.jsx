@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../../css/entryPage.css';
 import List from '../stocks/list';
+import News from '../rss/news'
 export default class Stocks extends React.Component {
     constructor(props) {
         super(props);
@@ -15,15 +16,15 @@ export default class Stocks extends React.Component {
         if (this.props.stocks.gainers.length < 1){
             this.props.getMosts();
         }
+
+
     }
     render(){
-        console.log(this.props);
         const date = this.props.stocks.gainers[0] ? new Date(this.props.stocks.gainers[0].latestTime).toLocaleDateString() : "Today"
-        console.log("date", date);
         return(
             <main className='entry'>
             
-
+                <News/>
                 <section className='lists'>
                     <h1>{date}'s Mosts'</h1>
                     <article className='gainers'>
@@ -82,3 +83,4 @@ export default class Stocks extends React.Component {
             [];
     }
 }
+
