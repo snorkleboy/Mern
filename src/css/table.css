@@ -1,7 +1,8 @@
 .table{
     background-color: rgb(250, 250, 250);
     display: grid;
-    grid-template-columns: repeat(auto-fill,20%)
+    grid-template-columns: repeat(auto-fill,20%);
+    width:100%;
 }
 .item{
     display: flex;
@@ -9,4 +10,14 @@
     background-color: white;
     padding: 5px;
     margin: 10px;
+}
+.stock-details{
+    align-items: center;
+    background-color: white;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+.stock-details label{
+    font-size: 25px;
 }

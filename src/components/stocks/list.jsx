@@ -35,9 +35,9 @@ export default class List extends React.Component {
     }
     render(){
         return(
-            <main className='stockList'>
+            <article className='stockList'>
                     {this.listMaker()}
-            </main>
+            </article>
         );
     }
 }

@@ -39,9 +39,7 @@ export default class Table extends React.Component {
     }
     render() {
         return (
-            <main>
-                {this.tableMaker()}
-            </main>
+                this.tableMaker()
         );
     }
 }

@@ -22,16 +22,12 @@ export default class Stocks extends React.Component {
         console.log("date", date);
         return(
             <main className='entry'>
-            <section className='welcome'>
-                <article>
-                    
-                </article>
-            </section>
+            
 
                 <section className='lists'>
                     <h1>{date}'s Mosts'</h1>
                     <article className='gainers'>
-                    <h1>gainers</h1>
+                    <h1> Most Gained</h1>
                         <List
                             data={{
                                 'headers': this.getHeaders(this.props.stocks.gainers),
@@ -42,7 +38,7 @@ export default class Stocks extends React.Component {
                     </article>
 
                     <article className='losers'>
-                    <h1>losers</h1>
+                    <h1>Most Lost</h1>
                         <List
                             data={{
                                 'headers':this.getHeaders(this.props.stocks.losers),
@@ -52,7 +48,7 @@ export default class Stocks extends React.Component {
                     </article>
 
                     <article className='mostActive'>
-                    <h1>most active</h1>
+                    <h1>Most Active</h1>
                         <List
                             data={{
                                 'headers': this.getHeaders(this.props.stocks.mostActive),
@@ -62,7 +58,7 @@ export default class Stocks extends React.Component {
                     </article>
 
                     <article className='mostVolume'>
-                    <h1>most volume</h1>
+                    <h1>Most Volume</h1>
                         <List
                             data={{
                                 'headers': this.getHeaders(this.props.stocks.mostVolume),

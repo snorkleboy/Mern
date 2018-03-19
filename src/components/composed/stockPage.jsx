@@ -29,19 +29,19 @@ class Stocks extends React.Component {
     }
     render(){
         return(
-            <main className='stock'>
+            <article className='stock'>
                 <section >
                         <Chart name={this.state.data.companyName} data={this.state.chart}/>
                 </section>
-                <section>
-                    <h1> detail info</h1>
+                <section className='stock-details'>
+                    <label> Company Details</label>
                     <Table
                         data={{
                             'headers': info,
                             'entries': this.state.data
                         }}
                     /> 
-                    <h1>price info</h1>
+                    <label>Price Details</label>
                     <Table
                         data={{
                             'headers': prices,
@@ -50,7 +50,7 @@ class Stocks extends React.Component {
                     />
                 </section>            
 
-            </main>
+            </article>
         );
     }
     componentWillUpdate(newp, news) {
@@ -59,7 +59,6 @@ class Stocks extends React.Component {
         }
     }
     getHeaders(obj) {
-        // console.log('here', Object.keys(obj));
         return (obj) ?
             Object.keys(obj)
             :
@@ -69,13 +68,6 @@ class Stocks extends React.Component {
 
 }
 
-
-// <List
-//     data={{
-//         'headers': this.getHeaders(this.state.chart[0]),
-//         'entries': this.state.chart
-//     }}
-// />
 const info = [
     'symbol',
     'latestEPS',
