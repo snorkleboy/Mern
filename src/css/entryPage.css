@@ -26,7 +26,7 @@
     font-size: 25px;
 }
 .lists *{
-    padding: .75%;
+    padding: 1%;
     box-sizing: border-box;
 }
 .welcome{
@@ -51,8 +51,37 @@ article{
 
 }
 
-@media (max-width: 720px) {
+@media (max-width: 1000px) {
     .spliter {
         flex-direction: column-reverse;
+    }
+    .sidebar{
+        top:0;
+        left: 0;
+        height: 15vh;
+        width: 100vw;
+        flex-direction: row;
+    }
+    .sidebar *{
+        flex-direction: row;
+    }
+    .not-sidebar{
+        position: relative;
+        top: 15vh;
+        width: 100%;
+    }
+    table {
+        font-size: 1.5vw;
+    }
+    .logo{
+        height: 100%;
+        margin: 0;
+    }
+    .logo img{
+        height: 100%;
+        width: auto;
+    }
+    .categories{
+        flex-direction: column;
     }
 }

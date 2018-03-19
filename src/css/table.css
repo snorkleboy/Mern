@@ -3,6 +3,8 @@
     display: grid;
     grid-template-columns: repeat(auto-fill,20%);
     width:100%;
+    font-size: 1.5vw;
+
 }
 .item{
     display: flex;

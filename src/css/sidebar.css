@@ -14,13 +14,13 @@
     display: flex;
     flex-direction: column;
     right: 0;
-
+    justify-content: space-around;
 }
 .logo img {
-    width: auto;
+    width: 100%;
 }
 .sidebar li{
-    margin-top: 5%;
+    margin: 2.5%;
 }
 .sidebar input{
     text-align: left;
@@ -33,8 +33,9 @@
 .user-bar h1{
     text-align: center;
 }
-.Credform{
-
+.categories{
+    display: flex;
+    flex-direction: column;
 }
 .logo{
     margin-bottom: 10%;
@@ -42,6 +43,7 @@
 .inputForm {
     display: flex;
     flex-direction: row;
+    text-align: left;
 }
 input {
     background-color: white;

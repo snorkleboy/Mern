@@ -44,8 +44,13 @@ export default class Stocks extends React.Component {
                             </div>
                         </li>
                         <li className='searchBar inputForm'>
-                            <input type='submit' onClick={this.handleSearch.bind(this)} value="search" className='submitButton searchSubmit ' />
-                            <input id='searchInput' placeholder="search Ticker" />
+                            <label> Search a Ticker
+                                <div className='inputForm'>
+                                    <input type='submit' onClick={this.handleSearch.bind(this)} value="search" className='submitButton searchSubmit ' />
+                                    <input id='searchInput' placeholder="search Ticker" />
+                                </div>
+                                
+                            </label>
                         </li>
                     </ul>
                     <div className='ack'>
