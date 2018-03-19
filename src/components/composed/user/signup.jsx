@@ -15,9 +15,9 @@ class Signup extends React.Component {
     }
     componentWillReceiveProps(newProps, newState) {
         console.log(newState);
-        if (newProps.signedIn) {
-            this.props.history.push("/stocks")
-        }
+        // if (newProps.signedIn) {
+        //     this.props.history.push("/stocks")
+        // }
     }
     handleUserName(e){this.setState({username:e.target.value}) }
     handlePassword(e) {this.setState({ password: e.target.value })    }
@@ -43,21 +43,28 @@ class Signup extends React.Component {
             inputHandler = this.handlePassword
             submitHandler = this.state.existingUser ?  this.handleLogin :this.handleCreateUser
         }
-        return (
-            <div className='Signup'>
-                <section className='Credform'>
-                    <h1>{message}</h1>
-                    <span className='inputForm'>
-                        <input className="submitButton" onClick={submitHandler.bind(this)} value={`submit`} type="submit" />
-                        <input placeholder={label} onChange={inputHandler.bind(this)} />
-                    </span>
-                    
-                    <div className="errors">
-                        {this.props.errors.error}
-                    </div>
-                </section>
+        return !this.props.signedIn ?
+            (
+                <div className='Signup'>
+                    <section className='Credform'>
+                        <h1>{message}</h1>
+                        <span className='inputForm'>
+                            <input id='signinInput' className="submitButton" onClick={submitHandler.bind(this)} value={`submit`} type="submit" />
+                            <input placeholder={label} onChange={inputHandler.bind(this)} />
+                        </span>
+                        
+                        <div className="errors">
+                            {this.props.errors.error}
+                        </div>
+                    </section>
+                </div>
+            )
+        :
+        (
+            <div className='userInfo'>
+                <h1>Hi, {Object.values(this.props.user.username)}</h1>
             </div>
-        );
+        )
     }
 }
 export default Signup;

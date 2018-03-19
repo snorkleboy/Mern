@@ -25,7 +25,7 @@ export default class Stocks extends React.Component {
         document.getElementById('searchInput').removeEventListener("keypress",this.handleKeyDown)
     }
     render(){
-        console.log("SIDEBAR",this.props)
+        console.log("SIDEBARPROPS",this.props);
         return(
                 <section className='sidebar'>
                     <Link to='/' className='logo'>
@@ -35,12 +35,7 @@ export default class Stocks extends React.Component {
                     <ul className='categories'>
                         <li>
                             <div className='user-bar'>
-                                {
-                                    this.props.user ?
-                                        <h1> {this.props.user.name}</h1>
-                                        :
-                                        <SessionForm />
-                                }
+                                <SessionForm />
                             </div>
                         </li>
                         <li className='searchBar inputForm'>

@@ -14,7 +14,7 @@ export const receiveUserError = (err) => ({
 });
 
 export const login = (username, password) => dispatch => UserAPI.login(username, password)
-    .then((res) => !res.error ? dispatch(receiveUser(res)) : dispatch(receiveUserError(res)))
+    .then((res) => !res.error ? dispatch(receiveUser({username})) : dispatch(receiveUserError(res)))
     .catch((fail) => dispatch(receiveUserError(fail)))
 
 export const logout = () => dispatch => UserAPI.logout()
@@ -22,7 +22,7 @@ export const logout = () => dispatch => UserAPI.logout()
     .catch((fail) => dispatch(receiveUserError(fail)))
 
 export const createUser = (username, password) => dispatch => UserAPI.createUser(username, password)
-    .then((res) => !res.error ? dispatch(receiveUser(res)) : dispatch(receiveUserError(res)))
+    .then((res) => !res.error ? dispatch(receiveUser({ username })) : dispatch(receiveUserError(res)))
     .catch((fail) => dispatch(receiveUserError(fail)))
 
 export const checkUserName = UserAPI.checkUserName;

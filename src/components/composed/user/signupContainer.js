@@ -7,7 +7,8 @@ import Signup from './signup'
 const mapState = (state, Ownprops) => {
     return ({
         errors: state.user.errors,
-        signedIn: state.user.user
+        signedIn: state.user.user,
+        user: state.user.user
     });
 };
 const mapDispatch = (dispatch, ownProps) => {

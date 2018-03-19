@@ -51,3 +51,6 @@ input {
 .submitButton{
     border-right: 1px solid grey;
 }
+.userInfo{
+    font-size: 20px;
+}
