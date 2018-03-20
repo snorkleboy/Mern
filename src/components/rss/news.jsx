@@ -41,23 +41,26 @@ function builder(item){
         description.push(p.textContent);
     })
     description = description.join("\n\n")
+    function clear(){
+        const modals = document.body.querySelectorAll(".modal-clicked")
+            .forEach((modal) =>modal.classList.remove('modal-clicked'))
+    }
     function modalToggler(){
         document.getElementById(item.title).classList.toggle('modal-clicked');
-    }
-    function modalClearer(){
+
         const modals = document.body.querySelectorAll(".modal-clicked")
-            .forEach((modal) => modal.classList.remove('modal-clicked'))
+            .forEach((modal) => {if (modal.id !== item.title) modal.classList.remove('modal-clicked')} )
     }
+
     return (
-        <article className='news-article'>
-            <div onMouseEnter={modalToggler} onClick={modalClearer} className='rss-header'>
+        <article onMouseLeave={clear} onMouseEnter={modalToggler} className='news-article' >
+            <div  className='rss-header'>
                 <h1>{item.title}</h1>
                 <img src={item.thumbnail}/>
             </div>
             <div id={item.title}  className='modal rss-content'>
                 <h1>{item.title}</h1>
-                <a href={item.link}>{item.author}
-                </a>
+                <a href={item.link}>{item.author}</a>
                 <article>{description}</article>
                 <h3>{item.pubDate}</h3>
 

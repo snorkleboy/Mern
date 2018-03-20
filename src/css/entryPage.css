@@ -8,10 +8,12 @@
     width: 100%;
     box-sizing: border-box;
 }
-
+.gridParent {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
 .lists{
-    display: flex;
-    flex-direction: column;
+    
     border-radius: 5px;
     align-items: center;
     padding: 5%;

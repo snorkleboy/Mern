@@ -4,27 +4,26 @@
     grid-auto-rows: auto;
     grid-gap: 3vw;
     grid-row-gap: 3vh;
-    background-color: rgba(255, 255, 255, 0.658);
+    background-color: rgb(255, 245, 160);
     margin: 3%;
     padding: 3%;
     width: 100%;
 }
 
 .news-article{
-        white-space:pre-wrap;
-
+    white-space:pre-wrap;
     position: relative;
     border-radius: 5px;
 }
 .rss-header{
     position: relative;
     border-radius: 5px;
-
+    cursor: pointer;
 } 
 .rss-header h1{
     bottom: 0;
     position: absolute;
-    background-color: rgba(255, 255, 255, 0.658);
+    background-color: rgba(255, 255, 255, 0.829);
     width: 100%;
 }
 .rss-content{
@@ -39,9 +38,9 @@
     top: 100%;
     background-color: white;
     opacity: 0;
-    transition: 1s opacity ease-out;
+    transition: 1.5s opacity ease-in;
     z-index: -1;
-    color: greyrgb(70, 70, 70);
+    color: rgb(70, 70, 70);
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     border:3px solid rgb(61, 61, 61);
     border-radius: 2px;
@@ -49,6 +48,6 @@
 }
 .modal-clicked{
     opacity: 1;
+    transition: 1s opacity ease-out;
     z-index: 4;
-
 }
