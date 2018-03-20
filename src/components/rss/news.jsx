@@ -27,7 +27,7 @@ export default class News extends React.Component {
             )
         :
             (<section>
-                <h1> thingingodfododo</h1>
+                <h1></h1>
             </section>)
     }
 }
@@ -35,7 +35,17 @@ export default class News extends React.Component {
 function builder(item){
     return (
         <article className='news-article'>
-            <div dangerouslySetInnerHTML={{ __html: item.content }} />;
+            <div className='rss-header'>
+                <h1>{item.title}</h1>
+                <img src={item.thumbnail}/>
+            </div>
+            <div className='rss-content'>
+                <article>{item.description}</article>
+                <h3>{item.pubDate}</h3>
+                <a href={item.link}>read more
+                
+                </a>
+            </div>
         </article>
     );
 }
