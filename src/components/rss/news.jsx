@@ -21,7 +21,7 @@ export default class News extends React.Component {
         
         return this.state.rss ?
             (
-                <section className='news-Section'>
+                <section className='news-section'>
                     {this.state.rss.items.map((item)=>builder(item))}
                 </section>
             )
@@ -33,18 +33,34 @@ export default class News extends React.Component {
 }
 
 function builder(item){
+    const temp = document.createElement('div')
+    temp.innerHTML = item.description;
+    const ps = temp.querySelectorAll('p');
+    let description=[];
+    ps.forEach((p,i)=>{
+        description.push(p.textContent);
+    })
+    description = description.join("\n\n")
+    function modalToggler(){
+        document.getElementById(item.title).classList.toggle('modal-clicked');
+    }
+    function modalClearer(){
+        const modals = document.body.querySelectorAll(".modal-clicked")
+            .forEach((modal) => modal.classList.remove('modal-clicked'))
+    }
     return (
         <article className='news-article'>
-            <div className='rss-header'>
+            <div onMouseEnter={modalToggler} onClick={modalClearer} className='rss-header'>
                 <h1>{item.title}</h1>
                 <img src={item.thumbnail}/>
             </div>
-            <div className='rss-content'>
-                <article>{item.description}</article>
-                <h3>{item.pubDate}</h3>
-                <a href={item.link}>read more
-                
+            <div id={item.title}  className='modal rss-content'>
+                <h1>{item.title}</h1>
+                <a href={item.link}>{item.author}
                 </a>
+                <article>{description}</article>
+                <h3>{item.pubDate}</h3>
+
             </div>
         </article>
     );
