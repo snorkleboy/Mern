@@ -2,7 +2,8 @@
     background-color: rgb(31, 82, 35);
     width: 100%;
     padding:2.5%;
-    border-width: 3px;
+    border-color: whitesmoke;
+    border-width: 1px;
     border-style: solid;
     box-sizing: border-box;
 }
@@ -44,7 +45,7 @@
     stroke-width: 1px;
 }
 .chart{
-        background-color: rgb(36, 14, 117);
+        background-color: rgb(37, 107, 28);
         padding: 10px;
 
 }
