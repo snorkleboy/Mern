@@ -53,7 +53,7 @@ function builder(item){
     }
 
     return (
-        <article onMouseLeave={clear} onMouseEnter={modalToggler} className='news-article' >
+        <article key={item.title} onMouseLeave={clear} onMouseEnter={modalToggler} className='news-article' >
             <div  className='rss-header'>
                 <h1>{item.title}</h1>
                 <img src={item.thumbnail}/>

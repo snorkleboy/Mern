@@ -70,8 +70,11 @@ export default class Stocks extends React.Component {
                 </section>
 
                 <News />
+                <div className='ack'>
+                    credits to IEX and Quandl
+                </div>
             </main>
-            
+
         )
     }
     getEntries(array){

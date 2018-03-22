@@ -29,7 +29,7 @@ export default class Stocks extends React.Component {
         return(
                 <section className='sidebar'>
                     <Link to='/' className='logo'>
-                        <img src='http://res.cloudinary.com/flyakite/image/upload/c_crop,g_custom/v1521431044/LogoMakr_8ZTKUQ_vznqxg.png' />
+                    <img src='http://res.cloudinary.com/flyakite/image/upload/v1521700984/logo_kyeatu.png' />
                     </Link>
                     
                     <ul className='categories'>
@@ -48,9 +48,7 @@ export default class Stocks extends React.Component {
                             </label>
                         </li>
                     </ul>
-                    <div className='ack'>
-                        credits to IEX and Quandl
-                    </div>
+
                 </section>
         );
     }

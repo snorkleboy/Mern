@@ -62,6 +62,7 @@ article{
         left: 0;
         height: 15vh;
         width: 100vw;
+        font-size: 1.3vh;
         min-width: 100vw;
         min-height: fit-content;
         flex-direction: row;
@@ -91,5 +92,21 @@ article{
     }
     .categories{
         flex-direction: row;
+    }
+}
+
+@media (max-width: 600px) {
+    .sidebar{
+        font-size: 1.2vh;
+
+    }
+    .logo {
+        display: none;
+    }
+}
+
+@media (max-width: 450px) {
+    .categories {
+        flex-direction: column;
     }
 }

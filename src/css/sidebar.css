@@ -13,6 +13,7 @@
     flex-direction: column;
     right: 0;
     box-shadow: -10px 0px 10px rgba(19, 19, 19, 0.2);
+    font-size: 1.2vw;
 }
 .logo {
     margin-bottom: 10%;
@@ -38,6 +39,7 @@
 .categories{
     display: flex;
     flex-direction: column;
+    width: fit-content;
 }
 
 .inputForm {
