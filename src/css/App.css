@@ -19,12 +19,20 @@ span, article, footer, time, small,select {
   vertical-align: inherit;
   box-sizing: inherit;
   background: transparent;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  color: rgb(5, 37, 18);
+  
+  
+
+
+
 
 }
 #root{
   position: relative;
+}
+body{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: rgb(5, 37, 18);
+  background-color: rgb(31, 82, 35);
 }
 
 ul {
