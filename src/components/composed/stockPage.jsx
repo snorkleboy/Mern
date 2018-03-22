@@ -4,32 +4,37 @@ import '../../css/chart.css';
 import List from '../stocks/list';
 import Chart from '../stocks/chart'
 import Table from '../stocks/table';
+import IexNews from '../rss/iexNews';
 
 class Stocks extends React.Component {
     constructor(props) {
         super(props);
-        this.state={data:[],chart:[]};
+        this.state={data:[],chart:[],news:[]};
     }
     componentDidMount(){
         this.getData(this.props.match);
     }
     getData(match){
-        this.props.fetchSymbol(match.params.ticker)
-            .then(
-                (data) => this.setState({ 'data': data }),
-            (fail) => alert("couldn't find that ticker")
-            );
-
-        this.props.fetchChart(match.params.ticker, '5y').then(
-                (data) => this.setState({'chart': data}),
-                (fail) => alert("couldn't find that ticker")
-            );
+        const fetches = [
+            this.props.fetchChart(match.params.ticker, '5y'),
+            this.props.fetchSymbol(match.params.ticker),
+            this.props.fetchNews(match.params.ticker)
+        ]
+        Promise.all(fetches)
+        .then((data)=>{
+            this.setState({ "chart": data[0],"data": data[1], "news": data[2] })
+        })
+        .catch(data=>{
+            alert("couldn't find that ticker")
+            console.log("stock page error",data);
+        })
     }
     componentDidUpdate(prevprops,prevstate){
     }
     render(){
+        console.log("STOCKPAGE", this.state)
         return(
-            <article className='stock'>
+            <section className='stock'>
                 <section >
                         <Chart name={this.state.data.companyName} data={this.state.chart}/>
                 </section>
@@ -48,9 +53,13 @@ class Stocks extends React.Component {
                             'entries': this.state.data
                         }}
                     />
-                </section>            
+                </section>  
+                <section className="iex-news">
+                    <h1> News</h1>
+                    {this.state.news.map(article => <IexNews key={article.url} article={article}/>)}
+                </section>          
 
-            </article>
+            </section>
         );
     }
     componentWillUpdate(newp, news) {

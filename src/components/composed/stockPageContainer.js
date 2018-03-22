@@ -59,6 +59,7 @@ const mapState = (state, Ownprops) =>{
 const mapDispatch = (dispatch, ownProps)=>{
     
     return({
+        fetchNews: (symbol) => API.fetchNews(symbol),
         fetchSymbol: (symbol) => API.fetchDetails(symbol),
         fetchChart: (symbol,time) => API.fetchChart(symbol,time)
     });

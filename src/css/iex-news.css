@@ -1,0 +1,31 @@
+.iex-news{
+    padding: 5%;
+    background-color: rgb(255, 253, 232);
+}
+.iex-news > h1{
+    text-align: center;
+    font-size: 20px;
+}
+.iex-article{
+    position: relative;
+    background-color: white;
+}
+.article-tooltip{
+    position: absolute;
+    background-color: white;
+    opacity: 0;
+    top: 10%;
+    left: 0;
+    width: 100%;
+
+}
+.article-tooltip:hover{
+    opacity: 1;
+    height: fit-content;
+    padding: 5%;
+    background-color: white;
+    z-index: 100;
+    transition: 0s all;
+    transition-delay: 0s;
+
+}
