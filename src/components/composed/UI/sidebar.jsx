@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import '../../../css/sidebar.css';
 import SessionForm from '../user/signupContainer'
-
+import UserTab from '../user/usertab'
 
 export default class Stocks extends React.Component {
     constructor(props) {
@@ -32,15 +32,17 @@ export default class Stocks extends React.Component {
                     <img src='http://res.cloudinary.com/flyakite/image/upload/v1521700984/logo_kyeatu.png' />
                     </Link>
                     
-                    <ul className='categories'>
-                        <li>
-                            <div className='user-bar'>
-                                <SessionForm />
-                            </div>
+                    <ul className='buttons'>
+                        <li onMouseOver={openTab} onMouseLeave={closeTab}>
+                            <label>My Stuff
+                                <div  className='tab user-bar display-off'>
+                                    {this.props.user? <UserTab/> :<SessionForm/> }
+                                </div>
+                            </label>
                         </li>
-                        <li className='searchBar inputForm'>
+                        <li onMouseOver={openTab} onMouseLeave={closeTab} className='searchBar inputForm'>
                             <label> Search a Ticker
-                                <div className='inputForm'>
+                                <div className='tab inputForm display-off'>
                                     <input type='submit' onClick={this.handleSearch.bind(this)} value="search" className='submitButton searchSubmit ' />
                                     <input id='searchInput' placeholder="search Ticker" />
                                 </div>
@@ -52,4 +54,12 @@ export default class Stocks extends React.Component {
                 </section>
         );
     }
+}
+function closeTab(e){
+    const els = e.currentTarget.querySelector('div');
+    els.classList.add('display-off')
+}
+function openTab(e){
+    const els = e.currentTarget.querySelector('div');
+    els.classList.remove('display-off')
 }

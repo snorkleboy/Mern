@@ -18,6 +18,7 @@
 .logo {
     margin-bottom: 10%;
     max-width: fit-content;
+    border-bottom: 2px solid grey;
 }
 .logo img {
     width: 100%;
@@ -30,18 +31,33 @@
     padding-left: 5%;
     padding: 2px;
     border-bottom: 1px solid grey;
-}
-.user-bar{
+    transition: 1s all;
+    height: 25px;
 }
 .user-bar h1{
     text-align: center;
 }
-.categories{
+.buttons{
     display: flex;
     flex-direction: column;
-    width: fit-content;
+    margin-right: 5%;
+    width: 100%;
 }
+.buttons li{
+    background-color: white;
+    padding: 5%;
+    box-sizing: border-box;
+    font-weight: 500;
+    transition: all .3s;
+    border-bottom: 1px solid grey;
+    width: 100%;
+    height: fit-content;
 
+}
+.buttons li:hover{
+    border-right: 3px solid black;
+    font-weight: 900;
+}
 .inputForm {
     display: flex;
     flex-direction: row;
@@ -55,5 +71,21 @@ input {
 }
 .userInfo{
     font-size: 20px;
+}
+.tab{
+    font-weight: 400;
+    height:60px;
+    transition: 1s all;
+}
 
+.display-off,
+.display-off input {
+    height: 0px;
+    /* padding: 0px; */
+    /* margin: 0px; */
+    overflow: hidden;
+}
+
+.display-on {
+    opacity: 1;
 }

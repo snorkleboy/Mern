@@ -44,7 +44,6 @@ class Signup extends React.Component {
         }
         return !this.props.signedIn ?
             (
-                <div className='Signup'>
                     <section className='Credform'>
                         <h1>{message}</h1>
                         <span className='inputForm'>
@@ -56,7 +55,6 @@ class Signup extends React.Component {
                             {this.props.errors.error}
                         </div>
                     </section>
-                </div>
             )
         :
         (

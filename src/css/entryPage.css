@@ -90,7 +90,7 @@ article{
         height: 100%;
         width: auto;
     }
-    .categories{
+    .buttons{
         flex-direction: row;
     }
 }
@@ -106,7 +106,7 @@ article{
 }
 
 @media (max-width: 450px) {
-    .categories {
+    .buttons {
         flex-direction: column;
     }
 }
