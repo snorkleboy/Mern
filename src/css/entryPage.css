@@ -80,7 +80,7 @@ article{
         width: 100%;
     }
     table {
-        font-size: 1.5vw;
+        font-size: 1.3vw;
     }
     .logo{
         height: 100%;
@@ -97,7 +97,15 @@ article{
 
 @media (max-width: 600px) {
     .sidebar{
-        font-size: 1.2vh;
+        font-size: 1.1vh;
+
+    }
+    .buttons li{
+        border-right: 1px solid grey;
+
+    }
+    .buttons li:hover{
+        border-top: 5px solid black
 
     }
     .logo {

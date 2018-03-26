@@ -24,10 +24,7 @@ export default class Stocks extends React.Component {
         const date = this.props.stocks.gainers[0] ? new Date(this.props.stocks.gainers[0].latestTime).toLocaleDateString() : "Today"
         return(
             <main className='entry'>
-            
-                
                 <section className='lists'>
-
                     <h1>{date}'s Mosts'</h1>
                     <div className='gridParent'>
                         <article className='gainers'>

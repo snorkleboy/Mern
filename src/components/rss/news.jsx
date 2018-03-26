@@ -51,12 +51,12 @@ function builder(item){
         const modals = document.body.querySelectorAll(".modal-clicked")
             .forEach((modal) => {if (modal.id !== item.title) modal.classList.remove('modal-clicked')} )
     }
-
+    console.log(item);
     return (
         <article key={item.title} onMouseLeave={clear} onMouseEnter={modalToggler} className='news-article' >
             <div  className='rss-header'>
                 <h1>{item.title}</h1>
-                <img src={item.thumbnail}/>
+                <img src={item.thumbnail.length > 0 ? item.thumbnail : 'https://cdn-images-1.medium.com/max/800/1*XT-ekcj-yJ5mvdJGpA8JNA.png'}/>
             </div>
             <div id={item.title}  className='modal rss-content'>
                 <h1>{item.title}</h1>
