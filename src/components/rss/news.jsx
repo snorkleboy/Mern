@@ -55,18 +55,22 @@ function builder(item){
     return (
         <article key={item.title} onMouseLeave={clear} onMouseEnter={modalToggler} className='news-article' >
             <div  className='rss-header'>
-                <h1>{item.title}</h1>
+                <h1>{removeAmps(item.title)}</h1>
                 <img src={item.thumbnail.length > 0 ? item.thumbnail : 'https://cdn-images-1.medium.com/max/800/1*XT-ekcj-yJ5mvdJGpA8JNA.png'}/>
             </div>
             <div id={item.title}  className='modal rss-content'>
-                <h1>{item.title}</h1>
+                <h1>{removeAmps(item.title)}</h1>
                 <a href={item.link}>{item.author}</a>
-                <article>{description}</article>
+                <article>{removeAmps(description)}</article>
                 <h3>{item.pubDate}</h3>
 
             </div>
         </article>
     );
+}
+
+function removeAmps(string){
+    return string.split("&amp;quot;").join('"')
 }
 
 // { item.title }
