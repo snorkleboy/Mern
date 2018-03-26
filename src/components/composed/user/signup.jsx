@@ -44,7 +44,7 @@ class Signup extends React.Component {
         }
         return !this.props.signedIn ?
             (
-                    <section className='Credform'>
+                    <section className='credForm'>
                         <h1>{message}</h1>
                         <span className='inputForm'>
                             <input id='signinInput' className="submitButton" onClick={submitHandler.bind(this)} value={`submit`} type="submit" />

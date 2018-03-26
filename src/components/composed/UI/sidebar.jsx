@@ -11,7 +11,9 @@ export default class Stocks extends React.Component {
     }
     handleSearch(e){
         const val = document.getElementById('searchInput').value
-        this.props.history.push("/stocks/"+val.toString())
+        if (val.length > 0){
+            this.props.history.push("/stocks/" + val.toString())
+        }
     }
     handleKeyDown(event) {
         if (event.keyCode == 13 /*enter*/) {
@@ -33,9 +35,9 @@ export default class Stocks extends React.Component {
                     </Link>
                     
                     <ul className='buttons'>
-                        <li onMouseOver={openTab} onMouseLeave={closeTab}>
+                        <li onMouseOver={openTab} onMouseLeave={closeTab} className="user-bar">
                             <label>My Stuff
-                                <div  className='tab user-bar display-off'>
+                                <div  className='tab display-off'>
                                     {this.props.user? <UserTab/> :<SessionForm/> }
                                 </div>
                             </label>
