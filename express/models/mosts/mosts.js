@@ -8,12 +8,12 @@ const Most = new mongoose.Schema({
     latestUpdate:Date,
     open: Number,
     close: Number,
+    "last close": { type: Number, alias: "previousClose"},
+    "price": { type: Number, alias: 'latestPrice'},
     high: Number,
     low: Number,
     change: Number,
-    changePercent: Number,
-    previousClose: Number,
-    changePercen: Number,
+    "Change%": { type: Number, alias: "changePercent"},
     marketCap: Number,
     peRatio: Number,
     ytdChange: Number,
@@ -34,3 +34,7 @@ module.exports = {
     MostVolume,
     MostActive
 };
+
+
+
+// const headerChange = { "latestPrice": "price", 'changePercent': "Change%", "previousClose": "last close" }

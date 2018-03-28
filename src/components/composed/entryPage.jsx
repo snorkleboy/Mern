@@ -78,12 +78,16 @@ export default class Stocks extends React.Component {
         return array;
     }
     getHeaders(array){
-        return (array && !array.length == 0) ? 
-            Object.keys(array[0]).filter((key) => !notHeaders.includes(key))
-        :
-            [];
+        let headers = [];
+        if (array && !array.length == 0){
+            Object.keys(array[0]).forEach(header=>{
+                if (!notHeaders.includes(header)){
+                    headers.push(header);
+                }    
+            })
+        }
+        return headers
     }
 }
-
-const notHeaders = ["change","latestUpdate","previousClose","peRatio","avgTotalVolume"]
+const notHeaders = ["change","latestUpdate","peRatio","avgTotalVolume",'low','high','open','close']
 
