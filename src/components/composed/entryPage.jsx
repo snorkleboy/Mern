@@ -85,5 +85,5 @@ export default class Stocks extends React.Component {
     }
 }
 
-const notHeaders = ["change","latestTime","previousClose","peRatio","avgTotalVolume"]
+const notHeaders = ["change","latestUpdate","previousClose","peRatio","avgTotalVolume"]
 
