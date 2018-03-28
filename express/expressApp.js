@@ -8,7 +8,7 @@ const session = require('express-session')
 
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
-const FetchSaveMosts = require('../bin/data/fetchSaveMosts');
+const FetchSaveMosts = require('../bin/fetchSaveMosts');
 const router = require('./routes/router');
 
 

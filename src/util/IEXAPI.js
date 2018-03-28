@@ -23,6 +23,7 @@ import * as StockActions from '../components/stocks/stockActions';
 
 
 const filterMods = [
+    'latestUpdate',
     'symbol',
     'changePercent',
     'change',

@@ -5,7 +5,7 @@ const Most = new mongoose.Schema({
         type: String,
         required: 'must include symbol name'
     },
-    latestTime:Date,
+    latestUpdate:Date,
     open: Number,
     close: Number,
     high: Number,
