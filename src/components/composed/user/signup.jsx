@@ -13,7 +13,6 @@ class Signup extends React.Component {
     componentDidMount(){
     }
     componentWillReceiveProps(newProps, newState) {
-        console.log(newState);
         // if (newProps.signedIn) {
         //     this.props.history.push("/stocks")
         // }

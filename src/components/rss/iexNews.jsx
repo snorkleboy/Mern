@@ -3,7 +3,6 @@ import '../../css/iex-news.css';
 
 export default function({article}){
     function display(e){
-        console.log("HERE",this);
         const el = document.getElementById(article.headline)
         el.classList.add("article-visible")
         setTimeout(() => el.classList.add("article-transition"),0);

@@ -21,8 +21,9 @@
 // /stock/market/list/iexpercent
 
 const fetch = require('node-fetch');
+
 const filterMods = [
-    'latestTime',
+    'latestUpdate',
     'symbol',
     'change',
     'changePercent',

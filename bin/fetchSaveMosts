@@ -5,13 +5,16 @@ const IEXAPI = require('../express/routes/util/IEXAPI');
 const FileStream = require('fs');
 
 const Log = function (log) {
-    console.log(log.log);
-    const fd = FileStream.appendFile(__dirname + '/data/logs/FetchLogs.txt', JSON.stringify(log), function (err) {
-        if (err) {
-            console.log('err!', err, Date.now);
-            throw err;
-        }
-    });
+    if (process.env.NODE_ENV !== 'production') {
+        console.log(log.log);
+    }else{
+        const fd = FileStream.appendFile(__dirname + '/data/logs/FetchLogs.txt', JSON.stringify(log), function (err) {
+            if (err) {
+                console.log('err!', err, Date.now);
+                throw err;
+            }
+        });
+    }
 }
 
 const FetchSaveMosts = () => {

@@ -6,18 +6,15 @@ export default class News extends React.Component {
     constructor(props){
         super(props);
         this.state = { rss: null };
-        console.log("HERERHERHEHERHEHRE");
     }
     componentDidMount(){
         if (!this.state.rss) {
             RSSActions.FetchNewsRSS().then((res) => {
-                console.log("RSS RES", res);
                 this.setState({ rss: res });
             })
         }
     }
     render(){
-        console.log("NEWS",this.state);
         
         return this.state.rss ?
             (
@@ -51,7 +48,6 @@ function builder(item){
         const modals = document.body.querySelectorAll(".modal-clicked")
             .forEach((modal) => {if (modal.id !== item.title) modal.classList.remove('modal-clicked')} )
     }
-    console.log(item);
     return (
         <article key={item.title} onMouseLeave={clear} onMouseEnter={modalToggler} className='news-article' >
             <div  className='rss-header'>

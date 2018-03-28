@@ -20,8 +20,8 @@ export default class Stocks extends React.Component {
 
     }
     render(){
-        console.log("ENTRY",this.props);
         const date = this.props.stocks.gainers[0] ? new Date(this.props.stocks.gainers[0].latestUpdate).toLocaleDateString() : "Today"
+        console.log("DATE",date, this.props.stocks.gainers[0])
         return(
             <main className='entry'>
                 <section className='lists'>

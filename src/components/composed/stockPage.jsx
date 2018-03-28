@@ -32,7 +32,6 @@ class Stocks extends React.Component {
     componentDidUpdate(prevprops,prevstate){
     }
     render(){
-        console.log("STOCKPAGE", this.state)
         return(
             <section className='stock'>
                 <section >

@@ -27,7 +27,6 @@ export default class Stocks extends React.Component {
         document.getElementById('searchInput').removeEventListener("keypress",this.handleKeyDown)
     }
     render(){
-        console.log("SIDEBARPROPS",this.props);
         return(
                 <section className='sidebar'>
                     <Link to='/' className='logo'>
