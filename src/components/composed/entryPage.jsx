@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import '../../css/entryPage.css';
 import List from '../stocks/list';
 import News from '../rss/news'
+
 export default class Stocks extends React.Component {
     constructor(props) {
         super(props);

@@ -1,7 +1,6 @@
 
 import React from "react";
 import Graph from './D3graph'
-import addAnysis from '../../util/stockAnalysis'
 const width = 500;
 const height = 300;
 class Chart extends React.Component {
@@ -18,19 +17,10 @@ class Chart extends React.Component {
     }
     
     render() {
-        const { data, ratio } = this.props;
-        let analRange;
-        if ( this.state.range < 190){
-            analRange = 14
-        }else if (this.state.range < 11000){
-            analRange = 50
-        }else{ 
-            analRange = 200
-        }
 
         let dataSlice = [];
         if (data.length > 0){
-            dataSlice = addAnysis(data.slice(data.length - this.state.range, data.length), analRange)
+            dataSlice = data.slice(data.length - this.state.range, data.length)
         }
         return (
             <section className='chart'>
