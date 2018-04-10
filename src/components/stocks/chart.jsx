@@ -179,36 +179,62 @@ function addMa(data, avgN) {
 // instead of using N for averages it uses i for each value
 // so first elements moving average = first_element.closingprice/(i+1) i=0
 //  second eleemnts moving average = first_el
-function getInitialMA(data, n) {
-    data[0].ma = data[0].close;
+function getInitialMA(data, narr) {
+    narr = narr.slice();
+    data[0].ma={}
+    let sum={};
+    data[0].stDev = {}
+    let squareSum = { }
+    const var2 = {};
+    sqaureSum[narr[0]]= (data[0].close * data[0].close)
+    let largestN = n[n.length-1];
+    narr.forEach(n=>{
+        data[0].ma[n] = data[0].close
+        data[0].stdev[n] = data[0].close * .025;
+        squareSum[n] = sqaureSum[narr[0]]
+        sum[n] = data[0].close
+        var2[n] = undefined;
+    })
+    // data[0].ma = data[0].close;
     data[0].change = 0;
     data[0].rsi = 50;
-    let sum = data[0].close;
-    let squareSum = data[0].close * data[0].close;
-    let var2;
-    data[0].stdev = data[0].close * .025;
+    // let sum = data[0].close;
+    // let squareSum = data[0].close * data[0].close;
+    // data[0].stdev = data[0].close * .025;
     let gainsTot = 1;
     let lossesTot = 1;
-    for (let i = 1; i < n; i++) {
-        sum += data[i].close
-        squareSum += data[i].close * data[i].close
-        data[i].ma = sum / (i + 1)
-        var2 = squareSum / (i + 1) - Math.pow(data[i].ma, 2);
-        data[i].stdev = Math.pow(var2, 1 / 2)
+    let position = 1;
+    for(let j = 0;j<narr.length;j++){
+        for (position; i < narr[0]; i++) {
+            narr.forEach(n => {
+                sum[n] += data[i].close
+                squareSum[n] += data[i].close * data[i].close
+                data[i].ma[n] = sum[n] / (i + 1)
+                var2[n] = squareSum / (i + 1) - Math.pow(data[i].ma, 2);
+                data[i].stdev[n] = Math.pow(var2, 1 / 2)
+            })
+            // sum += data[i].close
+            // squareSum += data[i].close * data[i].close
+            // data[i].ma = sum / (i + 1)
+            // var2 = squareSum / (i + 1) - Math.pow(data[i].ma, 2);
+            // data[i].stdev = Math.pow(var2, 1 / 2)
 
-        // get total numver of increase and decreases for RSI
-        // average is calculated using N instead of I for these first N values;
-        const change = data[i].close - data[i - 1].close
-        if (change >= 0) {
-            gainsTot += change
-        } else {
-            lossesTot += -change
+            // get total numver of increase and decreases for RSI
+            // average is calculated using N instead of I for these first N values;
+            const change = data[i].close - data[i - 1].close
+            if (change >= 0) {
+                gainsTot += change
+            } else {
+                lossesTot += -change
+            }
+            // data[i].change = change;
+            data[i].rsi = (gainsTot / n) / (lossesTot / n)
+
+            data[i].rsi = 100 - 100 / (1 + data[i].rsi)
         }
-        // data[i].change = change;
-        data[i].rsi = (gainsTot / n) / (lossesTot / n)
-
-        data[i].rsi = 100 - 100 / (1 + data[i].rsi)
-    }
+        narr.shift();
+    })
+    
     return [sum, squareSum, gainsTot, lossesTot];
 }
 
