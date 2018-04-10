@@ -13,9 +13,7 @@ class Chart extends React.Component {
                 'candleStick':false,
                 'pricePoint':true
         }
-        
     }
-    
     render() {
 
         let dataSlice = [];
