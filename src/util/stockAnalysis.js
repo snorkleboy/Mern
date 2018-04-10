@@ -1,6 +1,6 @@
 
-const rsiRange = 14;
-function addAnalysis(data, ranges) {
+function addAnalysis(data, ranges,rsiRange) {
+    rsiRange = rsiRange || rsiRangeDefault || 14
     sums = {}
     sqSums = {}
     rsiCount = [0, 0];
