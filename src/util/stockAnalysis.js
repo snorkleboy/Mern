@@ -14,7 +14,6 @@ function addAnalysis(data, ranges,rsiRange) {
         })
         rsiCount = updateRSICount(rsiCount[0], rsiCount[1], i, rsiRange);
         data[i].rsi = calcRSI(rsiCount[0], rsiCount[1], rsiRange, i)
-
     }
 }
 
