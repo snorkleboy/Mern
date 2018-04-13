@@ -19,9 +19,8 @@ class Chart extends React.Component {
 
         let dataSlice = [];
         if (this.props.data.length > 0){
-            dataSlice = this.props.data.slice(this.props.data.length - this.state.range, this.props.data.length - this.state.range + 10)
+            dataSlice = this.props.data.slice(this.props.data.length - this.state.range, this.props.data.length)
         }
-        console.log("SLICE",dataSlice);
         return (
             <section className='chart'>
                 <div className='top menu'>
