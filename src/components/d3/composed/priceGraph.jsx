@@ -10,12 +10,15 @@ export default function PriceLine({data,height, width, xDate,position,options}){
     // comes with circles which activate toolTips
     // 
     const dataGrabber = (entry) => entry.close;
-    const maxY = d3.max(data, (d) => d.ma + d.stdev * 2)
+    const maxY = d3.max(data, (d) => d.ma[options.analRange] + d.stdev[options.analRange] * 2)
     const minY = d3.min(data, (d) => {
-        let low = d.ma - d.stdev * 2;
-        low = d.ma < low ? d.ma : low;
+        let low = d.ma[options.analRange] - d.stdev[options.analRange] * 2;
+        low = d.ma[options.analRange] < low ? d.ma[options.analRange] : low;
+        console.log("LOW", low, d.ma[options.analRange], d.stdev[options.analRange])
+
         return low >= 0 ? low : 0
     })
+    console.log('yrange:','max',maxY,'min',minY);
     const y = d3.scaleLinear()
         .range([height, 0])
         .domain([minY, maxY]);
@@ -31,6 +34,7 @@ export default function PriceLine({data,height, width, xDate,position,options}){
                 width={width}
                 height={height}
                 position={position}
+                options={options}
             />
             <MABollinger
                 height={height}
@@ -55,8 +59,7 @@ export default function PriceLine({data,height, width, xDate,position,options}){
                 y={y}
                 data={data}
                 position={position}
-                options={{
-                    "candleStick": options.candleStick, 'pricePoint':options.pricePoint}}
+                options={options}
     />
         </g>
     )

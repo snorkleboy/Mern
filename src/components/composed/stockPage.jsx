@@ -5,7 +5,7 @@ import List from '../stocks/list';
 import Chart from '../stocks/chart'
 import Table from '../stocks/table';
 import IexNews from '../rss/iexNews';
-import addAnysis from '../../util/stockAnalysis'
+import addAnalysis from '../../util/stockAnalysis'
 
 const analysisRanges = [20, 50, 200]
 
@@ -25,11 +25,12 @@ class Stocks extends React.Component {
         ]
         Promise.all(fetches)
         .then((data)=>{
-            this.setState({ "chart": addAnysis(data[0]),"data": data[1], "news": data[2] })
+            addAnalysis(data[0],[20,50,200]);
+            this.setState({ "chart": data[0],"data": data[1], "news": data[2] })
         })
-        .catch(data=>{
+        .catch(err=>{
             alert("couldn't find that ticker")
-            console.log("stock page error",data);
+            console.log("stock page error",err);
         })
     }
     componentDidUpdate(prevprops,prevstate){

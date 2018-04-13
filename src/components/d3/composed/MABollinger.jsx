@@ -3,20 +3,12 @@ import React from "react";
 import * as d3 from "d3";
 import Line from '../line';
 export default function PriceLine({y,dataGrabber, data, height, width, xDate, position, options }) {
-    if (!y) {
-        const maxY = d3.max(data, dataGrabber)
-        const minY = d3.min(data, dataGrabber)
-        y = d3.scaleLinear()
-            .range([height, 0])
-            .domain([minY, maxY]);
-    }
-
     const ma = ()=>(
 
     <Line
         name={'priceLineMA'}
         data={data}
-        dataGrabber={(d) => d.ma}
+        dataGrabber={(d) => d.ma[options.analRange]}
         x={xDate}
         y={y}
         classname={"line MA"}
@@ -31,7 +23,7 @@ export default function PriceLine({y,dataGrabber, data, height, width, xDate, po
         <Line
             name={'priceLineBoll-Bottom'}
             data={data}
-            dataGrabber={(d) => d.ma - d.stdev * 2}
+            dataGrabber={(d) => d.ma[options.analRange] - d.stdev[options.analRange] * 2}
             x={xDate}
             y={y}
             classname={"line MA bolDown"}
@@ -42,7 +34,7 @@ export default function PriceLine({y,dataGrabber, data, height, width, xDate, po
         <Line
             name={'priceLineBoll-Top'}
             data={data}
-            dataGrabber={(d) => d.ma + d.stdev * 2 }
+            dataGrabber={(d) => d.ma[options.analRange] + d.stdev[options.analRange] * 2 }
             x={xDate}
             y={y}
             classname={"line MA bolUp"}
@@ -52,19 +44,18 @@ export default function PriceLine({y,dataGrabber, data, height, width, xDate, po
         />
     </g>
     );
+    console.log(options);
+    return(
+        <g id='ma and bollinger'>
+            {
+                options.ma ? ma() : null
+            }
+            {
+                options.bollinger ? boll() : null
+            }
+        </g>
 
-
-        return(
-            <g id='ma and bollinger'>
-                {
-                    options.ma ? ma() : null
-                }
-                {
-                    options.bollinger ? boll() : null
-                }
-            </g>
-
-        )
+    )
 }
 //     //moving average
 //     const MAline = d3.line()

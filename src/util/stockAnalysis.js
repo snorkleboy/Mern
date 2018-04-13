@@ -1,59 +1,65 @@
 
 function addAnalysis(data, ranges,rsiRange) {
-    rsiRange = rsiRange || rsiRangeDefault || 14
-    sums = {}
-    sqSums = {}
-    rsiCount = [0, 0];
+    rsiRange = rsiRange || 14
+    const sums = {}
+    const sqSums = {}
+    ranges.forEach(range=>{[sums[range],sqSums[range]] = [0,0]})
+    let rsiCount = [0, 0];
     for (let i = 0; i < data.length; i++) {
         data[i].stdev = {};
         data[i].ma = {};
+
         ranges.forEach(range => {
             [sums[range], sqSums[range]] = updateSums(data, sums, sqSums, i, range);
             data[i].ma[range] = calcAverage(sums, range, i)
-            data[i].stDev[range] = calcStDev(data, sqSums, range, i)
+            data[i].stdev[range] = calcStDev(data, sqSums, range, i)
         })
-        rsiCount = updateRSICount(rsiCount[0], rsiCount[1], i, rsiRange);
+        rsiCount = updateRSICount(data,rsiCount[0], rsiCount[1], i, rsiRange);
         data[i].rsi = calcRSI(rsiCount[0], rsiCount[1], rsiRange, i)
     }
 }
 
 function updateSums(data, sums, sqSums, i, range) {
-    let [sum, sqSums] = [sums[range], sqSums[range]]
-    if (range < i) {
-        sqSums = sqSums + Math.pow(data[i].close, 2)
-        sum = sums[range] + data[i].close
+    let [sum, sqSum] = [sums[range], sqSums[range]]
+    const num = i + 1
+    if (range >= num) {
+        sqSum = sqSum + Math.pow(data[i].close, 2)
+        sum = sum + data[i].close
     } else {
-        sqSums = sqSums + Math.pow(data[i].close, 2) - Math.pow(data[i - range].close, 2)
-        sum = sums[range] + data[i].close - data[i - range].close
+        sqSum = sqSum + Math.pow(data[i].close, 2) - Math.pow(data[i - range].close, 2)
+        sum = sum + data[i].close - data[i - range].close
     }
-    return [sum, sqSums]
+    return [sum, sqSum]
 }
 
 function calcAverage(sums, range, i) {
-    return i > range ?
+    const num = i + 1
+
+    return num >= range ?
         sums[range] / range
         :
-        sums[range] / i
+        sums[range] / num
 }
 
 function calcStDev(data, sqSums, range, i) {
-    const interval = i > range ? range : i;
-    const variance = sqSums[range] / range - Math.pow(data[i].ma[range], 2);
+    const num = i + 1
+
+    const interval = num <= range ? num : range;
+    const variance = sqSums[range] / interval - Math.pow(data[i].ma[range], 2);
     return Math.pow(variance, 1 / 2)
 }
-function updateRSICount(inc, dec, i, range) {
+function updateRSICount(data, inc, dec, i, rsiRange) {
     if (data[i].change > 0) {
         inc = inc + 1
     } else {
         dec = dec + 1
     }
-    if (i > rsiRange) {
-        [inc, dec] = removeChanges(data, i, inc, dec);
+    if ((i + 1) > rsiRange) {
+        [inc, dec] = removeChanges(data, i, inc, dec, rsiRange);
     }
     return [inc, dec]
 }
-function removeChanges(data, i, increases, decreases) {
-    rsiRange = rsiRange || 14;
+function removeChanges(data, i, increases, decreases, rsiRange) {
     if (data[i - rsiRange].change >= 0) {
         increases = increases - data[i - rsiRange].change
     } else {

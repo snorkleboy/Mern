@@ -17,8 +17,6 @@ export default class Stocks extends React.Component {
         if (this.props.stocks.gainers.length < 1){
             this.props.getMosts();
         }
-
-
     }
     render(){
         const date = this.props.stocks.gainers[0] ? new Date(this.props.stocks.gainers[0].latestUpdate).toLocaleDateString() : "Today"

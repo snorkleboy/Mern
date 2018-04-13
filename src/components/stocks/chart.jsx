@@ -8,6 +8,7 @@ class Chart extends React.Component {
         super(props);
         this.state = { 
                 "range": 720,
+                "analRange":20,
                 'ma': true,
                 'bollinger':false,
                 'candleStick':false,
@@ -17,9 +18,10 @@ class Chart extends React.Component {
     render() {
 
         let dataSlice = [];
-        if (data.length > 0){
-            dataSlice = data.slice(data.length - this.state.range, data.length)
+        if (this.props.data.length > 0){
+            dataSlice = this.props.data.slice(this.props.data.length - this.state.range, this.props.data.length - this.state.range + 10)
         }
+        console.log("SLICE",dataSlice);
         return (
             <section className='chart'>
                 <div className='top menu'>
@@ -44,7 +46,7 @@ class Chart extends React.Component {
                     >
 
                         {
-                            data.length > 0 ?
+                            this.props.data.length > 0 ?
                                 <Graph
                                     data={(dataSlice)}
                                     options={this.state}
@@ -62,12 +64,21 @@ class Chart extends React.Component {
                 
                 <div className='bottom menu'>
                         <div>
-                            <ul>
+                        <ul>
                                 <li>Moving Average
-                                    <input onChange={this.handleMAclick.bind(this)} checked={this.state.ma} type="checkbox"></input>
+                                        <input onChange={this.handleMAclick.bind(this)} checked={this.state.ma} type="checkbox"></input>
                                 </li>
+
                                 <li>Bollinger Bands
                                     <input onChange={this.handleBollingerClick.bind(this)} type="checkbox"></input>
+                                </li>
+                                <li>Analysis Range
+                                    <select onChange={this.handleRangeSelect.bind(this)} value={this.state.analRange}>
+                                        <option value="20">20</option>
+                                        <option value="50">50</option>
+                                        <option value="200">200</option>
+                                        <option value="off">off</option>
+                                    </select>
                                 </li>
                                 <li>Price Point Marker
                                 <br/>
@@ -107,8 +118,11 @@ class Chart extends React.Component {
     handleCandleStick(){
         this.setState({ "candleStick": true, "pricePoint": false})
     }
-    handleMAclick(){
-        this.setState({'ma': !this.state.ma})
+    handleMAclick(e) {
+        this.setState({ 'ma': !this.state.ma })
+    }
+    handleRangeSelect(e){
+        this.setState({ 'analRange': e.target.value})
     }
     handleBollingerClick(){
         this.setState({ 'bollinger': !this.state.bollinger})
