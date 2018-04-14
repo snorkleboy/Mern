@@ -9,9 +9,9 @@ export default function VolumeGraph({data,height, width, xDate,position}) {
     const dataGrabber = (entry) => entry.volume
     const volmaxY = d3.max(data, dataGrabber)
     const volminY = d3.min(data, dataGrabber)
-    const y = d3.scaleLinear()
-        .range([0, height])
-        .domain([volmaxY, volminY])
+    const y = d3.scaleLog()
+        .range([1, height])
+        .domain([volmaxY, volminY > 0 ? volminY : 1])
 
     return (
         <g id='volume Graph'>
