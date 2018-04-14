@@ -18,7 +18,7 @@ class Graph extends React.Component {
         const width = this.props.width-AXISWIDTH[1];
         const xDate = d3.scaleLinear()
             .range([width, 0])
-            .domain([0,this.props.data.length])
+            .domain([this.props.data.length,0])
 //            .domain([new Date(this.props.data[this.props.data.length - 1].date), new Date(this.props.data[0].date)])
 
 

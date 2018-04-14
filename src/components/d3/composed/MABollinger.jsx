@@ -8,7 +8,7 @@ export default function PriceLine({y,dataGrabber, data, height, width, xDate, po
     <Line
         name={'priceLineMA'}
         data={data}
-        dataGrabber={(d) => d.ma[options.analRange]}
+        dataGrabber={(d) => { console.log('here', d.ma[options.analRange]);return d.ma[options.analRange]}}
         x={xDate}
         y={y}
         classname={"line MA"}

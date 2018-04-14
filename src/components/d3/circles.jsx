@@ -48,7 +48,7 @@ class Circles extends React.Component {
             data = temp;
             x = d3.scaleLinear()
                 .range(x.range())
-                .domain([0, data.length])
+                .domain([data.length,0])
         }
         const divEL = document.getElementById('d3Tooltip')
         const chart = d3.select(`#d3${name}`)
@@ -61,7 +61,7 @@ class Circles extends React.Component {
         }
 
         const toolTipper = function (d) {
-            divEL.innerHTML = `<h1>${d.date}</h1>  <br/>  <h1>Close:$${d.close}</h1>  <br/> <h1>Open:$${d.open}</h1><br/> <h1>High:$${d.high}</h1>  <br/><h1>Low:$${d.low}</h1>  <h1>Average:$${Math.round(d.ma[options.analRange], 3)}</h1>  <br/>  <h1>RSI:${Math.round(d.rsi, 1)}</h1>`
+            divEL.innerHTML = `<h1>${d.date}</h1>  <br/>  <h1>Close:$${d.close}</h1>  <br/> <h1>Open:$${d.open}</h1><br/> <h1>High:$${d.high}</h1>  <br/><h1>Low:$${d.low}</h1>  <h1>Average:$${parseInt(d.ma[options.analRange])}</h1>  <br/>  <h1>RSI:${Math.round(d.rsi, 1)}</h1>`
             divEL.style.left = (d3.event.pageX - divEL.clientWidth / 2) + "px";
             const topPosition = d3.event.pageY - divEL.clientHeight * 1.1
             divEL.style.top = (topPosition > 0 ? topPosition : 0) + "px";

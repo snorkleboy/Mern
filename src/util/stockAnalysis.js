@@ -1,5 +1,6 @@
 export const processMinuteDate = function(data,minuteData){
     let days=0;
+    console.log('mindata',minuteData);
     for (let i = minuteData.length-1; i>=0; i--){
         const dayArr = minuteData[i]
         if (dayArr.length > 0){
@@ -9,12 +10,18 @@ export const processMinuteDate = function(data,minuteData){
                 dayArr[j].ma = data[index].ma;
                 dayArr[j].volume = dayArr[j].volume > 0 ? dayArr[j].volume : 1;
                 dayArr[j].stdev = data[index].stdev;
+
+                console.log(dayArr[j].date, data[index].date, index, i, dayArr[j].ma[20])
+
+
                 dayArr[j].date = new Date(data[index].date + " " + dayArr[j].label) ;
                 dayArr[j].close = dayArr[j].marketAverage > 0 ? dayArr[j].marketAverage : (dayArr[j - 1].marketAverage || dayArr[j+1].marketAverage);
+
             }
             days++;
         }
     }
+    console.log(minuteData);
     return [].concat(...minuteData);
 
 }
