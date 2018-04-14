@@ -71,7 +71,6 @@ function removeChanges(data, i, increases, decreases, rsiRange) {
 function calcRSI(inc, dec, range, j) {
     const i = range > j ? j+1 : range;
     let rsi = Math.abs((inc / i) / (dec / i))
-    console.log(j, i,inc, dec , rsi, 100 - 100 / (1 + rsi))
     return 100 - 100 / (1 + rsi)
 }
 

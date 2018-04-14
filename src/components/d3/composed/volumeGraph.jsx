@@ -29,7 +29,7 @@ export default function VolumeGraph({data,height, width, xDate,position}) {
             <Yaxis
                 name={'VolumeAreaYaxis'}
                 y={y}
-                ticks={3}
+                explicitTicks={[(volmaxY - volminY)/2]}
                 position={[position[0] + width, position[1]]}
             />
         </g>

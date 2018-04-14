@@ -29,7 +29,7 @@ class Axis extends React.Component {
         axisEl.innerHtml = '';
         const axis = d3.axisRight(y)
         if (explicitTicks) {
-            axis.tickValues(explicitTicks).tickSize(-(500), 0, 0)
+            axis.tickValues(explicitTicks).tickSize(-(500), 0, 0).tickFormat(d3.format(',.2s'))
         } else {
             axis.ticks(ticks, ".2s").tickSize(-(500), 0, 0)
         }
