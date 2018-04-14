@@ -30,7 +30,6 @@ class Line extends React.Component {
 
         chart.attr("transform", "translate(" + position[0] + "," + position[1] + ")")
         chart.innerHtml = '';
-        console.log("XYTEST", name,dataGrabber(data[1]),y(dataGrabber(data[1])))
         const line = d3.line()
             .x((d) => x(new Date(d.date)))
             .y((d) => y(dataGrabber(d)))

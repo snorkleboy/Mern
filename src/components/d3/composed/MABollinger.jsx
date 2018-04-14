@@ -44,7 +44,6 @@ export default function PriceLine({y,dataGrabber, data, height, width, xDate, po
         />
     </g>
     );
-    console.log(options);
     return(
         <g id='ma and bollinger'>
             {

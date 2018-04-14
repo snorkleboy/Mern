@@ -16,6 +16,7 @@ function addAnalysis(data, ranges,rsiRange) {
         })
         rsiCount = updateRSICount(data,rsiCount[0], rsiCount[1], i, rsiRange);
         data[i].rsi = calcRSI(rsiCount[0], rsiCount[1], rsiRange, i)
+
     }
 }
 
@@ -50,9 +51,9 @@ function calcStDev(data, sqSums, range, i) {
 }
 function updateRSICount(data, inc, dec, i, rsiRange) {
     if (data[i].change > 0) {
-        inc = inc + 1
+        inc = inc + data[i].change
     } else {
-        dec = dec + 1
+        dec = dec + data[i].change
     }
     if ((i + 1) > rsiRange) {
         [inc, dec] = removeChanges(data, i, inc, dec, rsiRange);
@@ -63,13 +64,14 @@ function removeChanges(data, i, increases, decreases, rsiRange) {
     if (data[i - rsiRange].change >= 0) {
         increases = increases - data[i - rsiRange].change
     } else {
-        decreases = decreases + data[i - rsiRange].change
+        decreases = decreases - data[i - rsiRange].change
     }
     return [increases, decreases]
 }
 function calcRSI(inc, dec, range, j) {
-    const i = range < j ? j : range;
-    let rsi = (inc / i) / (dec / i)
+    const i = range > j ? j+1 : range;
+    let rsi = Math.abs((inc / i) / (dec / i))
+    console.log(j, i,inc, dec , rsi, 100 - 100 / (1 + rsi))
     return 100 - 100 / (1 + rsi)
 }
 

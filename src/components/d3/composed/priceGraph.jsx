@@ -12,13 +12,9 @@ export default function PriceLine({data,height, width, xDate,position,options}){
     const dataGrabber = (entry) => entry.close;
     const maxY = d3.max(data, (d) => d.ma[options.analRange] + d.stdev[options.analRange] * 2)
     const minY = d3.min(data, (d) => {
-        let low = d.ma[options.analRange] - d.stdev[options.analRange] * 2;
-        low = d.ma[options.analRange] < low ? d.ma[options.analRange] : low;
-        console.log("LOW", low, d.ma[options.analRange], d.stdev[options.analRange])
-
+        const low = d.ma[options.analRange] - d.stdev[options.analRange] * 2;
         return low >= 0 ? low : 0
     })
-    console.log('yrange:','max',maxY,'min',minY);
     const y = d3.scaleLinear()
         .range([height, 0])
         .domain([minY, maxY]);
