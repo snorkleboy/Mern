@@ -8,6 +8,8 @@ export const processMinuteDate = function(data,minuteData){
                 const index = data.length - 1 - days
                 dayArr[j].ma = data[index].ma
                 dayArr[j].stdev = data[index].stdev
+                dayArr[j].date = new Date(data[index].date + " " + dayArr[j].label) ;
+                dayArr[j].close = dayArr[j].marketAverage;
             }
             days++;
         }
