@@ -106,14 +106,37 @@ const IEXAPI = class {
             (fail) => console.log(fail));
     }
     fetchChart(ticker, time) {
-        return fetch(IEX_URL + `/stock/${ticker}/chart/${time}/?displayPercent=true`, {
+        return fetch(IEX_URL + `stock/${ticker}/chart/${time}/?displayPercent=true`, {
             method: 'GET'
         }).then((res) => res.json());
     }
+    fetchChartMinutes(ticker,days){
+        function stringifytoDate(date) { return date.toString().padStart(2, '0') }
+        function makeDateString(date) {
+            return [date.getFullYear(), date.getMonth()+1, date.getDate()]
+                .reduce((acc, el) => acc + stringifytoDate(el), '')
+        }
 
+        const today = new Date(Date.now());
+        let dayArr = [today]
+        for (let i = 1; i < days; i++) {
+            const newYesterday = new Date(dayArr[0])
+            newYesterday.setDate(newYesterday.getDate() - 1)
+            dayArr.unshift(newYesterday)
+        }
+        dayArr = dayArr.map((date) => makeDateString(date))
+        console.log(dayArr, dayArr.map((date) => IEX_URL + `/stock/${ticker}/chart/date/${date}`));
+        const fetches = dayArr.map((date)=>{
+            return fetch(IEX_URL + `/stock/${ticker}/chart/date/${date}`, {
+                method: 'GET'
+            }).then((res) => res.json())
+        })
+        
+        return Promise.all(fetches)
+    }
 
     fetchFinancials(ticker) {
-        return fetch(IEX_URL + `/stock/${ticker}/financials` + this.attrWriter(), {
+        return fetch(IEX_URL + `stock/${ticker}/financials` + this.attrWriter(), {
             method: 'GET'
         }).then((res) => res.json());
     }

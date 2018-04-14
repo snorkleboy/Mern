@@ -21,7 +21,9 @@ class Stocks extends React.Component {
         const fetches = [
             this.props.fetchChart(match.params.ticker, '5y'),
             this.props.fetchSymbol(match.params.ticker),
-            this.props.fetchNews(match.params.ticker)
+            this.props.fetchNews(match.params.ticker),
+            this.props.fetchChartMinutes(match.params.ticker, 7)
+
         ]
         Promise.all(fetches)
         .then((data)=>{
