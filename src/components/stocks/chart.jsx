@@ -23,10 +23,11 @@ class Chart extends React.Component {
         let dataSlice = [];
         if (this.props.data.length > 0){
             if (this.state.range <= 14){
-                dataSlice = this.props.data.slice(this.props.minuteData.length - daysAgoInMinuteEntries(this.state.range), this.props.minuteData.length)
+                dataSlice = this.props.minuteData.slice(this.props.minuteData.length - daysAgoInMinuteEntries(this.state.range), this.props.minuteData.length)
             }else{
                 dataSlice = this.props.data.slice(this.props.data.length - this.state.range, this.props.data.length)
             }
+            
         }
         return (
             <section className='chart'>

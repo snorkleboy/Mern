@@ -1,9 +1,10 @@
 export const processMinuteDate = function(data,minuteData){
+    console.log("mindata",minuteData);
     let days=0;
     for (let i = minuteData.length-1; i>=0; i--){
         const dayArr = minuteData[i]
         if (dayArr.length > 0){
-            for (let j = 0; j<dayArr.length - 1; j++) {
+            for (let j = 0; j<dayArr.length; j++) {
                 const index = data.length - 1 - days
                 dayArr[j].ma = data[index].ma
                 dayArr[j].stdev = data[index].stdev
