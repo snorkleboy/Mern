@@ -61,7 +61,16 @@ class Circles extends React.Component {
         }
 
         const toolTipper = function (d) {
-            divEL.innerHTML = `<h1>${d.date}</h1>  <br/>  <h1>Close:$${d.close}</h1>  <br/> <h1>Open:$${d.open}</h1><br/> <h1>High:$${d.high}</h1>  <br/><h1>Low:$${d.low}</h1>  <h1>Average:$${parseInt(d.ma[options.analRange])}</h1>  <br/>  <h1>RSI:${Math.round(d.rsi, 1)}</h1>`
+            let tips = ''
+            if (d.date)tips = tips.concat(`<h1>${d.date}</h1>`)
+            if (d.close)tips = tips.concat(`</br><h1>Close:$${d.close}</h1>`)
+            if (d.open)tips = tips.concat(`</br><h1>Open:$${d.open}</h1>`)
+            if (d.high)tips = tips.concat(`</br><h1>High:$${d.high}</h1>`)
+            if (d.low)tips = tips.concat(`</br><h1>Low:$${d.low}</h1>`)
+            if (d.ma[options.analRange])tips = tips.concat(`</br><h1>Average:$${parseInt(d.ma[options.analRange])}</h1>`)
+            if (d.rsi, 1)tips = tips.concat(`</br><h1>RSI:${Math.round(d.rsi, 1)}</h1>`)
+            
+            divEL.innerHTML = tips
             divEL.style.left = (d3.event.pageX - divEL.clientWidth / 2) + "px";
             const topPosition = d3.event.pageY - divEL.clientHeight * 1.1
             divEL.style.top = (topPosition > 0 ? topPosition : 0) + "px";
