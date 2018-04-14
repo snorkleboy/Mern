@@ -4,9 +4,12 @@ import '../../../css/sidebar.css';
 import SessionForm from '../user/signupContainer'
 import UserTab from '../user/usertab'
 
+let userBar;
+let searchBar;
 export default class Stocks extends React.Component {
     constructor(props) {
         super(props);
+
         this.handleKeyDown = this.handleKeyDown.bind(this);
     }
     handleSearch(e){
@@ -27,6 +30,10 @@ export default class Stocks extends React.Component {
         document.getElementById('searchInput').removeEventListener("keypress",this.handleKeyDown)
     }
     render(){
+        function userBarFun() { return this.userBar };
+        userBarFun = userBarFun.bind(this);
+        function searchBarFun() { return this.searchBar };
+        searchBarFun = searchBarFun.bind(this);
         return(
                 <section className='sidebar'>
                     <Link to='/' className='logo'>
@@ -34,16 +41,16 @@ export default class Stocks extends React.Component {
                     </Link>
                     
                     <ul className='buttons'>
-                        <li onMouseOver={openTab} onMouseLeave={closeTab} className="user-bar">
+                    <li onMouseEnter={openTab(userBarFun)} onMouseLeave={closeTab(userBarFun)} className="user-bar">
                             <label>My Stuff
-                                <div  className='tab display-off'>
+                                <div  ref={(userBarr)=>{console.log(userBarr);this.userBar = userBarr}} className='tab display-off'>
                                     {this.props.user? <UserTab/> :<SessionForm/> }
                                 </div>
                             </label>
                         </li>
-                        <li onMouseOver={openTab} onMouseLeave={closeTab} className='searchBar inputForm'>
+                    <li onMouseEnter={openTab(searchBarFun)} onMouseLeave={closeTab(searchBarFun)} className='searchBar inputForm'>
                             <label> Search a Ticker
-                                <div className='tab inputForm display-off'>
+                                <div ref={(searchBarr)=>{this.searchBar=searchBarr}} className='tab inputForm display-off'>
                                     <input type='submit' onClick={this.handleSearch.bind(this)} value="search" className='submitButton searchSubmit ' />
                                     <input id='searchInput' placeholder="search Ticker" />
                                 </div>
@@ -56,11 +63,16 @@ export default class Stocks extends React.Component {
         );
     }
 }
-function closeTab(e){
-    const els = e.currentTarget.querySelector('div');
-    els.classList.add('display-off')
+function closeTab(ref){
+
+    return function (e){
+        // const els = e.currentTarget.querySelector('div');
+        ref().classList.add('display-off')
+    }
 }
-function openTab(e){
-    const els = e.currentTarget.querySelector('div');
-    els.classList.remove('display-off')
+function openTab(ref){
+    return function(e){
+        // const els = e.currentTarget.querySelector('div');
+        ref().classList.remove('display-off')
+    }
 }

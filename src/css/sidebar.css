@@ -57,7 +57,7 @@
 }
 .buttons li:hover{
     background-color: rgb(128, 233, 128);
-    border-right: 5px solid black;
+    border-right: 5px solid rgba(247, 255, 128, 0.76);
     font-weight: 900;
 }
 .inputForm {
