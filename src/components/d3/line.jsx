@@ -27,11 +27,10 @@ class Line extends React.Component {
         document.getElementById(`d3${name}`).innerHTML = ''
 
         let chart = d3.select(`#d3${name}`)
-
         chart.attr("transform", "translate(" + position[0] + "," + position[1] + ")")
         chart.innerHtml = '';
         const line = d3.line()
-            .x((d) => x(new Date(d.date)))
+            .x((d,i) => x(i))
             .y((d) => y(dataGrabber(d)))
 
         chart.append("svg")

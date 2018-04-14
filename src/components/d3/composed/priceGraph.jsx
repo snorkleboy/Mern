@@ -16,16 +16,19 @@ export default class extends React.Component {
         const ranges = Object.keys(data[0].ma);
         const dataGrabber = (entry) => entry.close;
         const maxY = d3.max(data, (d) =>{
-            const posMaxs = ranges.map((range) => d.ma[range] + d.stdev[range] * 2)
-            return minMax(posMaxs, (a, b) => Boolean(a > b))
+            // const posMaxs = ranges.map((range) => d.ma[range] + d.stdev[range] * 2)
+            // return minMax(posMaxs, (a, b) => Boolean(a > b))
+            return d.close
         })
         const minY = d3.min(data, (d) => {
-            const posMins = ranges.map((range) => d.ma[range] - d.stdev[range] * 2)
-            return minMax(posMins,(a,b)=>Boolean(a<b))
+            // const posMins = ranges.map((range) => d.ma[range] - d.stdev[range] * 2)
+            // return minMax(posMins,(a,b)=>Boolean(a<b))
+            return d.close
         })
+        const padding = (maxY-minY)/10
         const y = d3.scaleLinear()
             .range([height, 0])
-            .domain([minY, maxY]);    
+            .domain([minY - padding, maxY + padding]);    
         return (
             <g id='priceline graph'>
                 <Line

@@ -30,7 +30,7 @@ export default class Area extends React.Component {
         chart.attr("transform", "translate(" + position[0] + "," + position[1] + ")")
 
         const area = d3.area()
-            .x((d) => x(new Date(d.date)))
+            .x((d,i) => x(i))
             .y1((d) => y(d.volume))
             .y0(y(1))
         chart.append('svg')

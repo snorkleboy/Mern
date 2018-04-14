@@ -16,9 +16,12 @@ class Graph extends React.Component {
 // calculate x axis, height and width, which is shared by all D3 elements within this component
         const topHeight = this.props.height-AXISWIDTH[0];
         const width = this.props.width-AXISWIDTH[1];
-        const xDate = d3.scaleTime()
+        const xDate = d3.scaleLinear()
             .range([width, 0])
-            .domain([new Date(this.props.data[this.props.data.length - 1].date), new Date(this.props.data[0].date)]);
+            .domain([0,this.props.data.length])
+//            .domain([new Date(this.props.data[this.props.data.length - 1].date), new Date(this.props.data[0].date)])
+
+
         return (
             <g>
                 <PriceLine 
