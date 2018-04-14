@@ -38,9 +38,9 @@ class Circles extends React.Component {
         chart.selectAll('.child').transition().duration(400).attr('r', .1).attr("height", 0).attr("stroke-width",0).remove()
     }
     make({ x,y, name,position, data,options}) {
-        if (data.length > 180){
+        if (data.length > 360){
             const temp = [];
-            const iterationAmount = parseInt(data.length/90)
+            const iterationAmount = parseInt(data.length/360)
             for (let i = 0; i < data.length; i = i + iterationAmount){
                 temp.push(data[i]);
             }
