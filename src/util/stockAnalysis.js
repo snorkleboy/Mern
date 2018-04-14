@@ -11,8 +11,7 @@ export const processMinuteDate = function(data,minuteData){
             days++;
         }
     }
-    const mergedArr = [].concat(...minuteData);
-    return mergedArr;
+    return [].concat(...minuteData);
 
 }
 export const addAnalysis = function(data, ranges,rsiRange) {

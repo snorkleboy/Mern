@@ -15,7 +15,7 @@ const analysisRanges = [20, 50, 200]
 class Stocks extends React.Component {
     constructor(props) {
         super(props);
-        this.state={data:[],chart:[],news:[]};
+        this.state = { data: [], chart: [], news: [], minuteChart:[]};
     }
     componentDidMount(){
         this.getData(this.props.match);
@@ -25,7 +25,7 @@ class Stocks extends React.Component {
             this.props.fetchChart(match.params.ticker, '5y'),
             this.props.fetchSymbol(match.params.ticker),
             this.props.fetchNews(match.params.ticker),
-            this.props.fetchChartMinutes(match.params.ticker, 7)
+            this.props.fetchChartMinutes(match.params.ticker, 14)
 
         ]
         Promise.all(fetches)
@@ -45,7 +45,7 @@ class Stocks extends React.Component {
         return(
             <section className='stock'>
                 <section >
-                        <Chart name={this.state.data.companyName} data={this.state.chart}/>
+                        <Chart name={this.state.data.companyName} data={this.state.chart} minuteData={this.state.minuteChart}/>
                 </section>
                 <section className='stock-details'>
                     <label> Company Details</label>
