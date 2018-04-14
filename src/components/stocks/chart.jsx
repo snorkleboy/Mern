@@ -7,7 +7,7 @@ class Chart extends React.Component {
     constructor(props){
         super(props);
         this.state = { 
-                "range": 720,
+                "range": 360,
                 "analRange":20,
                 'ma': true,
                 'bollinger':false,
@@ -19,13 +19,19 @@ class Chart extends React.Component {
 
         let dataSlice = [];
         if (this.props.data.length > 0){
-            dataSlice = this.props.data.slice(this.props.data.length - this.state.range, this.props.data.length)
+            if (this.state.range <= 14){
+                dataSlice = this.props.data.slice(this.props.data.length - this.state.range, this.props.data.length)
+            }else{
+                dataSlice = this.props.data.slice(this.props.data.length - this.state.range, this.props.data.length)
+            }
         }
         return (
             <section className='chart'>
                 <div className='top menu'>
                     <select  onChange={this.handleTimeChange.bind(this)} id='timescale' className='clickable timescale'>
-                        <option value='16'>2w</option>
+                        <option value='1'>1d</option>
+                        <option value='7'>1w</option>
+                        <option value='14'>2w</option>
                         <option value='30'>1m</option>
                         <option value='90'>3m</option>
                         <option value='180'>6m</option>

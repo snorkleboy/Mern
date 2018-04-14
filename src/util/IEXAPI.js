@@ -125,7 +125,6 @@ const IEXAPI = class {
             dayArr.unshift(newYesterday)
         }
         dayArr = dayArr.map((date) => makeDateString(date))
-        console.log(dayArr, dayArr.map((date) => IEX_URL + `/stock/${ticker}/chart/date/${date}`));
         const fetches = dayArr.map((date)=>{
             return fetch(IEX_URL + `/stock/${ticker}/chart/date/${date}`, {
                 method: 'GET'

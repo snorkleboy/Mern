@@ -1,5 +1,21 @@
+export const processMinuteDate = function(data,minuteData){
+    let days=0;
+    for (let i = minuteData.length-1; i>=0; i--){
+        const dayArr = minuteData[i]
+        if (dayArr.length > 0){
+            for (let j = 0; j<dayArr.length - 1; j++) {
+                const index = data.length - 1 - days
+                dayArr[j].ma = data[index].ma
+                dayArr[j].stdev = data[index].stdev
+            }
+            days++;
+        }
+    }
+    const mergedArr = [].concat(...minuteData);
+    return mergedArr;
 
-function addAnalysis(data, ranges,rsiRange) {
+}
+export const addAnalysis = function(data, ranges,rsiRange) {
     rsiRange = rsiRange || 14
     const sums = {}
     const sqSums = {}
@@ -16,8 +32,8 @@ function addAnalysis(data, ranges,rsiRange) {
         })
         rsiCount = updateRSICount(data,rsiCount[0], rsiCount[1], i, rsiRange);
         data[i].rsi = calcRSI(rsiCount[0], rsiCount[1], rsiRange, i)
-
     }
+    return data;
 }
 
 function updateSums(data, sums, sqSums, i, range) {
@@ -74,7 +90,6 @@ function calcRSI(inc, dec, range, j) {
     return 100 - 100 / (1 + rsi)
 }
 
-export default addAnalysis
 
 
 
