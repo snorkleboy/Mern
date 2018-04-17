@@ -47,18 +47,9 @@ function builder(item){
         description.push(p.textContent);
     })
     description = description.join("\n\n")
-    function clear(){
-        const modals = document.body.querySelectorAll(".modal-clicked")
-            .forEach((modal) =>modal.classList.remove('modal-clicked'))
-    }
-    function modalToggler(){
-        document.getElementById(item.title).classList.toggle('modal-clicked');
 
-        const modals = document.body.querySelectorAll(".modal-clicked")
-            .forEach((modal) => {if (modal.id !== item.title) modal.classList.remove('modal-clicked')} )
-    }
     return (
-        <article key={item.title} onMouseLeave={clear} onMouseEnter={modalToggler} className='news-article' >
+        <article key={item.title} onMouseLeave={handlerClear} onMouseEnter={modalToggler} className='news-article' >
             <div  className='rss-header'>
                 <h1>{removeAmps(item.title)}</h1>
                 <img src={item.thumbnail.length > 0 ? item.thumbnail : 'https://cdn-images-1.medium.com/max/800/1*XT-ekcj-yJ5mvdJGpA8JNA.png'}/>
@@ -72,6 +63,25 @@ function builder(item){
             </div>
         </article>
     );
+    function handlerClear(){
+        clear();
+    }
+    function clear(exclude=[]){
+        const modals = document.body.querySelectorAll(".modal-clicked")
+            .forEach((modal) => { 
+                if(!exclude.includes(modal.id)){
+                    modal.classList.remove('modal-clicked'); modal.classList.add('modal')
+                }
+            })
+    }
+    function modalToggler(){
+        clear([item.title])
+        const el = document.getElementById(item.title)
+        el.classList.add('modal-clicked');
+        el.classList.remove('modal');
+
+    }
+
 }
 
 function removeAmps(string){

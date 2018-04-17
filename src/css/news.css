@@ -42,6 +42,7 @@
     border-radius: 5px;
     height: 125px;
     width: 225px;
+
 }
 .rss-header{
     position: relative;
@@ -70,15 +71,20 @@
     position: absolute;
     top: 100%;
     background-color: white;
-    opacity: 0;
-    transition: 1.5s all;
-    z-index: -1;
+    transition: opacity 1.5s;
     color: rgb(70, 70, 70);
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     border-radius: 2px;
     box-shadow: 5px 2px 3px rgba(19, 19, 19, 0.2);
     border-left: 1px solid grey;
     border-top: 1px solid grey;
+
+}
+.modal{
+    position: absolute;
+    z-index: -100;
+    left:200vw;
+    opacity: 0;
 
 }
 .modal-clicked{
