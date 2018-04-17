@@ -94,6 +94,16 @@ article{
     .buttons{
         flex-direction: row;
     }
+    .buttons li {
+        border-right: none;
+        border-top: 1px solid rgba(194, 194, 194, 0.76);
+
+    }
+    .buttons li:hover {
+        border-right: none;
+        border-top: 5px solid rgba(247, 255, 128, 0.76);
+
+    }
 }
 
 @media (max-width: 600px) {
@@ -101,14 +111,7 @@ article{
         font-size: 1.1vh;
 
     }
-    .buttons li{
-        border-right: 1px solid grey;
 
-    }
-    .buttons li:hover{
-        border-top: 5px solid black
-
-    }
     .logo {
         display: none;
     }
