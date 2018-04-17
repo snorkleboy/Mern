@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import '../../../css/sidebar.css';
 import SessionForm from '../user/signupContainer'
 import UserTab from '../user/usertab'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import { CSSTransition, transit } from "react-css-transition";
 
 export default class Stocks extends React.Component {
     constructor(props) {
@@ -32,7 +32,12 @@ export default class Stocks extends React.Component {
         }
     }
     render(){
-
+        const transitionStyles = {
+            defaultStyle : { opacity: 0 },
+            enterStyle : { opacity: transit(1.0, 500, "ease-in-out") },
+            leaveStyle : { opacity: transit(0, 500, "ease-in-out") },
+            activeStyle : { opacity: 1.0 }
+        };
         return(
                 <section className='sidebar'>
                     <Link to='/' className='logo'>
@@ -42,41 +47,27 @@ export default class Stocks extends React.Component {
                     <ul className='buttons'>
                         <li onMouseOver={this.openTab("userBar")} onMouseLeave={this.closeTab} className="user-bar">
                             <label>My Stuff
-
-                                <ReactCSSTransitionGroup
-                                    transitionName="sideBarTabsTransition"
-                                    transitionEnterTimeout={500}
-                                    transitionLeaveTimeout={100}
-                                >        
-                                {
-                                    this.state.openTab == 'userBar' ? 
-                                        <div id='userbar' className='tab'>
-                                            {this.props.user? <UserTab/> :<SessionForm/> }
-                                        </div>
-                                    :
-                                        null
-                                }
-                            </ReactCSSTransitionGroup>
-                                
+                                <CSSTransition
+                                        {...transitionStyles}
+                                        active={this.state.openTab == 'userBar'}
+                                    >        
+                                    <div id='userbar' className='tab'>
+                                        {this.props.user? <UserTab/> :<SessionForm/> }
+                                    </div>
+                                </CSSTransition>            
                             </label>
                         </li>
-                    <li onMouseOver={this.openTab("searchBar")} onMouseLeave={this.closeTab} className='searchBar inputForm'>
+                        <li onMouseOver={this.openTab("searchBar")} onMouseLeave={this.closeTab} className='searchBar inputForm'>
                             <label> Search a Ticker
-                                <ReactCSSTransitionGroup
-                                    transitionName="sideBarTabsTransition"
-                                    transitionEnterTimeout={500}
-                                    transitionLeaveTimeout={100}
+                                <CSSTransition
+                                    {...transitionStyles}
+                                    active={this.state.openTab == "searchBar" }
                                 > 
-                                {
-                                    this.state.openTab == "searchBar" ? 
-                                    <div className='tab inputForm'>
+                                    <div className='tab inputForm searchBar'>
                                         <input type='submit' onClick={this.handleSearch.bind(this)} value="search" className='submitButton searchSubmit ' />
                                         <input id='searchInput' placeholder="search Ticker" />
                                     </div>
-                                :
-                                    null
-                                }
-                                </ReactCSSTransitionGroup>                                
+                                </CSSTransition>                                
                             </label>
                         </li>
                     </ul>
