@@ -48,12 +48,14 @@
     padding: 9%;
     box-sizing: border-box;
     font-weight: 500;
-    transition: all 1s;
     border-bottom: 1px solid grey;
     width: 100%;
     text-align: center;
     height: fit-content;
     display: block;
+    transition: border-right 1s;
+    transition: font-weigh 1s;
+
 }
 .buttons li:hover{
     background-color: rgb(128, 233, 128);
