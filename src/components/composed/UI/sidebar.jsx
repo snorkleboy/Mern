@@ -33,9 +33,10 @@ export default class Stocks extends React.Component {
     }
     render(){
         const transitionStyles = {
-            defaultStyle : { opacity: 0 },
-            enterStyle : { opacity: transit(1.0, 500, "ease-in-out") },
-            leaveStyle : { opacity: transit(0, 500, "ease-in-out") },
+            defaultStyle : { opacity: 0, display : "none" },
+            enterInitStyle: { display: "block", opacity: 0   },
+            enterStyle: { opacity: transit(1.0, 500, "ease-in-out") },
+            leaveStyle : { opacity: transit(0, 200, "ease-in-out") },
             activeStyle : { opacity: 1.0 }
         };
         return(
