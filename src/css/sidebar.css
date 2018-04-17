@@ -111,3 +111,50 @@ input {
     transition: 1s all;
     height : 20px;
 }
+
+@media (max-width: 1000px) {
+    .sidebar {
+        top: 0;
+        left: 0;
+        height: 15vh;
+        min-width: 100vw;
+        font-size: 1.3vh;
+        min-height: fit-content;
+        flex-direction: row;
+        border-bottom: 2px solid black;
+        border-left: 0px solid beige;
+        box-shadow: 2px 2px 2px 1px rgba(19, 19, 19, 0.2);
+    }
+    .logo {
+        height: 100%;
+        margin: 0;
+        border-bottom: none;
+        padding: 2%;
+    }
+    .logo img {
+        height: 100%;
+        width: auto;
+    }
+    .buttons {}
+    .buttons li {
+        border-right: none;
+        border-top: 1px solid rgba(194, 194, 194, 0.76);
+    }
+    .buttons li:hover {
+        border-right: none;
+        border-top: 5px solid rgba(247, 255, 128, 0.76);
+    }
+}
+
+@media (max-width: 600px) {
+    .sidebar {
+        font-size: 1.1vh;
+    }
+
+}
+
+@media (max-width: 450px) {
+    .buttons {
+        flex-direction: column;
+    }
+}

@@ -9,8 +9,9 @@
     padding: 3%;
     width: 100%;
 }
-.news-section img{
-    max-height: 175px;
+.rss-header img{
+    max-height: 100%;
+    max-width: 100%;
 }
 .news-article{
     white-space:pre-wrap;
@@ -53,4 +54,10 @@
 .modal-clicked{
     opacity: 1;
     z-index: 4;
+}
+
+@media (max-width: 600px) {
+    .news-section {
+        grid-template-columns: none;
+    }
 }
