@@ -12,16 +12,23 @@
 .rss-header img{
     max-height: 100%;
     max-width: 100%;
+    width: 100%;
+    height: auto;
 }
 .news-article{
     white-space:pre-wrap;
     position: relative;
     border-radius: 5px;
+    height: 125px;
+    width: 225px;
 }
 .rss-header{
     position: relative;
     border-radius: 5px;
     cursor: pointer;
+    background-color: whitesmoke;
+    height: 100%;
+    width: 100%;
 } 
 .rss-header h1{
     bottom: 0;
@@ -59,5 +66,9 @@
 @media (max-width: 600px) {
     .news-section {
         grid-template-columns: none;
+    }
+    .news-article {
+        width: 100%;
+        height: auto;
     }
 }
