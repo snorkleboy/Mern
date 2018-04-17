@@ -1,17 +1,22 @@
 export const processMinuteDate = function(data,minuteData){
     let days=0;
+    console.log(minuteData);
     for (let i = minuteData.length-1; i>=0; i--){
         const dayArr = minuteData[i]
         if (dayArr.length > 0){
             for (let j = 0; j<dayArr.length; j++) {
                 const index = data.length - 1 - days
+
                 dayArr[j].rsi = data[index].rsi;
                 dayArr[j].ma = data[index].ma;
                 dayArr[j].volume = dayArr[j].volume > 0 ? dayArr[j].volume : 1;
                 dayArr[j].stdev = data[index].stdev;
                 dayArr[j].date = new Date(data[index].date + " " + dayArr[j].label) ;
-                dayArr[j].close = dayArr[j].marketAverage > 0 ? dayArr[j].marketAverage : (dayArr[j - 1].marketAverage || dayArr[j+1].marketAverage);
-
+                dayArr[j].close = validPricePoint(dayArr, j,"marketAverage") ? 
+                    dayArr[j].marketAverage 
+                : 
+                    findBackup(dayArr, j, "marketAverage")
+                ;
             }
             days++;
         }
@@ -19,6 +24,24 @@ export const processMinuteDate = function(data,minuteData){
     return [].concat(...minuteData);
 
 }
+function findBackup(arr, x, key) {
+    let i = x;
+    let j = i + 1
+    while (arr[i] || arr[j]) {
+        if (validPricePoint(arr,i,key)) {
+            return arr[i][key]
+        } else if (validPricePoint(arr,j,key)) {
+            return arr[j][key]
+        }
+        j++;
+        i--;
+    }
+}
+function validPricePoint(arr,i,key){
+    return Boolean(arr[i] && arr[i][key] && arr[i][key] > 0)
+}
+
+
 export const addAnalysis = function(data, ranges,rsiRange) {
     rsiRange = rsiRange || 14
     const sums = {}
