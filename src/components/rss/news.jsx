@@ -2,30 +2,39 @@ import React from 'react';
 import * as RSSActions from '../../util/RSSAPI';
 import '../../css/news.css';
 
+const feeds = ["Economist","Wall Street Bets", "Other"]
 export default class News extends React.Component {
     constructor(props){
         super(props);
-        this.state = { rss: null };
+        this.state = { rss: [], feed:feeds[0] };
     }
     componentDidMount(){
-        if (!this.state.rss) {
+        if (this.state.rss.length === 0) {
             RSSActions.FetchNewsRSS().then((res) => {
                 this.setState({ rss: res });
             })
         }
     }
     render(){
-        
-        return this.state.rss ?
-            (
-                <section className='news-section'>
-                    {this.state.rss.items.map((item)=>builder(item))}
-                </section>
-            )
-        :
-            (<section>
-                <h1></h1>
-            </section>)
+        return (
+            <section className='news-section'>
+                <div className='news-container'>
+                    <div className='options-bar'>
+                        <select onChange={this.handleSelectFeed.bind(this)} value={this.state.feed}>
+                            {feeds.map(feed => <option value={feed}>{feed}</option>)}
+                        </select>
+                    </div>
+                    <div className='feed-display'>
+                        {(this.state.rss.items || []).map((item) => builder(item))}
+                    </div> 
+                </div>
+                
+            </section>
+
+        )
+    }
+    handleSelectFeed(e){
+        this.setState({feed:e.target.value});
     }
 }
 

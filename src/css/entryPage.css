@@ -9,7 +9,11 @@
     box-sizing: border-box;
 }
 .gridParent {
+    box-sizing: border-box;
     display: grid;
+    background-color: rgb(246, 255, 209);
+    border: 1px solid grey;
+    padding: 3%;
     grid-template-columns: repeat(2, 1fr);
     
 }
@@ -17,7 +21,7 @@
     
     border-radius: 5px;
     align-items: center;
-    padding: 5%;
+    padding: 1%;
     background-color: rgb(255, 245, 160);
     border-radius: 5px;
     border:1px solid grey;
