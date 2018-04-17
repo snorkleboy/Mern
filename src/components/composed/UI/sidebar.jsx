@@ -3,14 +3,16 @@ import { Link } from 'react-router-dom';
 import '../../../css/sidebar.css';
 import SessionForm from '../user/signupContainer'
 import UserTab from '../user/usertab'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-let userBar;
-let searchBar;
 export default class Stocks extends React.Component {
     constructor(props) {
         super(props);
-
-        this.handleKeyDown = this.handleKeyDown.bind(this);
+        this.state={
+            "openTab":null
+        }
+        this.openTab = this.openTab.bind(this);
+        this.closeTab = this.closeTab.bind(this);
     }
     handleSearch(e){
         const val = document.getElementById('searchInput').value
@@ -18,22 +20,19 @@ export default class Stocks extends React.Component {
             this.props.history.push("/stocks/" + val.toString())
         }
     }
-    handleKeyDown(event) {
-        if (event.keyCode == 13 /*enter*/) {
-            this.handleSearch();
+
+
+    closeTab() {
+        this.setState({"openTab": null})
+    }
+    openTab(ref) {
+        const that = this;
+        return function (e) {
+            that.setState({"openTab": ref})
         }
     }
-    componentDidMount(){
-        document.getElementById('searchInput').addEventListener("keypress",this.handleKeyDown)
-    }
-    componentWillUnmount(){
-        document.getElementById('searchInput').removeEventListener("keypress",this.handleKeyDown)
-    }
     render(){
-        function userBarFun() { return this.userBar };
-        userBarFun = userBarFun.bind(this);
-        function searchBarFun() { return this.searchBar };
-        searchBarFun = searchBarFun.bind(this);
+
         return(
                 <section className='sidebar'>
                     <Link to='/' className='logo'>
@@ -41,38 +40,48 @@ export default class Stocks extends React.Component {
                     </Link>
                     
                     <ul className='buttons'>
-                    <li onMouseEnter={openTab(userBarFun)} onMouseLeave={closeTab(userBarFun)} className="user-bar">
+                        <li onMouseOver={this.openTab("userBar")} onMouseLeave={this.closeTab} className="user-bar">
                             <label>My Stuff
-                                <div  ref={(userBarr)=>{console.log(userBarr);this.userBar = userBarr}} className='tab display-off'>
-                                    {this.props.user? <UserTab/> :<SessionForm/> }
-                                </div>
+
+                                <ReactCSSTransitionGroup
+                                    transitionName="sideBarTabsTransition"
+                                    transitionEnterTimeout={500}
+                                    transitionLeaveTimeout={100}
+                                >        
+                                {
+                                    this.state.openTab == 'userBar' ? 
+                                        <div id='userbar' className='tab'>
+                                            {this.props.user? <UserTab/> :<SessionForm/> }
+                                        </div>
+                                    :
+                                        null
+                                }
+                            </ReactCSSTransitionGroup>
+                                
                             </label>
                         </li>
-                    <li onMouseEnter={openTab(searchBarFun)} onMouseLeave={closeTab(searchBarFun)} className='searchBar inputForm'>
+                    <li onMouseOver={this.openTab("searchBar")} onMouseLeave={this.closeTab} className='searchBar inputForm'>
                             <label> Search a Ticker
-                                <div ref={(searchBarr)=>{this.searchBar=searchBarr}} className='tab inputForm display-off'>
-                                    <input type='submit' onClick={this.handleSearch.bind(this)} value="search" className='submitButton searchSubmit ' />
-                                    <input id='searchInput' placeholder="search Ticker" />
-                                </div>
-                                
+                                <ReactCSSTransitionGroup
+                                    transitionName="sideBarTabsTransition"
+                                    transitionEnterTimeout={500}
+                                    transitionLeaveTimeout={100}
+                                > 
+                                {
+                                    this.state.openTab == "searchBar" ? 
+                                    <div className='tab inputForm'>
+                                        <input type='submit' onClick={this.handleSearch.bind(this)} value="search" className='submitButton searchSubmit ' />
+                                        <input id='searchInput' placeholder="search Ticker" />
+                                    </div>
+                                :
+                                    null
+                                }
+                                </ReactCSSTransitionGroup>                                
                             </label>
                         </li>
                     </ul>
 
                 </section>
         );
-    }
-}
-function closeTab(ref){
-
-    return function (e){
-        // const els = e.currentTarget.querySelector('div');
-        ref().classList.add('display-off')
-    }
-}
-function openTab(ref){
-    return function(e){
-        // const els = e.currentTarget.querySelector('div');
-        ref().classList.remove('display-off')
     }
 }

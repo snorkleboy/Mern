@@ -34,38 +34,42 @@
     border-bottom: 1px solid grey;
     transition: 1s all;
     height: 25px;
+    width: 100%;
 }
-
+.sidebar input.submitButton{
+    width: 33%;
+}
 .buttons{
     display: inline-flex;
     flex-direction: column;
     margin-right: 5%;
     height: 100%;
     box-sizing: border-box;
+    width: 100%;
+
 }
 .buttons li{
     background-color: rgb(115, 183, 115);
-    padding: 9%;
+    padding: 5px;
     box-sizing: border-box;
     font-weight: 500;
     border-bottom: 1px solid grey;
     width: 100%;
     text-align: center;
-    height: fit-content;
+    height: 30px;
+    max-height: fit-content;
     display: block;
 
     flex-shrink:2;
 
-    transition: margin 1s;
-    transition: padding 1s;
-    transition: border-right 1s;
-    transition: font-weigh 1s;
+    transition: border-width .2s, margin .2s, padding .2s, font-weight .2s, height .2s;
 
 }
 .buttons li:hover{
     background-color: rgb(128, 233, 128);
     border-right: 5px solid rgba(247, 255, 128, 0.76);
     font-weight: 900;
+    height: 100px;
 }
 .inputForm {
     display: flex;
@@ -75,42 +79,64 @@
 input {
     background-color: white;
     padding: 5%;
-    transition: all 1s;
+    transition: border-width .2s, margin .2s, padding .2s, font-weight .2s, height .2s;
+
 }
 .submitButton{
     border-right: 1px solid grey;
+    width: 33%;
 }
 .userInfo{
     font-size: 20px;
 }
 .tab {
-    height: 30px;
     font-weight: 400;
-    transition: 1s all;
-}
-.display-off input,
-.display-off section{
-    height: 0px;
-    opacity: 0;
-    margin: 0;
-    padding: 0;
+    height: 100%;
+    transition: border-width .5s, margin .5s, padding .5s, font-weight .5s, height .5s;
 }
 
-.display-off{
-    margin: 0;
-    padding: 0;
-    opacity: 0;
-    height: 0px;
-    overflow: hidden;
-}
-
-.display-on {
-    opacity: 1;
-}
 .credForm{
-    transition: 1s all;
-    height : 20px;
+    opacity: 1;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 1%;
+    height: 50px;
+    transition: opacity .5s,border-width .5s, margin .5s, padding .5s, font-weight .5s, height .5s;
 }
+
+
+.sideBarTabsTransition-enter {
+    opacity: 0.01;
+}
+.sideBarTabsTransition-enter > div{
+    height: 0%;
+}
+.sideBarTabsTransition-enter.sideBarTabsTransition-enter-active {
+    opacity: 1;
+    transition: opacity 800ms ease-in, height 300ms ease-in;
+}
+.sideBarTabsTransition-enter.sideBarTabsTransition-enter-active > div{
+    height: 100%;
+    transition: opacity 800ms ease-in, height 300ms ease-in;
+
+}
+.sideBarTabsTransition-leave {
+    opacity: 1;
+    height: 100%;
+
+}
+
+.sideBarTabsTransition-leave.sideBarTabsTransition-leave-active {
+    opacity: 0.01;
+
+    transition: opacity 300ms ease-in, height 300ms ease-in ;
+}
+.sideBarTabsTransition-leave.sideBarTabsTransition-leave-active > div{
+    height: 0%;
+    transition: opacity 300ms ease-in, height 300ms ease-in ;
+
+}
+
 
 @media (max-width: 1000px) {
     .sidebar {
@@ -135,7 +161,9 @@ input {
         height: 100%;
         width: auto;
     }
-    .buttons {}
+    .buttons {
+        width: 30%;
+    }
     .buttons li {
         border-right: none;
         border-top: 1px solid rgba(194, 194, 194, 0.76);
@@ -145,6 +173,8 @@ input {
         border-top: 5px solid rgba(247, 255, 128, 0.76);
     }
 }
+
+
 
 @media (max-width: 600px) {
     .sidebar {

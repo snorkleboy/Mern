@@ -19,10 +19,19 @@ class Signup extends React.Component {
     }
     handleUserName(e){this.setState({username:e.target.value}) }
     handlePassword(e) {this.setState({ password: e.target.value })    }
-    handleCreateUser(e){this.props.createUser(this.state.username, this.state.password); }
+    handleCreateUser(e){
+        if (this.state.username.length > 0 && this.state.password.length> 0){
+            this.props.createUser(this.state.username, this.state.password); 
+        }
+    }
     handleLogin(e) { this.props.login(this.state.username, this.state.password) }
     
-    handleCheckUsername(e){this.props.checkUserName(this.state.username).then(res => this.setState({ existingUser: res.isUser,checked:true })) }
+    handleCheckUsername(e){
+        if (this.state.username.length > 0){
+            this.props.checkUserName(this.state.username)
+                .then(res => this.setState({ existingUser: res.isUser, checked: true })) 
+        }
+    }
     
 
     render() {
@@ -45,10 +54,10 @@ class Signup extends React.Component {
             (
                     <section className='credForm'>
                         <h1>{message}</h1>
-                        <span className='inputForm'>
-                            <input id='signinInput' className="submitButton" onClick={submitHandler.bind(this)} value={`submit`} type="submit" />
+                        <div className='inputForm'>
+                            <input id='signinInput' className="submitButton" onClick={submitHandler.bind(this)} type="submit" />
                             <input placeholder={label} onChange={inputHandler.bind(this)} />
-                        </span>
+                        </div>
                         
                         <div className="errors">
                             {this.props.errors.error}
@@ -56,11 +65,11 @@ class Signup extends React.Component {
                     </section>
             )
         :
-        (
-            <div className='userInfo'>
-                <h1>Hi, {Object.values(this.props.user.username)}</h1>
-            </div>
-        )
+            (
+                <div className='userInfo'>
+                    <h1>Hi, {Object.values(this.props.user.username)}</h1>
+                </div>
+            )
     }
 }
 export default Signup;

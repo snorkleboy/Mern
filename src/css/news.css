@@ -41,7 +41,6 @@
     position: relative;
     border-radius: 5px;
     height: 125px;
-    width: 225px;
 
 }
 .rss-header{
@@ -85,9 +84,14 @@
     z-index: -100;
     left:200vw;
     opacity: 0;
+    display: none;
+    transition: display 1s;
+    transition-delay: 1s;
+
 
 }
 .modal-clicked{
+    display: block;
     opacity: 1;
     z-index: 4;
 }
