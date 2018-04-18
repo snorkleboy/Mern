@@ -2,7 +2,6 @@
   background-color: white;
   width: 100%;
   color: rgb(8, 54, 27);
-  padding: 0 !important;
   font-size: 1vw;
 }
 
@@ -17,16 +16,17 @@ tr:hover {
   border: 1px solid rgb(25, 8, 104);
   border-width: 0 1px 0 1px;
 }
-table{
+
+table, th, td{
   text-align: center;
   border-collapse: collapse;
-  table-layout: fixed;
+  table-layout: auto;
+  padding: 1.5%;
 }
 .row{
   color: rgb(8, 54, 27);
   display: table-row;
   text-align: center;
-
 }
 .row *{
   min-width: fit-content;
