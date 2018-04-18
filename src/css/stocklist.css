@@ -20,7 +20,7 @@ tr:hover {
 table, th, td{
   text-align: center;
   border-collapse: collapse;
-  table-layout: auto;
+  table-layout: fixed;
   padding: 1.75%;
 }
 .row{
