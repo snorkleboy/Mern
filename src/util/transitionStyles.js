@@ -1,9 +1,60 @@
-import { CSSTransition, transit } from "react-css-transition";
+import {
+    CSSTransition,
+    transit
+} from "react-css-transition";
 
 export const opacityAppear = {
-    defaultStyle: { opacity: 0, display: "none" },
-    enterInitStyle: { display: "inherit", opacity: .01 },
-    enterStyle: { opacity: transit(1, 500, "ease-in-out") },
-    leaveStyle: { opacity: transit(0, 200, "ease-in-out") },
-    activeStyle: { opacity: 1 }
+    defaultStyle: {
+        opacity: 0,
+        display: "none"
+    },
+    enterInitStyle: {
+        display: "inherit",
+        opacity: .01
+    },
+    enterStyle: {
+        opacity: transit(1, 500, "ease-in-out")
+    },
+    leaveStyle: {
+        opacity: transit(0, 200, "ease-in-out")
+    },
+    activeStyle: {
+        opacity: 1
+    }
+};
+
+export const slideIn = {
+    defaultStyle: {
+        transform: "translate(120vw, 0)",
+        "zIndex":"100",
+        display:"none",
+        opacity: 0,
+        position:"relative"
+    },
+    enterInitStyle: {
+        "zIndex": "100",
+        display: "inherit",
+        opacity: .01
+    },
+    enterStyle: {
+        transform: transit("translate(0, 0)", 500, "ease-in-out"),
+        opacity: transit(1, 500, "ease-in-out"),
+        position: "relative",
+        "zIndex": "100",
+    },
+    leaveStyle: {
+        transform: transit("translate(120vw, 0)", 500, "ease-in-out"),
+        opacity: transit(0, 450, "ease-in-out"),
+        position: "relative",
+        "zIndex": "100",
+    },
+    activeStyle: {
+        transform: "translate(0, 0)",
+        opacity:1,
+        position: "relative",
+        "zIndex": "100",
+
+
+    },
+
 };

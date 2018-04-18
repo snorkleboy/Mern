@@ -2,7 +2,7 @@ import React from 'react';
 import * as RSSActions from '../../util/RSSAPI';
 import '../../css/news.css';
 import { CSSTransition, transit } from "react-css-transition";
-import {opacityAppear} from '../../util/transitionStyles'
+import {slideIn} from '../../util/transitionStyles'
 
 
 
@@ -58,7 +58,7 @@ export default class News extends React.Component {
                     <img src={item.thumbnail.length > 0 ? item.thumbnail : 'https://cdn-images-1.medium.com/max/800/1*XT-ekcj-yJ5mvdJGpA8JNA.png'} />
                 </div>
                 <CSSTransition
-                    {...opacityAppear}
+                    {...slideIn}
                     active={this.state.activeModal === item.title}
                 >
                     <div id={item.title} className='rss-content'>
