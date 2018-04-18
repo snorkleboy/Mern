@@ -15,10 +15,12 @@ export default class News extends React.Component {
     }
     componentDidMount(){
         if (this.state.rss.length === 0) {
-            RSSActions.FetchNewsRSS().then((res) => {
+            RSSActions.fetchEconomistRSS().then((res) => {
+                console.log("ECONOMIST",res)
                 this.setState({ rss: res });
             })
         }
+        RSSActions.fetchAll().then((res)=>console.log("RSS FETCHALL",res));
     }
     render(){
         return (
