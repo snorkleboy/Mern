@@ -67,3 +67,8 @@ article{
 
 
 }
+@media (max-width: 550px) {
+  .gridParent {
+      grid-template-columns: 1fr;
+  }
+}

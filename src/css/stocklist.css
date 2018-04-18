@@ -1,3 +1,4 @@
+
 .stockList{
   background-color: white;
   width: 100%;
@@ -65,10 +66,32 @@ td {
     font-size: 10px;
   }
 }
-@media (max-width: 750) {
+@media (max-width: 950px) {
+  table,
+  th,
+  td {
+    font-size: 9px;
+  }
+}
+@media (max-width: 850px) {
   table,
   th,
   td {
     font-size: 8px;
   }
+}
+@media (max-width: 750px) {
+  table,
+  th,
+  td {
+    font-size: 7px;
+  }
+}
+@media (max-width: 550px) {
+  table,
+  th,
+  td {
+    font-size: 14px;
+  }
+
 }
