@@ -61,7 +61,7 @@
 
     flex-shrink:2;
 
-    transition: border-width .8s, margin .8s, padding .8s, font-weight .8s, height .8s;
+    transition: border-color .8s, border-width .8s, margin .8s, padding .8s, font-weight .8s, height .8s;
 
 }
 .buttons li:hover{
