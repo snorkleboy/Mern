@@ -9,19 +9,22 @@ export const opacityAppear = {
         display: "none"
     },
     enterInitStyle: {
-        display: "inherit",
-        opacity: .01
+        display: "block",
+        opacity: 0
     },
     enterStyle: {
-        opacity: transit(1, 500, "ease-in-out")
+        display: "block",
+        opacity: transit(1, 500, "ease-in-out") 
     },
     leaveStyle: {
-        opacity: transit(0, 200, "ease-in-out")
+        display: "block",
+        opacity: transit(0, 200, "ease-in-out"),
     },
     activeStyle: {
-        opacity: 1
+        opacity: 1.0
     }
 };
+
 
 export const slideIn = {
     defaultStyle: {
