@@ -23,6 +23,7 @@ export default class News extends React.Component {
     }
     render(){
         console.log(this.state);
+        const feed = this.state.rss[this.state.feed]
         return (
             <section className='news-section'>
                 <div className='news-container'>
@@ -32,7 +33,7 @@ export default class News extends React.Component {
                         </select>
                     </div>
                     <div className='feed-display'>
-                        {(this.state.rss[this.state.feed].items || []).map((item) => this.builder(item))}
+                        {(feed.items || []).map((item) => this.builder(item, feed.backupImg))}
                     </div> 
                 </div>
                 
@@ -43,7 +44,7 @@ export default class News extends React.Component {
     handleSelectFeed(e){
         this.setState({feed:e.target.value});
     }
-    builder(item){
+    builder(item, backupImg){
         const temp = document.createElement('div')
         temp.innerHTML = item.description;
         const ps = temp.querySelectorAll('p');
@@ -57,7 +58,7 @@ export default class News extends React.Component {
             <article key={item.title} onMouseLeave={clear} onMouseEnter={modalToggler} className='news-article' >
                 <div className='rss-header'>
                     <h1>{removeAmps(item.title)}</h1>
-                    <img src={item.thumbnail.length > 0 ? item.thumbnail : 'https://cdn-images-1.medium.com/max/800/1*XT-ekcj-yJ5mvdJGpA8JNA.png'} />
+                    <img src={item.thumbnail.length > 0 ? item.thumbnail : backupImg} />
                 </div>
                 <CSSTransition
                     {...slideIn}
