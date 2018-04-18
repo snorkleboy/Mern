@@ -20,12 +20,16 @@ tr:hover {
 table{
   text-align: center;
   border-collapse: collapse;
+  table-layout: fixed;
 }
 .row{
   color: rgb(8, 54, 27);
   display: table-row;
   text-align: center;
 
+}
+.row *{
+  min-width: fit-content;
 }
 .row:hover{
   background-color: rgba(252, 240, 134, 0.856);

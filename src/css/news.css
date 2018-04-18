@@ -5,6 +5,8 @@
     width: 100%;
     border: 1px solid grey;
     border-radius: 5px;
+    z-index: 0;
+    position: relative;
 }
 .news-container{
     border: 1px solid grey;
@@ -41,6 +43,7 @@
     position: relative;
     border-radius: 5px;
     height: 125px;
+    width: 100%;
 
 }
 .rss-header{
@@ -68,33 +71,18 @@
     width: 130%;
     max-height: fit-content;
     position: absolute;
+    z-index: 100;
     top: 100%;
     background-color: white;
-    transition: opacity 1.5s;
     color: rgb(70, 70, 70);
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     border-radius: 2px;
     box-shadow: 5px 2px 3px rgba(19, 19, 19, 0.2);
     border-left: 1px solid grey;
     border-top: 1px solid grey;
-
+    transition: z-index 2s;
 }
-.modal{
-    position: absolute;
-    z-index: -100;
-    left:200vw;
-    opacity: 0;
-    display: none;
-    transition: display 1s;
-    transition-delay: 1s;
 
-
-}
-.modal-clicked{
-    display: block;
-    opacity: 1;
-    z-index: 4;
-}
 
 @media (max-width: 600px) {
     .feed-display {

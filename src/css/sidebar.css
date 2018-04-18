@@ -101,36 +101,6 @@ input {
 }
 
 
-.sideBarTabsTransition-enter {
-    opacity: 0.01;
-}
-.sideBarTabsTransition-enter > div{
-    height: 0%;
-}
-.sideBarTabsTransition-enter.sideBarTabsTransition-enter-active {
-    opacity: 1;
-    transition: opacity 800ms ease-in, height 800ms ease-in;
-}
-.sideBarTabsTransition-enter.sideBarTabsTransition-enter-active > div{
-    height: 100%;
-    transition: opacity 200ms ease-in, height 200ms ease-in;
-
-}
-.sideBarTabsTransition-leave {
-    opacity: 1;
-    height: 100%;
-
-}
-
-.sideBarTabsTransition-leave.sideBarTabsTransition-leave-active {
-    opacity: 0.01;
-
-    transition: opacity 200ms ease-in, height 200ms ease-in ;
-}
-.sideBarTabsTransition-leave.sideBarTabsTransition-leave-active > div{
-    height: 0%;
-    transition: opacity 50ms ease, height 50ms ease-in ;
-}
 
 .searchBar {
     height: 50px;

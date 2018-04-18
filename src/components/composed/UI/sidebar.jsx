@@ -4,7 +4,7 @@ import '../../../css/sidebar.css';
 import SessionForm from '../user/signupContainer'
 import UserTab from '../user/usertab'
 import { CSSTransition, transit } from "react-css-transition";
-
+import {opacityAppear} from '../../../util/transitionStyles'
 export default class Stocks extends React.Component {
     constructor(props) {
         super(props);
@@ -32,13 +32,7 @@ export default class Stocks extends React.Component {
         }
     }
     render(){
-        const transitionStyles = {
-            defaultStyle : { opacity: 0, display : "none" },
-            enterInitStyle: { display: "block", opacity: 0   },
-            enterStyle: { opacity: transit(1.0, 500, "ease-in-out") },
-            leaveStyle : { opacity: transit(0, 200, "ease-in-out") },
-            activeStyle : { opacity: 1.0 }
-        };
+
         return(
                 <section className='sidebar'>
                     <Link to='/' className='logo'>
@@ -49,9 +43,9 @@ export default class Stocks extends React.Component {
                         <li onMouseOver={this.openTab("userBar")} onMouseLeave={this.closeTab} className="user-bar">
                             <label>My Stuff
                                 <CSSTransition
-                                        {...transitionStyles}
-                                        active={this.state.openTab == 'userBar'}
-                                    >        
+                                    {...opacityAppear}
+                                    active={this.state.openTab == 'userBar'}
+                                >        
                                     <div id='userbar' className='tab'>
                                         {this.props.user? <UserTab/> :<SessionForm/> }
                                     </div>
@@ -61,7 +55,7 @@ export default class Stocks extends React.Component {
                         <li onMouseOver={this.openTab("searchBar")} onMouseLeave={this.closeTab} className='searchBar inputForm'>
                             <label> Search a Ticker
                                 <CSSTransition
-                                    {...transitionStyles}
+                                    {...opacityAppear}
                                     active={this.state.openTab == "searchBar" }
                                 > 
                                     <div className='tab inputForm searchBar'>

@@ -44,14 +44,14 @@
 article{
     width: fit-content;
 }
+
+
 .spliter {
     display: flex;
     flex-direction: row;
 }
 .sidebar{
     width:20%;
-    max-width: fit-content;
-
 }
 .not-sidebar {
     width: 80%;
