@@ -1,7 +1,7 @@
 const RSSConverterUrl = 'https://api.rss2json.com/v1/api.json?rss_url=';
 
 
-const urls = [
+export const urls = [
     ['economist','https://www.economist.com/sections/business-finance/rss.xml'],
     ['wallStreetBets', 'https://www.reddit.com/r/wallstreetbets.rss'],
     ['seekingAlpha', 'http://seekingalpha.com/feed.xml'],

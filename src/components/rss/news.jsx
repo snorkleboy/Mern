@@ -6,33 +6,33 @@ import {slideIn} from '../../util/transitionStyles'
 
 
 
-const feeds = ["Economist","Wall Street Bets", "Other"]
 export default class News extends React.Component {
     constructor(props){
         super(props);
-        this.state = { rss: [], feed:feeds[0], activeModal:null };
+        const rssObj = {}
+        RSSActions.urls.map((url) => {
+            rssObj[url[0]] = []
+        })      
+        this.state = { rss: rssObj, feed: RSSActions.urls[0][0], activeModal:null };
         this.builder = this.builder.bind(this);
     }
     componentDidMount(){
-        if (this.state.rss.length === 0) {
-            RSSActions.fetchEconomistRSS().then((res) => {
-                console.log("ECONOMIST",res)
-                this.setState({ rss: res });
-            })
-        }
-        RSSActions.fetchAll().then((res)=>console.log("RSS FETCHALL",res));
+        RSSActions.fetchAll()
+            .then((res) => this.setState({ rss: res }));
+
     }
     render(){
+        console.log(this.state);
         return (
             <section className='news-section'>
                 <div className='news-container'>
                     <div className='options-bar'>
                         <select onChange={this.handleSelectFeed.bind(this)} value={this.state.feed}>
-                            {feeds.map(feed => <option key={feed+"feed"} value={feed}>{feed}</option>)}
+                            {RSSActions.urls.map(feed => <option key={feed[0]+"feed"} value={feed[0]}>{feed[0]}</option>)}
                         </select>
                     </div>
                     <div className='feed-display'>
-                        {(this.state.rss.items || []).map((item) => this.builder(item))}
+                        {(this.state.rss[this.state.feed].items || []).map((item) => this.builder(item))}
                     </div> 
                 </div>
                 
