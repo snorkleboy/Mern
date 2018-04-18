@@ -2,7 +2,6 @@
   background-color: white;
   width: 100%;
   color: rgb(8, 54, 27);
-  font-size: 1vw;
 }
 
 tr{
@@ -20,8 +19,9 @@ tr:hover {
 table, th, td{
   text-align: center;
   border-collapse: collapse;
-  table-layout: fixed;
+  table-layout: auto;
   padding: 1.75%;
+  font-size: 14px;
 }
 .row{
   color: rgb(8, 54, 27);
@@ -48,4 +48,27 @@ td {
   border-left: 1px solid rgb(85, 85, 85);
   border-right: 1px solid rgb(66, 66, 66);
   border-bottom: 1px solid rgb(219, 219, 219);
+}
+
+@media (max-width: 1250px) {
+  table,
+  th,
+  td {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 1150px) {
+  table,
+  th,
+  td {
+    font-size: 10px;
+  }
+}
+@media (max-width: 750) {
+  table,
+  th,
+  td {
+    font-size: 8px;
+  }
 }
