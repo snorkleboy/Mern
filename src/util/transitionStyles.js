@@ -35,6 +35,7 @@ export const slideIn = {
         position:"relative"
     },
     enterInitStyle: {
+        transform: "translate(120vw, 0)",
         "zIndex": "100",
         display: "inherit",
         opacity: .01
@@ -46,7 +47,6 @@ export const slideIn = {
         "zIndex": "100",
     },
     leaveStyle: {
-        transform: transit("translate(120vw, 0)", 500, "ease-in-out"),
         opacity: transit(0, 450, "ease-in-out"),
         position: "relative",
         "zIndex": "100",

@@ -56,7 +56,7 @@
     border-bottom: 1px solid grey;
     width: 100%;
     text-align: center;
-    height: 30px;
+    height: 50px;
     display: block;
 
     flex-shrink:2;
@@ -68,7 +68,7 @@
     background-color: rgb(128, 233, 128);
     border-right: 5px solid rgba(247, 255, 128, 0.76);
     font-weight: 900;
-    height: 100px;
+    height: 300px;
 }
 .inputForm {
     display: flex;
@@ -83,6 +83,7 @@ input {
 .submitButton{
     border-right: 1px solid grey;
     width: 33%;
+    line-height: 2px;
 }
 .userInfo{
     font-size: 20px;

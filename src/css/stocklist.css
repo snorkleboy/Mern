@@ -21,8 +21,12 @@ table, th, td{
   text-align: center;
   border-collapse: collapse;
   table-layout: auto;
-  padding: 1.75%;
-  font-size: 14px;
+  padding: 8px;
+  font-size: 18px;
+}
+th,
+td{
+  width: fit-content;
 }
 .row{
   color: rgb(8, 54, 27);
@@ -50,48 +54,83 @@ td {
   border-right: 1px solid rgb(66, 66, 66);
   border-bottom: 1px solid rgb(219, 219, 219);
 }
+@media (max-width: 1550px) {
+  table,
+  th,
+  td {
+    font-size: 14px;
+  }
+}
 
+@media (max-width: 1350px) {
+  table,
+  th,
+  td {
+    padding: 6px;
+    font-size: 14px;
+  }
+}
 @media (max-width: 1250px) {
+  table,
+  th,
+  td {
+    padding: 6px;
+    font-size: 12px;
+  }
+}
+@media (max-width: 1100px) {
+  table,
+  th,
+  td {
+    padding: 5px;
+    font-size: 11px;
+  }
+}
+@media (max-width: 1000px) {
   table,
   th,
   td {
     font-size: 12px;
   }
 }
-
-@media (max-width: 1150px) {
+@media (max-width: 900px) {
   table,
   th,
   td {
+    font-size: 11px;
+  }
+}
+@media (max-width: 800px) {
+  table,
+  th,
+  td {
+    padding: 3px;
+
     font-size: 10px;
   }
 }
-@media (max-width: 950px) {
+@media (max-width: 680px) {
   table,
   th,
   td {
-    font-size: 9px;
-  }
-}
-@media (max-width: 850px) {
-  table,
-  th,
-  td {
+    padding: 3px;
     font-size: 8px;
   }
 }
-@media (max-width: 750px) {
+@media (max-width: 600px) {
   table,
   th,
   td {
-    font-size: 7px;
+    padding: 1px;
+    font-size: 8px;
   }
 }
 @media (max-width: 550px) {
   table,
   th,
   td {
-    font-size: 14px;
+    padding: 3px;
+    font-size: 12px;
   }
 
 }

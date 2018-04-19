@@ -20,10 +20,13 @@ span, article, footer, time, small,select {
   box-sizing: inherit;
   background: transparent;
   
-  
 
 
 
+
+}
+body{
+  overflow-x: hidden;
 
 }
 #root{
