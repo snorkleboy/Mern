@@ -20,13 +20,14 @@
     align-items: center;
     display: flex;
     font-size: 1.2vw;
+    z-index: 2;
 }
 .sidebar-top{
     height: 75%;
     display: flex;
     border-bottom: 1px solid grey;
     width: 100%;
-    background-color: rgb(255, 245, 160);
+    background-color: rgb(245, 235, 156);
 
 
 }

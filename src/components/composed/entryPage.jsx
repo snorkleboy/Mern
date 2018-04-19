@@ -26,7 +26,6 @@ export default class Stocks extends React.Component {
                     <img src='http://res.cloudinary.com/flyakite/image/upload/v1524109286/logo_qmkf7l.png' />
 
                     <div>
-                        <h1>TFin</h1>
                         <h2>be the shark</h2>
                     </div>
                 </section>

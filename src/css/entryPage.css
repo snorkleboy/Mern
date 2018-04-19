@@ -8,7 +8,8 @@
 .welcome img{
     width:33%;
     max-width: 300px;
-    filter: blur(3px)
+    filter: blur(3px);
+    z-index: 0;
 
 }
 .welcome >div {
@@ -21,12 +22,13 @@
 .welcome>div::after{
     display: block;
     content: '';
-    border-bottom: 5px solid rgb(255, 245, 160);
+    border-bottom: 5px solid rgb(245, 235, 156);
     width: 75vw;
 
 }
 .entry{
-    
+    position: relative;
+    bottom: 100px;
     background-color: rgb(143, 181, 51);
     padding:2.5%;
     display: flex;
@@ -49,7 +51,7 @@
     border-radius: 5px;
     align-items: center;
     padding: 1%;
-    background-color: rgb(255, 245, 160);
+    background-color: rgb(245, 235, 156);
     border-radius: 5px;
     border:1px solid grey;
     width: 100%;
