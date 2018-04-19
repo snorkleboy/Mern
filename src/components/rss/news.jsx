@@ -57,7 +57,7 @@ export default class News extends React.Component {
             <article key={item.title} onMouseLeave={clear} onMouseEnter={modalToggler} className='news-article' >
                 <div className='rss-header'>
                     <h1>{removeAmps(item.title)}</h1>
-                    <img src={item.thumbnail.length > 0 ? item.thumbnail : backupImg} />
+                    <img src={item.thumbnail.length > 0 ? item.thumbnail : backupImg} alt={backupImg} />
                 </div>
                 <CSSTransition
                     {...slideIn}

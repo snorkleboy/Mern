@@ -97,7 +97,7 @@ td {
   table,
   th,
   td {
-    font-size: 11px;
+    font-size: 10px;
   }
 }
 @media (max-width: 800px) {
@@ -106,7 +106,7 @@ td {
   td {
     padding: 3px;
 
-    font-size: 10px;
+    font-size: 9px;
   }
 }
 @media (max-width: 680px) {
