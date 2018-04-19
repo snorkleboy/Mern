@@ -22,7 +22,7 @@ table, th, td{
   border-collapse: collapse;
   table-layout: auto;
   padding: 8px;
-  font-size: 18px;
+  font-size: 20px;
 }
 th,
 td{
@@ -58,7 +58,7 @@ td {
   table,
   th,
   td {
-    font-size: 14px;
+    font-size: 18px;
   }
 }
 
@@ -67,7 +67,7 @@ td {
   th,
   td {
     padding: 6px;
-    font-size: 14px;
+    font-size: 17px;
   }
 }
 @media (max-width: 1250px) {
@@ -75,7 +75,7 @@ td {
   th,
   td {
     padding: 6px;
-    font-size: 12px;
+    font-size: 15px;
   }
 }
 @media (max-width: 1100px) {
@@ -83,7 +83,7 @@ td {
   th,
   td {
     padding: 5px;
-    font-size: 11px;
+    font-size: 13px;
   }
 }
 @media (max-width: 1000px) {
