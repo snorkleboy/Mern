@@ -22,7 +22,6 @@ export default class News extends React.Component {
 
     }
     render(){
-        console.log(this.state);
         const feed = this.state.rss[this.state.feed]
         return (
             <section className='news-section'>

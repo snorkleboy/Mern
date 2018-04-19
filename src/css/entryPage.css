@@ -1,6 +1,33 @@
+.welcome {
+    padding: 2%;
+    width: 100%;
+    position: relative;
+
+}
+
+.welcome img{
+    width:33%;
+    max-width: 300px;
+    filter: blur(3px)
+
+}
+.welcome >div {
+    position: absolute;
+    bottom: 20%;
+    font-size: 60px;
+    color : rgb(246, 255, 209);
+
+}
+.welcome>div::after{
+    display: block;
+    content: '';
+    border-bottom: 5px solid rgb(255, 245, 160);
+    width: 75vw;
+
+}
 .entry{
     
-    background-color: rgb(31, 82, 35);
+    background-color: rgb(143, 181, 51);
     padding:2.5%;
     display: flex;
     flex-direction: column;
@@ -40,32 +67,6 @@
 }
 article{
     width: fit-content;
-}
-
-
-.spliter {
-    display: flex;
-    flex-direction: row;
-}
-.sidebar{
-    width:20%;
-}
-.not-sidebar {
-    width: 80%;
-    display: block;
-}
-
-@media (max-width: 1000px) {
-    .spliter {
-        flex-direction: column-reverse;
-    }
-    .not-sidebar{
-        position: relative;
-        top: 15vh;
-        width: 100%;
-    }
-
-
 }
 @media (max-width: 550px) {
   .gridParent {

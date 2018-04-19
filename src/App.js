@@ -16,20 +16,21 @@ import MainPage from './components/composed/entryPageContainer';
 import List from './components/stocks/list';
 
 const SignedInApp = ()=>(
-  <div className='spliter'>
+  <div>
+    <Sidebar />
+
     <Switch>
-      <main className="not-sidebar">
+      <main>
         <Route exact path='/' component={MainPage} />
         <Route exact path='/stocks/:ticker' component={Stock} />
       </main>
     </Switch>
-    <Sidebar/>
   </div>
 )
 class App extends Component {
   render() {
     return (
-      <div className="Router-level-div">
+      <div>
         <Switch>
           <Route path='/' component={SignedInApp} />
         </Switch>

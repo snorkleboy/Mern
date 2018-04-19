@@ -22,6 +22,14 @@ export default class Stocks extends React.Component {
         const date = this.props.stocks.gainers[0] ? new Date(this.props.stocks.gainers[0].latestUpdate).toLocaleDateString() : "Today"
         return(
             <main className='entry'>
+                <section className='welcome'>
+                    <img src='http://res.cloudinary.com/flyakite/image/upload/v1524109286/logo_qmkf7l.png' />
+
+                    <div>
+                        <h1>TFin</h1>
+                        <h2>be the shark</h2>
+                    </div>
+                </section>
                 <section className='lists'>
                     <h1>{date}'s Mosts'</h1>
                     <div className='gridParent'>
@@ -66,9 +74,9 @@ export default class Stocks extends React.Component {
 
                 <News />
                 
-                <div className='ack'>
+                <section className='ack'>
                     credits to IEX and Quandl
-                </div>
+                </section>
             </main>
 
         )

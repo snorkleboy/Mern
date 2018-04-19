@@ -34,40 +34,79 @@ export default class Stocks extends React.Component {
     render(){
 
         return(
-                <section className='sidebar'>
+            <section className='sidebar'>
+                <span className='sidebar-top'>
                     <Link to='/' className='logo'>
-                    <img src='http://res.cloudinary.com/flyakite/image/upload/v1521700984/logo_kyeatu.png' />
+                        <img src='http://res.cloudinary.com/flyakite/image/upload/v1524109286/logo_qmkf7l.png' />
                     </Link>
-                    
+
+                    <div>
+                        <h1> Tfin</h1>
+                        <div className='searchBar inputForm'>
+                            <label>
+                                <div className='tab inputForm searchBar'>
+                                    <input type='submit' onClick={this.handleSearch.bind(this)} value="search" className='submitButton searchSubmit ' />
+                                    <input id='searchInput' placeholder="search Ticker" />
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </span>
+
+                <span className='sidebar-bottom'>
                     <ul className='buttons'>
                         <li onMouseOver={this.openTab("userBar")} onMouseLeave={this.closeTab} className="user-bar">
                             <label>My Stuff
                                 <CSSTransition
                                     {...opacityAppear}
                                     active={this.state.openTab == 'userBar'}
-                                >        
+                                >
                                     <div id='userbar' className='tab'>
-                                        {this.props.user? <UserTab/> :<SessionForm/> }
+                                        {this.props.user ? <UserTab /> : <SessionForm />}
                                     </div>
-                                </CSSTransition>            
-                            </label>
-                        </li>
-                        <li onMouseOver={this.openTab("searchBar")} onMouseLeave={this.closeTab} className='searchBar inputForm'>
-                            <label> Search a Ticker
-                                <CSSTransition
-                                    {...opacityAppear}
-                                    active={this.state.openTab == "searchBar" }
-                                > 
-                                    <div className='tab inputForm searchBar'>
-                                        <input type='submit' onClick={this.handleSearch.bind(this)} value="search" className='submitButton searchSubmit ' />
-                                        <input id='searchInput' placeholder="search Ticker" />
-                                    </div>
-                                </CSSTransition>                                
+                                </CSSTransition>
                             </label>
                         </li>
                     </ul>
-
-                </section>
+                </span>
+            </section>
         );
     }
 }
+/*
+<section className='sidebar'>
+    <Link to='/' className='logo'>
+        <img src='http://res.cloudinary.com/flyakite/image/upload/v1524109286/logo_qmkf7l.png' />
+    </Link>
+
+    <ul className='buttons'>
+        <li onMouseOver={this.openTab("userBar")} onMouseLeave={this.closeTab} className="user-bar">
+            <label>My Stuff
+                                <CSSTransition
+                    {...opacityAppear}
+                    active={this.state.openTab == 'userBar'}
+                >
+                    <div id='userbar' className='tab'>
+                        {this.props.user ? <UserTab /> : <SessionForm />}
+                    </div>
+                </CSSTransition>
+            </label>
+        </li>
+        <li onMouseOver={this.openTab("searchBar")} onMouseLeave={this.closeTab} className='searchBar inputForm'>
+            <label> Search a Ticker
+                                <CSSTransition
+                    {...opacityAppear}
+                    active={this.state.openTab == "searchBar"}
+                >
+                    <div className='tab inputForm searchBar'>
+                        <input type='submit' onClick={this.handleSearch.bind(this)} value="search" className='submitButton searchSubmit ' />
+                        <input id='searchInput' placeholder="search Ticker" />
+                    </div>
+                </CSSTransition>
+            </label>
+        </li>
+    </ul>
+
+</section>
+
+*/
