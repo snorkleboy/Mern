@@ -46,6 +46,9 @@
     grid-template-columns: repeat(2, 1fr);
     
 }
+.gridParent article{
+    margin: auto;
+}
 .lists{
     
     border-radius: 5px;

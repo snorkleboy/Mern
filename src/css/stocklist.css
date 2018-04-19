@@ -134,3 +134,13 @@ td {
   }
 
 }
+
+
+@media (max-width: 450px) {
+  table,
+  th,
+  td {
+    padding: 2px;
+    font-size: 8px;
+  }
+}
