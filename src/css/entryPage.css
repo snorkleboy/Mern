@@ -46,9 +46,7 @@
     grid-template-columns: repeat(2, 1fr);
     
 }
-.gridParent article{
-    margin: auto;
-}
+
 .lists{
     
     border-radius: 5px;
@@ -73,8 +71,17 @@
 article{
     width: fit-content;
 }
+@media (max-width: 700px) {
+    .entry{
+        position: static;
+    }
+}
+
 @media (max-width: 550px) {
   .gridParent {
       grid-template-columns: 1fr;
+  }
+  .gridParent article {
+      margin: auto;
   }
 }
