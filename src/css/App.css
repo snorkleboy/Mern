@@ -26,19 +26,7 @@ span, article, footer, time, small,select {
 
 }
 
-.flex-row{
-  display: flex;
-  flex-direction: row;
-}
 
-.flex-col{
-  display: flex;
-  flex-direction: column;
-}
-.flex-col-rev{
-  display: flex;
-  flex-direction: column-reverse;
-}
 body{
   overflow-x: hidden;
 
@@ -87,4 +75,25 @@ input:-webkit-autofill {
 
 a{
   color: rgb(26, 71, 109);
+}
+
+.gain{
+  color: green;
+}
+.loss{
+  color: rgb(133, 0, 0);
+}
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-col-rev {
+  display: flex;
+  flex-direction: column-reverse;
 }

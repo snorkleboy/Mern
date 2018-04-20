@@ -43,12 +43,10 @@ export default class Stocks extends React.Component {
                     <div>
                         <h1> Tfin</h1>
                         <div className='searchBar inputForm'>
-                            <label>
-                                <div className='tab inputForm searchBar'>
-                                    <input type='submit' onClick={this.handleSearch.bind(this)} value="search" className='submitButton searchSubmit ' />
-                                    <input id='searchInput' placeholder="search Ticker" />
-                                </div>
-                            </label>
+                            <div className='tab inputForm searchBar'>
+                                <input type='submit' onClick={this.handleSearch.bind(this)} value="search" className='submitButton searchSubmit ' />
+                                <input id='searchInput' placeholder="search Ticker" />
+                            </div>
                         </div>
                     </div>
                 </span>
@@ -56,16 +54,15 @@ export default class Stocks extends React.Component {
                 <span className='sidebar-bottom'>
                     <ul className='buttons'>
                         <li onMouseOver={this.openTab("userBar")} onMouseLeave={this.closeTab} className="user-bar">
-                            <label>My Stuff
-                                <CSSTransition
-                                    {...slideInTop}
-                                    active={this.state.openTab == 'userBar'}
-                                >
-                                    <div id='userbar' className='tab userbar'>
-                                        {this.props.user ? <UserTab /> : <SessionForm />}
-                                    </div>
-                                </CSSTransition>
-                            </label>
+                            <label>My Stuff</label>
+                            <CSSTransition
+                                {...slideInTop}
+                                active={this.state.openTab == 'userBar'}
+                            >
+                                <div id='userbar' className='tab userbar'>
+                                    {this.props.user ? <UserTab /> : <SessionForm />}
+                                </div>
+                            </CSSTransition>
                         </li>
                     </ul>
                 </span>

@@ -85,7 +85,6 @@
 }
 .buttons li{
     background-color: rgb(189, 202, 136);
-    padding: 5px;
     box-sizing: border-box;
     font-weight: 500;
     width: 100%;
@@ -128,11 +127,14 @@ input {
     z-index: 1;
     width: 100%;
 }
+
 .userbar{
     z-index: -1;
     border-bottom-left-radius: 2px;
     border-bottom-right-radius: 2px;
     position: relative;
+    width: 100%;
+    bottom: 1px;
 }
 
 .credForm{
