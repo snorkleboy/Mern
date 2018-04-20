@@ -4,7 +4,7 @@ import '../../../css/sidebar.css';
 import SessionForm from '../user/signupContainer'
 import UserTab from '../user/usertab'
 import { CSSTransition, transit } from "react-css-transition";
-import {opacityAppear} from '../../../util/transitionStyles'
+import { opacityAppear, slideInTop} from '../../../util/transitionStyles'
 export default class Stocks extends React.Component {
     constructor(props) {
         super(props);
@@ -58,10 +58,10 @@ export default class Stocks extends React.Component {
                         <li onMouseOver={this.openTab("userBar")} onMouseLeave={this.closeTab} className="user-bar">
                             <label>My Stuff
                                 <CSSTransition
-                                    {...opacityAppear}
+                                    {...slideInTop}
                                     active={this.state.openTab == 'userBar'}
                                 >
-                                    <div id='userbar' className='tab'>
+                                    <div id='userbar' className='tab userbar'>
                                         {this.props.user ? <UserTab /> : <SessionForm />}
                                     </div>
                                 </CSSTransition>

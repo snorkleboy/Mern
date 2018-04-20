@@ -2,11 +2,12 @@ import {
     CSSTransition,
     transit
 } from "react-css-transition";
+import { relative } from "path";
 
 export const opacityAppear = {
     defaultStyle: {
         opacity: 0,
-        display: "none"
+        display: "none",
     },
     enterInitStyle: {
         display: "block",
@@ -25,7 +26,43 @@ export const opacityAppear = {
     }
 };
 
+export const slideInTop = {
+    defaultStyle: {
+        transform: "translate(0, -10vh)",
+        opacity: 0,
+        position: "relative",
+        zIndex:'-1',
+        display:"none"
+    },
+    enterInitStyle:{
+        display: "block",
+        transform: "translate(0, -10vh)",
+        opacity: .01,
+        position: "relative",
 
+    },
+    enterStyle: {
+        transform: transit("translate(0, 0)", 500, "ease-in-out"),
+        opacity: transit(.99, 500, "ease-in-out"),
+        position: "relative",
+        zIndex: '-1',
+
+    },
+    leaveStyle: {
+        zIndex: '-1',
+        position: "relative",
+        transform: transit("translate(0,-10vh)", 500, "ease-in-out"),
+        opacity: transit(0, 450, "ease-in-out"),
+
+    },
+    activeStyle: {
+        zIndex: '10',
+        position: "relative",
+        transform: "translate(0, 0)",
+        opacity: .99,
+    },
+
+};
 export const slideIn = {
     defaultStyle: {
         transform: "translate(120vw, 0)",

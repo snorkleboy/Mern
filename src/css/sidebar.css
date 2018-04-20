@@ -11,7 +11,7 @@
     font-size: 1.3vh;
     min-height: fit-content;
     flex-direction: column;
-    border-bottom: 2px solid black;
+    border-bottom: 1px solid rgb(56, 56, 56);
     border-left: 0px solid beige;
     box-shadow: 2px 2px 2px 1px rgba(19, 19, 19, 0.2);
     
@@ -44,7 +44,7 @@
     height: 25%;
     display: flex;
     width: 100%;
-    background-color: rgb(246, 255, 209);
+    background-color: rgb(218, 231, 163);
 
 }
 .logo {
@@ -81,29 +81,23 @@
 
 }
 .buttons li{
-    background-color: rgba(189, 202, 136, 0.199);
+    background-color: rgb(189, 202, 136);
     padding: 5px;
     box-sizing: border-box;
     font-weight: 500;
-    border-bottom: 2px solid rgb(143, 143, 143);
     width: 100%;
     text-align: center;
     height: 100%;
     display: block;
-    border-right: none;
-    border-top: 1px solid rgba(194, 194, 194, 0.76);
-    flex-shrink:2;
-
+    border: 1px solid rgba(194, 194, 194, 0.76);
     transition: background-color .8s, border-color .8s, border-width .8s, margin .8s, padding .8s, font-weight .8s, height .8s;
+    border-bottom: none;
 
 }
 .buttons li:hover{
-    border-bottom: 1px solid rgb(39, 39, 39);
-    border-right: none;
-    border-top: 5px solid rgba(247, 255, 128, 0.76);
-    background-color: rgb(246, 255, 209);
+    border-top: 5px solid rgb(253, 255, 221);
+    background-color: rgb(224, 230, 170);
     font-weight: 900;
-    height: 300px;
 }
 .inputForm {
     display: flex;
@@ -126,13 +120,20 @@ input {
 .tab {
     font-weight: 400;
     height: 100%;
+    background-color: rgb(246, 255, 209);
+    z-index: 1;
+    width: 100%;
+}
+.userbar{
+    z-index: -1;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
 }
 
 .credForm{
     width: 100%;
     box-sizing: border-box;
-    padding: 1%;
-    height: 50px;
+    padding: 3%;
 }
 
 
