@@ -45,7 +45,7 @@ td:first-of-type{
   min-width: fit-content;
 }
 .row:hover{
-  background-color: rgba(252, 240, 134, 0.856);
+  background-color: rgb(255, 248, 183);
 }
 .rowHeader{
   font-weight: bold;
