@@ -40,7 +40,7 @@ class Signup extends React.Component {
         let submitHandler;   
         let message;
         if (!this.state.checked){
-            message = "Sign in/up"
+            message = "Check Username and sign in/up"
             label = "Username";
             inputHandler =  this.handleUserName;
             submitHandler = this.handleCheckUsername;
