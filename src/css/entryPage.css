@@ -16,7 +16,8 @@
     position: absolute;
     bottom: 20%;
     font-size: 60px;
-    color : rgb(246, 255, 209);
+    color : rgb(247, 255, 214);
+    font-weight: 600;
 
 }
 .welcome>div::after{
@@ -68,8 +69,11 @@
     flex-direction: column;
     align-items: center;
 }
-article{
+
+.gridParent article{
     width: fit-content;
+    margin: auto;
+    margin-bottom:2%;
 }
 @media (max-width: 700px) {
     .entry{
@@ -81,7 +85,5 @@ article{
   .gridParent {
       grid-template-columns: 1fr;
   }
-  .gridParent article {
-      margin: auto;
-  }
+
 }
