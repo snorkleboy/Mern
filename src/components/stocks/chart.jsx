@@ -31,7 +31,7 @@ class Chart extends React.Component {
         }
         return (
             <section className='chart'>
-                <div className='top menu'>
+                <div className='top menu flex-row'>
                     <select  onChange={this.handleTimeChange.bind(this)} id='timescale' className='clickable timescale'>
                         <option value='1'>1d</option>
                         <option value='7'>1w</option>
@@ -73,7 +73,7 @@ class Chart extends React.Component {
                 
                 <div className='bottom menu'>
                         <div>
-                        <ul>
+                            <ul className='chart-options flex-row'>
                                 <li>Moving Average
                                         <input onChange={this.handleMAclick.bind(this)} checked={this.state.ma} type="checkbox"></input>
                                 </li>
@@ -89,26 +89,14 @@ class Chart extends React.Component {
                                         <option value="off">off</option>
                                     </select>
                                 </li>
-                                <li>Price Point Marker
-                                <br/>
-                                    <label>Circle Markers<input 
-                                    onClick={this.handlePricePoint.bind(this)} 
-                                        type="radio"
-                                        name='pricePointSelection' 
-                                        checked={this.state.pricePoint}>
-                                    </input></label>
-                                    <label>Candle Sticks<input 
-                                        onClick={this.handleCandleStick.bind(this)} 
-                                        type="radio"
-                                        name='pricePointSelection' 
-                                        checked={this.state.candleSticks}>
-                                    </input></label>
-                                    <label>None<input
-                                        onClick={this.handleNone.bind(this)}
-                                        type="radio"
-                                        name='pricePointSelection'
-                                        checked={this.state.candleSticks}>
-                                    </input></label>
+                                <li>
+                                    <label>Price Point Marker</label>
+                                <select onChange={this.handleMarkerType.bind(this)}>
+                                    <option value="pricePoint">pricePoint</option>
+                                    <option value="candleStick">candleStick</option>
+                                    <option value="none">none</option>
+                                </select>
+
                                 </li>
                             </ul>
                         </div>
@@ -120,6 +108,12 @@ class Chart extends React.Component {
     }
     handleNone(){
         this.setState({ "candleStick": false, "pricePoint": false })
+    }
+    handleMarkerType(e){
+        console.log(e.target.value, this.state);
+        const pricePoint = e.target.value === "pricePoint"
+        const candleStick = e.target.value === "candleStick"
+        this.setState({ "pricePoint": pricePoint, "candleStick": candleStick })
     }
     handlePricePoint() {
         this.setState({ "pricePoint": true, "candleStick": false })

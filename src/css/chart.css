@@ -45,14 +45,22 @@
     stroke-width: 1px;
 }
 .chart{
-        background-color: rgb(37, 107, 28);
-        padding: 10px;
+    background-color: white;
+    padding: 10px;
 
 }
 
 .chart .menu{
     padding: 5px;
-    background-color: whitesmoke;
+    background-color: rgb(189, 202, 136);
+    margin-bottom: 8px;
+
+}
+.menu > *{
+    padding: 5px;
+}
+.chart-options > *{
+    padding: 1%;
 }
 .top .clickable{
     padding: 5px;
@@ -60,9 +68,6 @@
 }
 .chartD3{
     background-color: white;
-border-width: 3px;
-border-style: solid;
-border-image: linear-gradient(to top, rgb(95, 95, 95), rgba(0, 0, 0, 0)) 1 100%;
 }
 .slashTick{
     fill: #ffbb00;
@@ -93,7 +98,7 @@ border-image: linear-gradient(to top, rgb(95, 95, 95), rgba(0, 0, 0, 0)) 1 100%;
 }
 
 .x text{
-    transform: rotate(15deg);
+    /* transform: rotate(15deg); */
 }
 .candleStick{
     stroke: #000000;

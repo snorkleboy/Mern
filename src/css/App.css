@@ -76,7 +76,9 @@ input:-webkit-autofill {
 a{
   color: rgb(26, 71, 109);
 }
-
+select {
+  background-color: whitesmoke;
+}
 .gain{
   color: green;
 }

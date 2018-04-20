@@ -8,10 +8,15 @@
 }
 .item{
     display: flex;
-    flex-direction: column;
-    background-color: white;
+    /* flex-direction: column;
+     */
     padding: 5px;
-    margin: 10px;
+    margin: 5px;
+    justify-content: space-between;
+}
+.item > *{
+    padding: 2px;
+    word-break: break-word;
 }
 .stock-details{
     align-items: center;
