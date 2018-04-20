@@ -5,7 +5,7 @@ section, img, div, h2, p, form,
 fieldset, label, input, textarea,
 span, article, footer, time, small,select {
 
-  color: #666a73;
+  color: #636363;
       font-weight: 400;
     /* -webkit-font-smoothing: antialiased; */
   margin: 0;
@@ -87,7 +87,4 @@ input:-webkit-autofill {
 
 a{
   color: rgb(26, 71, 109);
-}
-button{
-  color: rgb(226, 43, 43);
 }

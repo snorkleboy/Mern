@@ -8,7 +8,6 @@
     left: 0;
     height: 15vh;
     min-width: 100vw;
-    font-size: 1.3vh;
     min-height: fit-content;
     flex-direction: column;
     border-bottom: 1px solid rgb(56, 56, 56);
@@ -18,7 +17,7 @@
     
     align-items: center;
     display: flex;
-    font-size: 1.2vw;
+    font-size: 19px;
     z-index: 2;
     box-sizing: border-box;
 }
@@ -94,8 +93,9 @@
     height: 100%;
     display: block;
     border: 1px solid rgba(194, 194, 194, 0.76);
-    transition: background-color .8s, border-color .8s, border-width .8s, margin .8s, padding .8s, font-weight .8s, height .8s;
+    transition: background-color .8s, border-color .8s, border-width .8s, font-weight .8s, height .8s, color .8s;
     border-bottom: none;
+    position: relative;
 
 }
 .buttons li:hover{
@@ -133,7 +133,6 @@ input {
     border-bottom-left-radius: 2px;
     border-bottom-right-radius: 2px;
     position: relative;
-    bottom: 2px;
 }
 
 .credForm{
@@ -143,31 +142,3 @@ input {
 }
 
 
-
-
-@media (max-width: 1000px) {
-
-
-    .buttons {
-        
-    }
-    .buttons li {
-        
-    }
-    .buttons li:hover {
-        
-    }
-}
-
-
-
-@media (max-width: 600px) {
-    .sidebar {
-        font-size: 1.1vh;
-    }
-
-}
-
-@media (max-width: 450px) {
- 
-}

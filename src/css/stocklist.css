@@ -2,7 +2,7 @@
 .stockList{
   background-color: white;
   width: 100%;
-  color: rgb(8, 54, 27);
+  /* color: rgb(8, 54, 27); */
 }
 th{
   background-color: rgb(224, 230, 170);
@@ -33,7 +33,7 @@ tr{
   text-align: right;
 }
 .row{
-  color: rgb(8, 54, 27);
+  /* color: rgb(8, 54, 27); */
   display: table-row;
 
 }
