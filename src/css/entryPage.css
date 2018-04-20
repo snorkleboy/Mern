@@ -22,7 +22,7 @@
 .welcome>div::after{
     display: block;
     content: '';
-    border-bottom: 5px solid rgb(245, 235, 156);
+    border-bottom: 5px solid rgb(222, 212, 129);
     width: 75vw;
 
 }
@@ -52,7 +52,7 @@
     border-radius: 5px;
     align-items: center;
     padding: 1%;
-    background-color: rgb(245, 235, 156);
+    background-color: rgb(222, 212, 129);
     border-radius: 5px;
     border:1px solid grey;
     width: 100%;
