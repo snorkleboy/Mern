@@ -29,7 +29,7 @@
 .entry{
     position: relative;
     bottom: 100px;
-    background-color: rgb(142, 160, 96);
+    background-color: rgb(195, 214, 124);
     padding:2.5%;
     display: flex;
     flex-direction: column;
