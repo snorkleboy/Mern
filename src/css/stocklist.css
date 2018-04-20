@@ -4,7 +4,9 @@
   width: 100%;
   color: rgb(8, 54, 27);
 }
-
+th{
+  background-color: rgb(224, 230, 170);
+}
 tr{
   background-color: white;
 }
@@ -25,13 +27,19 @@ table, th, td{
   font-size: 20px;
 }
 th,
-td{
+td,
+tr{
   width: fit-content;
+  text-align: right;
 }
 .row{
   color: rgb(8, 54, 27);
   display: table-row;
-  text-align: center;
+
+}
+th:first-of-type, 
+td:first-of-type{
+  text-align: left;
 }
 .row *{
   min-width: fit-content;
@@ -44,15 +52,16 @@ td{
 }
 
 table {
-  border-top: 1px solid rgb(41, 41, 41);
+  border: 1px 0px 1px 0px solid rgb(41, 41, 41);
 }
 
-table,
 th,
 td {
-  border-left: 1px solid rgb(85, 85, 85);
-  border-right: 1px solid rgb(66, 66, 66);
-  border-bottom: 1px solid rgb(219, 219, 219);
+  border-right: 1px solid rgba(243, 243, 243, 0.671);
+} 
+
+.row {
+  border-bottom: 1px solid rgba(226, 226, 226, 0.685);
 }
 @media (max-width: 1550px) {
   table,
