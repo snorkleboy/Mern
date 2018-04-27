@@ -1,6 +1,5 @@
 export const processMinuteDate = function(data,minuteData){
     let days=0;
-    console.log(minuteData);
     for (let i = minuteData.length-1; i>=0; i--){
         const dayArr = minuteData[i]
         if (dayArr.length > 0){

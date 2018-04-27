@@ -23,10 +23,11 @@ class Circles extends React.Component {
         ( 
             nextProps.options.candleStick !== this.props.options.candleStick    || 
             nextProps.options.pricePoint !== this.props.options.pricePoint      ||
-            nextProps.data.length !== this.props.length                         ||
-            nextProps.data[0] !== this.props[0] 
+            nextProps.data.length !== this.props.data.length                         ||
+            nextProps.data[0] !== this.props.data[0] 
         )
         {
+            console.log("CIRCLE REDRAW", nextProps.options.candleStick !== this.props.options.candleStick, nextProps.options.pricePoint !== this.props.options.pricePoint, nextProps.data.length !== this.props.length, nextProps.data[0] !== this.props[0] );
             this.clear(this.props.name)
             this.make(nextProps);
         }
