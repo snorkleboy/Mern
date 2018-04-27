@@ -9,6 +9,7 @@ const session = require('express-session')
 const mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 const FetchSaveMosts = require('../bin/fetchSaveMosts');
+const FetchSaveRSS = require('../bin/fetchSaveRSS');
 const router = require('./routes/router');
 
 
@@ -23,6 +24,7 @@ mongoose.connect(uristring, {
   } else {
     console.log('Succeeded connected to: ' + uristring);
     FetchSaveMosts();
+    // FetchSaveRSS();
   }
 });
 

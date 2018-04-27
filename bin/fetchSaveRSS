@@ -1,3 +1,11 @@
 #!/usr/bin/env node
 const Mosts = require('../express/models/mosts/mosts');
+let Parser = require('rss-parser');
+let parser = new Parser();
+const FetchSaveRSS = ()=>{
+    parser.parseURL('https://www.reddit.com/r/wallstreetbets.rss')
+    .then(res=>console.log(res));
 
+}
+
+module.exports = FetchSaveRSS;

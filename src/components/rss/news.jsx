@@ -4,16 +4,20 @@ import '../../css/news.css';
 import { CSSTransition, transit } from "react-css-transition";
 import {slideIn} from '../../util/transitionStyles'
 
-
-
+const feeds = RSSActions.urls.map(el=>el[0])
 export default class News extends React.Component {
     constructor(props){
         super(props);
         const rssObj = {}
-        RSSActions.urls.map((url) => {
-            rssObj[url[0]] = []
+        feeds.map((feed) => {
+            rssObj[feed] = []
         })      
-        this.state = { rss: rssObj, feed: RSSActions.urls[0][0], activeModal:null };
+        this.state = {
+            rss: rssObj,
+            feed: feeds[0],
+            activeModal:null,
+            subFeed:'stocks'
+        };
         this.builder = this.builder.bind(this);
     }
     componentDidMount(){
@@ -28,11 +32,11 @@ export default class News extends React.Component {
                 <div className='news-container'>
                     <div className='options-bar'>
                         <select onChange={this.handleSelectFeed.bind(this)} value={this.state.feed}>
-                            {RSSActions.urls.map(feed => <option key={feed[0]+"feed"} value={feed[0]}>{feed[0]}</option>)}
+                            {feeds.map(feed => <option key={feed+"feed"} value={feed}>{feed}</option>)}
                         </select>
                     </div>
                     <div className='feed-display'>
-                        {(feed.items || []).map((item) => this.builder(item, feed.backupImg))}
+                        {(feed.items || feed[this.state.subFeed] || []).map((item) => this.builder(item, feed.backupImg))}
                     </div> 
                 </div>
                 
@@ -41,11 +45,12 @@ export default class News extends React.Component {
         )
     }
     handleSelectFeed(e){
-        this.setState({feed:e.target.value});
+        const feed = e.target.value
+        this.setState({ feed });
     }
     builder(item, backupImg){
         const temp = document.createElement('div')
-        temp.innerHTML = item.description;
+        temp.innerHTML = item.description || item.content;
         const ps = temp.querySelectorAll('p');
         let description = [];
         ps.forEach((p, i) => {
